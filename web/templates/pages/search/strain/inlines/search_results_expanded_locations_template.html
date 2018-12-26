@@ -1,0 +1,24 @@
+<script type="x/srx-template" id="expanded-locations-template">
+    <div class="locations-wrapper">
+        <div class="exp-location-header">
+            <div class="location-name"></div>
+            <div class="location-rating"></div>
+            <div class="location-distance">Distance</div>
+            <div class="location-price">
+                <span class="price-expander">Price</span>
+                <i class="fa fa-caret-down price-sort" aria-hidden="true"></i>
+            </div>
+            <div class="prices-wrapper hidden">
+                <span class="price" id="menu_items.price_gram">Gram</span>
+                <span class="price" id="menu_items.price_eighth">Eighth</span>
+                <span class="price" id="menu_items.price_quarter">Quarter</span>
+                <span class="price" id="menu_items.price_half">Half</span>
+            </div>
+        </div>
+        <div class="expanded-locations-holder">
+            <% _.each(locations, function(l) { %>
+            <%= renderLocation({l: l, vt_id: vt_id, formatDistance: formatDistance, formatPrice: formatPrice}) %>
+            <% }); %>
+        </div>
+    </div>
+</script>

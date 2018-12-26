@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Vt Search{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'css/pages/base.css' %}" rel="stylesheet">
+  <link href="{% static 'css/pages/search/vt/advanced_search.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static 'js/pages/search/vt/advanced_search_results.js' %}"></script>
+  <script type="text/javascript">
+      new W.pages.AdvancedSearchFormPage();
+  </script>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="vt-search-wrapper">
+
+      <a href="{{ search_url }}"><img src="{% static 'images/search/logo.png' %}" alt=""></a>
+      <a href="{{ search_url }}"><h2 class="title">{% trans 'The Cannabis Search Engine' %}</h2></a>
+      <div class="subtitle-container">
+        <span class="subtitle">{% trans 'Instantly search thousands of vts' %}</span>
+      </div>
+
+      <div class="search-result-container">
+      {% block form_content %}
+        {% include 'pages/search/vt/inlines/advanced_search.html' %}
+      {% endblock form_content %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,508 @@
+@import '../../mixins/variables';
+
+.sign-up-wrapper {
+    text-align: center;
+    color: $grey-normal;
+
+    input {
+        display: block;
+        margin: 0 auto 1em;
+    }
+
+    .wizard-wrapper {
+        padding: 2em 1em;
+        width: 30em;
+        margin: 0 auto;
+
+        hr {
+            z-index: 1;
+            width: 22em;
+            margin: -1em auto 0 auto;
+        }
+    }
+
+    .sign-up-b2b-wrapper {
+        padding: 0 1em 3em;
+        margin-top: -2em;
+    }
+}
+
+.sign-up-form-wrapper {
+    margin-top: 2em;
+    padding-bottom: 6em;
+
+    fieldset {
+        padding-bottom: 2em;
+    }
+
+    label {
+        display: inline-block;
+    }
+
+    label > input + span.check {
+        cursor: pointer;
+    }
+
+    span.check {
+        display: inline-block;
+        margin-right: 0.5em;
+    }
+
+    label > span.check {
+        width: 2em;
+        height: 2em;
+        border: 1px solid $grey-light;
+        border-radius: 1em;
+        vertical-align: middle;
+    }
+
+    label > input {
+        position: absolute;
+        visibility: hidden;
+        width: 2em;
+        height: 2em;
+        padding: 0.35em 0;
+    }
+
+    label > input:checked + span:before {
+        content: '\2713';
+        display: block;
+        width: 2em;
+        height: 2em;
+        padding: 0.35em 0;
+        color: $iris-blue;
+    }
+
+    .pwd-req {
+        display: block;
+        margin: 1em auto 3em;
+    }
+
+    .message-1 {
+        display: block;
+        margin: 3em auto;
+        width: 50em;
+        line-height: 2em;
+    }
+
+    .message-2 {
+        display: block;
+        margin: 3em auto;
+        width: 50em;
+        line-height: 2em;
+    }
+}
+
+.b2b-sign-up-wrapper {
+    .wizard-wrapper {
+        padding: 2em 0.8em;
+        width: 41em;
+        margin: 0 auto;
+
+        hr {
+            z-index: 1;
+            width: 31em;
+            margin: -1em auto 0 1em;
+        }
+
+        .wizard-step {
+            margin: 0 1em;
+        }
+    }
+
+    .b2b-sign-up-form-wrapper {
+        color: $grey-normal;
+        text-align: center;
+
+        ::-webkit-input-placeholder {
+            text-align: center;
+        }
+
+        :-moz-placeholder { /* Firefox 18- */
+            text-align: center;
+        }
+
+        ::-moz-placeholder { /* Firefox 19+ */
+            text-align: center;
+        }
+
+        :-ms-input-placeholder {
+            text-align: center;
+        }
+
+        h1 {
+            margin: 2em auto;
+        }
+
+        .form-actions {
+            margin: 2em auto 5em;
+        }
+
+        .sub-title {
+            display: block;
+            margin-top: -3em;
+            margin-bottom: 4em;
+            line-height: 1.5em;
+        }
+    }
+
+    .b2b-step-1 {
+        .additional-actions {
+            display: block;
+            width: 100%;
+            height: 5em;
+            margin-top: -2em;
+            color: $iris-blue;
+
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .b2b-step-4 {
+        .form-field-group {
+            display: block;
+            width: 60%;
+            margin: 0 auto;
+
+            .form-field {
+                display: inline-block;
+                width: 20%;
+                margin: 0 3%;
+                color: $grey-dark;
+
+                label {
+                    cursor: pointer;
+                }
+
+                input[type="checkbox"] {
+                    width: 1em;
+                    height: 1em;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .grow-house {
+            cursor: default !important;
+            color: $grey-light;
+
+            label {
+                cursor: default;
+            }
+
+            input[type="checkbox"] {
+                cursor: default;
+            }
+        }
+    }
+
+    .b2b-step-5 {
+        .form-field-group {
+            display: block;
+            width: 30em;
+            margin: 0 auto 1em;
+            text-align: left;
+
+            .form-field {
+                display: inline-block;
+                width: 100%;
+                margin: 0 auto;
+
+                label {
+                    display: block;
+                    margin-bottom: 0.5em;
+                    color: $grey-dark;
+                    font-weight: bold;
+                }
+
+                input {
+                    border-radius: 0;
+                    width: 100%;
+                }
+            }
+        }
+
+        .address-field-group {
+            position: relative;
+
+            .removable {
+                display: inline-block;
+                position: absolute;
+                right: 0.6em;
+                top: 2.7em;
+                cursor: pointer;
+            }
+        }
+
+        .phone-field-group {
+            .form-field {
+                margin: 0;
+            }
+
+            .form-field.phone-number {
+
+                ::-webkit-input-placeholder {
+                    text-align: left;
+                }
+                ::-moz-placeholder {
+                    text-align: left;
+                }
+            }
+        }
+    }
+
+    .b2b-step-6 {
+        .form .form-field-group {
+            float: none;
+            width: 100%;
+
+            .form-field {
+                display: block;
+                width: 21em;
+                margin: 0 auto;
+            }
+
+            .day-wrapper {
+                display: block;
+                width: 21em;
+                height: 2em;
+                margin: 0 auto 1em;
+                text-align: left;
+
+                .day {
+                    display: inline-block;
+                    position: relative;
+                    top: 0.35em;
+                    float: left;
+                    width: 25%;
+                }
+
+                .hours {
+                    display: inline-block;
+                    height: 2em;
+                    float: right;
+
+                    div {
+                        display: inline-block;
+                        height: 2em;
+                        vertical-align: top;
+                    }
+
+                    select {
+                        border-radius: 0;
+                        padding: 0 0.5em;
+                        width: 6em;
+                        height: 2em;
+                    }
+
+                    .separator {
+                        position: relative;
+                        top: 0.35em;
+                    }
+
+                    .separator:after {
+                        content: '-';
+                        padding: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .b2b-step-7 {
+        .image-upload-form {
+            fieldset {
+                display: block;
+                height: 8em;
+            }
+
+            .uploaded-img {
+                display: block;
+                width: 15em;
+                margin: 0 auto 2em;
+            }
+
+            .title {
+                margin: 4em auto;
+
+                .photo-camera-wrapper {
+                    color: $grey-dark;
+                }
+
+                h1 {
+                    margin: 0.4em auto;
+                }
+            }
+
+            .error-message {
+                display: block;
+                margin: 2em auto;
+            }
+
+            .upload-image {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+            .upload-image + label {
+                display: block;
+                width: 10em;
+                margin: 0 auto;
+                padding: 1em 2em;
+                cursor: pointer;
+                border: 1px solid $grey-normal;
+                color: $grey-normal;
+            }
+
+            .upload-image:focus + label {
+                outline: 1px solid $iris-blue;
+            }
+        }
+    }
+
+    .b2b-step-8 {
+        .form-field {
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+            text-align: left;
+
+            label {
+                width: 100%;
+            }
+
+            .check {
+                display: inline-block;
+                float: left;
+                text-align: center;
+            }
+
+            .text {
+                display: inline-block;
+                float: right;
+                width: 90%;
+                text-align: left;
+                line-height: 2em;
+            }
+        }
+
+        .error-message {
+            margin-top: 2em;
+        }
+    }
+
+    .b2b-step-9 {
+        .error-message {
+            margin-top: 2em;
+        }
+    }
+
+    .go-to-menu {
+        width: 15em;
+
+        a {
+            color: $white;
+        }
+    }
+}
+
+.privacy-dialog,
+.terms-dialog {
+    max-width: 40em !important;
+    width: 26em !important;
+}
+
+@media (max-width: $screen-md-min) {
+    .sign-up-form-wrapper .message-1,
+    .sign-up-form-wrapper .message-2 {
+        width: 22em;
+    }
+
+    .sign-up-form-wrapper {
+        .message-2.resend {
+            margin: auto;
+            height: 4em;
+        }
+    }
+}
+
+@media (max-width: $screen-xs-max) {
+    .sign-up-wrapper {
+        input {
+            padding: 1em 1.5em;
+            width: 100%;
+        }
+
+        .wizard-wrapper {
+            padding: 2em 0;
+            width: 100%;
+            text-align: center;
+
+            .wizard-step {
+                margin: 0 1em;
+            }
+
+            hr {
+                width: 16em;
+                margin: -1em auto 0 auto;
+            }
+        }
+    }
+
+    .b2b-sign-up-wrapper {
+        input {
+            padding: 1em 1.5em;
+            width: 100%;
+        }
+
+        .wizard-wrapper {
+            padding: 2em 0;
+            width: 100%;
+            text-align: center;
+
+            .wizard-step {
+                margin: 0 0.2em;
+            }
+
+            hr {
+                width: 20em;
+                margin: -1em auto 0 auto;
+            }
+        }
+
+        .b2b-step-4 {
+            .form-field-group {
+                width: 90%;
+
+                .form-field {
+                    width: 24%;
+                    vertical-align: top;
+                }
+            }
+        }
+
+        .b2b-step-5 {
+            .form-field-group {
+                width: 100%;
+            }
+
+            .address-field-group {
+                width: 100%;
+            }
+
+            .phone-field-group {
+                width: 100%;
+
+                .form-field.phone-number {
+                    width: 69%;
+                }
+            }
+        }
+    }
+}

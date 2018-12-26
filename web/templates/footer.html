@@ -1,0 +1,20 @@
+{% load staticfiles i18n %}
+
+<footer class="footer-region">
+    <div class="container">
+        <div class="links-wrapper">
+            <ul class="links">
+                <li><a href="{% url 'home' %}">Home</a><span class="separator"></span></li>
+                <li><a href="{% url 'view_page' 'complete-history-of-cannabis' %}">History of Cannabis</a><span class="separator"></span></li>
+                <li><a href="/how-it-works/">How Works</a><span class="separator"></span></li>
+                <li><a href="{% url 'about' %}">About Us</a><span class="separator"></span></li>
+                <li><a href="{% url 'privacy' %}">Privacy Policy</a><span class="separator"></span></li>
+                <li><a href="{% url 'terms' %}">Terms of Use</a><span class="separator"></span></li>
+                <li><a href="/contact">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="copyright-wrapper">
+            <span class="copyrights">&copy; {% now "Y" %} Vts. All rights reserved.</span>
+        </div>
+    </div>
+</footer>

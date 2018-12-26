@@ -1,0 +1,26 @@
+{% extends "pages/search/vt/advanced_search.html" %}
+
+{% load staticfiles i18n %}
+
+{% block form_content %}
+  <form class="search-form" method="GET" action="{% url 'search:advanced_search_result' %}">
+    <div class="row">
+      <div class="form-field-group variety">
+        <div class="form-field">
+          <label for="search">
+            <input type="text" class="search-input" name="q" value="{{ request.GET.q }}"
+                   placeholder="{% trans 'Example: Blue Dream, Maui Wowie, Pineapple Express ...' %}">
+          </label>
+          <button class="btn-primary search-btn" type="submit">Search </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row advanced-search-link-wrapper">
+      <span class="circle or-btn">{% trans 'OR' %}</span>
+      <a href="{% url 'search:advanced_search' %}"
+         class="advanced-search-link">{% trans 'Advanced Search' %}
+        <i class="fa fa-angle-right advanced-search-link"></i></a>
+    </div>
+  </form>
+{% endblock form_content %}

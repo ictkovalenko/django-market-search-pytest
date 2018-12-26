@@ -1,0 +1,31 @@
+{% extends "emails/base.html" %}
+{% load staticfiles i18n %}
+
+{% block css %}
+    {{ block.super }}
+    <style>
+        p {
+            margin: 20px;
+            text-align: left;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <tr>
+        <td>
+            <p>Hello <b>{{ name }},</b></p>
+            <p>
+              This is an automatically generated email. Someone has reported that you sold out of {{ vt }} and it will no longer be displayed in your menu. You may add it back when it becomes available.
+            </p>
+            <p>
+              <a href="{{ login_url }}">Log in</a> to begin managing your menu, or <a href="{{ claim_url }}">claim your listing</a> if you haven't already and begin communicating with your customers on {{  }}.
+            </p>
+            <p>
+                Regards,<br>
+                The {{  }} Team<br>
+                <a href="mailto:support@">support@</a>
+            </p>
+        </td>
+    </tr>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "emails/base2.html" %}
+{% load staticfiles i18n %}
+{% block content %}
+<tbody style="font-size: 16px; font-family: Geneva, Verdana, sans-serif; color: #5f5f5f;">
+    <tr>
+        <td>
+            <p style="margin: 16px;">Hi {{ user.first_name|default:"there" }},</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="margin: 16px;">Welcome to {{  }}! Please click the button below to verify your account.</p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="margin: 16px;">
+                <a href="{{ confirmation_url }}" style="background-color: #fbbf3d; padding: 10px 20px; border-radius: 5px; color: #ffffff; text-decoration: none; font-weight: bold;">verify account</a>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="margin: 16px;">
+                If you have any issues logging in, please feel free to contact us
+                <a href="mailto:support@" style="color: #40a4e0;">support@</a>.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="margin: 32px 16px 48px;">
+                Best Regards,<br>
+                {{  }} Team
+            </p>
+        </td>
+    </tr>
+</tbody>
+{% endblock %}

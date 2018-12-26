@@ -1,0 +1,19 @@
+<script type="x/srx-template" id="menu-template">
+    <div class="menu-wrapper">
+        <h2><%= menuTitle %></h2>
+        <div class="menu-header-wrapper">
+          <div class="header-item vts">Vts</div>
+          <% if (!is_vts) { %>
+            <div class="header-item gram">Gram</div>
+            <div class="header-item eighth">1/8</div>
+            <div class="header-item quarter">1/4</div>
+            <div class="header-item half">1/2</div>
+            <div class="header-item in-stock">In Stock</div>
+          <% } %>
+          <div class="header-item actions"></div>
+        </div>
+        <% $.each(menuItems, function(index, item) { %>
+        <%= renderVt({item: item, is_vts: is_vts}) %>
+        <% }) %>
+    </div>
+</script>

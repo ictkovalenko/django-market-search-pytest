@@ -1,0 +1,66 @@
+{% extends "pages/business/business_account_base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Business Partnerships{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/common/location_lookup_widget.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pages/business/business_forms.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pages/business/business_partnerships.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block business_account_tab_content %}
+<div class="business-partnerships">
+    {% if grow_houses %}
+        <div class="form menu-form">
+            <div class="form-field-group location-field-group">
+                <div class="form-field">
+                    <label class="locations" for="locations">
+                        <span class="label">Grow:</span>
+                        <select class="location-select" id="locations">
+                            {% for g in grow_houses %}
+                                <option value="{{ g.id }}">{{ g.location_name }} - {{ g.street1 }},
+                                    {{ g.city }}, {{ g.state }} {{ g.zip_code }}</option>
+                            {% endfor %}
+                        </select>
+                        <span class="pointer"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+                    </label>
+                </div>
+            </div>
+            <h2>PARTNERS</h2>
+        `   <div class="partners"></div>
+        </div>
+    {% else %}
+        <div class="placeholder">
+            <h2>Your business account needs to have least one Cultivator location to create partnerships. </h2>
+        </div>
+    {% endif %}
+    <div class="form menu-form">
+        <div class="form-field-group add-dispensary">
+            <div class="form-field dispensary-name-field">
+                <input id="disp-lookup" class="lookup-input" type="text" placeholder="Search Dispensaries by Name"/>
+                <div class="payloads-region"></div>
+            </div>
+            <div id="add-partnership-field" class="form-field">
+                <button id="add-partnership" type="button" class="btn-primary" disabled>Add</button>
+            </div>
+    </div>
+</div>
+
+{% include 'pages/business/business_partnership_template.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/locations/location_lookup_widget.js' %}"></script>
+    <script src="{% static 'js/pages/business/business_partnerships.js' %}"></script>
+    <script src="{% static 'js/pages/business/business_partnerships_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.business.BusinessPartnershipsView.init({
+            businessId: {{ business.id }}
+        });
+    </script>
+{% endblock %}

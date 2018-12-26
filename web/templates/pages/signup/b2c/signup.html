@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/signup/signup_single_page.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/signup/b2c/signup_single_page.js' %}"></script>
+    <script>
+        new W.pages.b2c.SignUpSinglePage();
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1 class="header">Create A New Account</h1>
+    <div class="form">
+        {% csrf_token %}
+        <div class="form-row">
+            <input id="id_email" maxlength="254" name="email" type="text" placeholder="Enter Valid Email Address" />
+            <i id="error_icon_email" class="fa fa-exclamation-circle error-icon"></i>
+            <div id="error_email" class="error"></div>
+        </div>
+        <div class="form-row">
+            <input id="id_name" maxlength="254" name="name" type="text" placeholder="Username" />
+            <i id="error_icon_name" class="fa fa-exclamation-circle error-icon"></i>
+            <div id="error_name" class="error"></div>
+        </div>
+        <div class="form-row">
+            <input id="id_first_name" maxlength="30" name="first_name" type="text" placeholder="First Name" />
+            <div class="error"></div>
+        </div>
+        <div class="form-row">
+            <input id="id_last_name" maxlength="30" name="last_name" type="text" placeholder="Last Name" />
+            <div class="error"></div>
+        </div>
+        <div class="form-row">
+            <input id="id_pwd" name="password1" type="password" placeholder="Choose a Password"/>
+            <i id="error_icon_pwd" class="fa fa-exclamation-circle error-icon"></i>
+            <div id="error_pwd" class="error"></div>
+        </div>
+        <div class="form-row">
+            <input id="id_pwd2" name="password2" type="password" placeholder="Confirm Password" />
+            <i id="error_icon_pwd2" class="fa fa-exclamation-circle error-icon"></i>
+            <div id="error_pwd2" class="error"></div>
+        </div>
+        <div class="form-row">
+            <div class="checkbox-with-label">
+                <input id="id_is_terms_accepted" name="agree_terms" type="checkbox" />
+                <label>I agree to the <a href="{% url 'terms' %}">terms of use</a> and <a href="{% url 'privacy' %}">privacy policy</a>.</label>
+            </div>
+            <div class="error"></div>
+        </div>
+        <div class="form-row">
+            <div class="checkbox-with-label">
+                <input id="id_is_age_verified" name="is_age_verified" type="checkbox" />
+                <label>I verify that I am at least 21 years of age.</label>
+            </div>
+            <div class="error"></div>
+        </div>
+        <div class="form-row">
+            <button disabled>Create Account</button>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-row">
+            <b>Already have an account?</b>
+            <a href="{% url 'account_login' %}">Sign In</a>
+        </div>
+    </div>
+{% endblock %}

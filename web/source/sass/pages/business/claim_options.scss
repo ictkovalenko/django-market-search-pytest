@@ -1,0 +1,185 @@
+@import '../../mixins/variables';
+
+body {
+    font-family: 'gotham_bookregular', sans-serif;
+}
+
+.claim {
+    background: url(../../../images/claim.png) no-repeat;
+    background-size: cover;
+}
+
+.claim__container {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 1220px) {
+    .claim__container {
+        width: 960px;
+    }
+}
+
+@media (max-width: 992px) {
+    .claim__container {
+        width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    .claim__container {
+        width: 540px;
+    }
+}
+
+@media (max-width: 576px) {
+    .claim__container {
+        width: 290px;
+    }
+}
+
+.claim__caption {
+    font-weight: 800;
+    font-size: 62px;
+    color: #fff;
+    padding: 81px 0 8px 49px;
+    letter-spacing: -1.5px;
+    margin: 0;
+}
+
+@media (max-width: 992px) {
+    .claim__caption {
+        text-align: center;
+        padding: 81px 0 8px;
+    }
+}
+
+@media (max-width: 576px) {
+    .claim__caption {
+        width: 290px;
+        line-height: 60px;
+        padding: 28px 0 45px 0;
+    }
+}
+
+.claim__descript {
+    width: 638px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 30px;
+    margin-left: 22px;
+    letter-spacing: -0.8px;
+    line-height: 38px;
+    padding-bottom: 1.25em;
+}
+
+@media (max-width: 992px) {
+    .claim__descript {
+        min-width: 290px;
+        width: auto;
+        margin: 0 auto;
+    }
+}
+
+.claim__prices {
+    margin-top: 28px;
+    margin-bottom: 74px;
+}
+
+@media (max-width: 992px) {
+    .claim__prices {
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        -webkit-box-align: start;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .claim__prices {
+        display: block;
+        margin: 39px 0 40px 0;
+    }
+}
+
+.prices__item {
+    width: 201px;
+    border: 1px solid #888383;
+    display: inline-block;
+    margin-right: 35px;
+    vertical-align: top;
+    background-color: #fff;
+}
+
+@media (max-width: 992px) {
+    .prices__item {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .prices__item {
+        display: block;
+        margin: 0 auto;
+        margin-top: 17px;
+    }
+}
+
+.prices__caption {
+    background-color: #5b8e19;
+    border-bottom: 1px solid #888383;
+    margin-bottom: 27px;
+}
+
+.prices__month {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: center;
+    display: block;
+    padding-bottom: 18px;
+}
+
+.prices__price {
+    color: #fff;
+    font-weight: 400;
+    font-size: 48px;
+    padding: 13px 0 1px;
+    text-align: center;
+}
+
+.prices__price_free {
+    font-size: 56px;
+    padding: 16px 0 25px;
+}
+
+.prices__par {
+    margin: 0 24px 21px 24px;
+    display: block;
+    color: #000;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: -0.4px;
+}
+
+.prices__link {
+    display: block;
+    border-top: 1px solid #888383;
+    background-color: #5b8e19;
+    text-align: center;
+    padding: 14px 24px 18px 23px;
+    margin-top: 29px;
+    color: #fff;
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: underline;
+    -webkit-text-decoration-color: #84aa53;
+    text-decoration-color: #84aa53;
+    letter-spacing: -0.4px;
+}

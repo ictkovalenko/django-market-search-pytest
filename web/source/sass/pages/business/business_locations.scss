@@ -1,0 +1,309 @@
+@import '../../mixins/variables';
+
+.business-account-container .business-account-page-wrapper .business-account-tab-content {
+    .locations-form {
+        .location {
+            margin-top: 2em;
+
+            label {
+                color: $grey;
+                font-weight: bold;
+            }
+
+            .grow-methods {
+                display: flex;
+                flex-direction: column;
+
+                .form-field {
+                    display: flex;
+                    padding: 1em 0;
+                    margin-right: 2em;
+                }
+
+                input {
+                    width: auto;
+                    margin-left: 1em;
+                }
+
+                .field-row {
+                    display: flex;
+                }
+            }
+
+            .business-info-group {
+                display: inline-block;
+                width: 55%;
+
+                .form-field {
+                    width: 90%;
+
+                    input {
+                        width: 100%;
+                        border-radius: 0.5em;
+                        padding: 1em 0.5em;
+                    }
+                }
+            }
+
+            .business-type-field-group {
+                display: inline-block;
+                position: absolute;
+                width: 20%;
+
+                h3 {
+                    margin-bottom: 1em;
+                    color: $grey;
+                }
+
+                .form-field {
+                    width: 100%;
+                    margin: 0;
+
+                    label {
+                        display: inline-block;
+                        width: 80%;
+                    }
+
+                    input {
+                        display: inline-block;
+                        width: 15%;
+                    }
+                }
+            }
+
+            .address-field {
+                position: relative;
+
+                .removable {
+                    display: inline-block;
+                    position: absolute;
+                    right: 0.6em;
+                    top: 2.5em;
+                    cursor: pointer;
+                }
+            }
+
+            .trash-field-group {
+                display: inline-block;
+                position: absolute;
+                left: 75%;
+                width: 3%;
+                color: $iris-blue;
+                cursor: pointer;
+            }
+
+            .slider-area {
+                display: block;
+                position: relative;
+                width: 70%;
+                height: 5em;
+                margin: 0 auto;
+                color: $grey;
+
+                .slider-header {
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    top: 0;
+
+                    .sub-title {
+                        display: inline-block;
+                        float: left;
+                        font-size: 80%;
+                    }
+
+                    .slider-value {
+                        display: inline-block;
+                        float: right;
+                        font-size: 1.5em;
+                        font-weight: bold;
+                    }
+                }
+
+                .slider {
+                    top: 2.5em;
+                    height: 0.3em;
+                    border: none;
+                    background: $grey-normal;
+                }
+
+                .ui-slider-range {
+                    background: $iris-blue;
+                }
+
+                .ui-slider-handle {
+                    height: 2em;
+                    width: 2em;
+                    border-color: $iris-blue;
+                    cursor: pointer;
+                    top: -0.68em;
+                    background: $iris-blue;
+                    outline: none;
+                }
+
+                .slider-footer {
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+
+                    .min-mile {
+                        display: inline-block;
+                        float: left;
+                        font-size: 80%;
+                    }
+
+                    .max-mile {
+                        display: inline-block;
+                        float: right;
+                        font-size: 80%;
+                    }
+                }
+            }
+
+            .location-error {
+                margin: 2em 0;
+                font-weight: bold;
+            }
+
+            .location-image-wrapper {
+                display: inline-block;
+                position: relative;
+                top: 12.5em;
+                vertical-align: top;
+                width: 14em;
+                padding: 0.5em;
+                border: 1px solid $grey-normal;
+
+                img {
+                    display: block;
+                    width: auto;
+                    max-width: 100%;
+                    max-height: 14em;
+                    margin: 0 auto;
+                }
+
+                .upload-image {
+                    width: 0.1px;
+                    height: 0.1px;
+                    opacity: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    z-index: -1;
+                }
+
+                .upload-image + label {
+                    display: block;
+                    cursor: pointer;
+                    color: $grey-normal;
+                }
+
+                .upload-image:focus + label {
+                    outline: 1px solid $iris-blue;
+                }
+
+                .btn-primary {
+                    display: block;
+                    width: 100%;
+                    margin: 0.5em 0 0;
+                    padding: 0.5em 1em;
+                    cursor: pointer;
+                    text-align: center;
+                    color: $white;
+                }
+            }
+        }
+
+        .common-error-messages {
+            margin: 2em 0;
+        }
+
+        .btn-add-location {
+            padding: 0.75em 2em;
+        }
+    }
+
+    @media (max-width: $screen-sm-min) {
+        .locations-form {
+            .location {
+                .business-info-group {
+                    display: inline-block;
+                    width: 100%;
+
+                    .form-field {
+                        width: 95%;
+                    }
+                }
+
+                .business-type-field-group {
+                    position: relative;
+                    width: 65%;
+
+                    .form-field {
+                        display: inline-block;
+                        width: 49%;
+                    }
+                }
+
+                .trash-field-group {
+                    position: relative;
+                    left: 18%;
+                    font-size: 2em;
+                }
+
+                .location-image-wrapper {
+                    top: -1em;
+                }
+            }
+        }
+    }
+
+    @media (max-width: $screen-xs-max) {
+        .locations-form {
+            .location {
+                .business-info-group {
+                    display: block;
+                    width: 100%;
+                }
+
+                .business-type-field-group {
+                    position: relative;
+                    width: 65%;
+                }
+
+                .trash-field-group {
+                    left: 15%;
+                    .fa-trash-o {
+                        font-size: 2em;
+                    }
+                }
+
+                .slider-area {
+                    width: 100%;
+                    margin: 0 auto;
+                }
+
+                .location-error {
+                    margin: 2em 0;
+                    font-weight: bold;
+                }
+
+                .location-image-wrapper {
+                    top: -1em;
+                }
+            }
+
+            .common-error-messages {
+                margin: 2em 0;
+            }
+
+            .btn-add-location {
+                padding: 0.75em 2em;
+            }
+        }
+    }
+}
+
+.remove-location-dialog {
+    min-height: 110px !important;
+}

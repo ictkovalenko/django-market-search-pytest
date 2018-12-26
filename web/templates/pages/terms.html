@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Terms of Service{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/legal.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include "pages/terms_text.html" %}
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function () {
+            $('.tos-print-link').on('click', function (e) {
+                e.preventDefault();
+                window.print();
+            });
+
+            $('.policy-print-link').on('click', function (e) {
+                e.preventDefault();
+                window.print();
+            });
+        });
+    </script>
+{% endblock %}

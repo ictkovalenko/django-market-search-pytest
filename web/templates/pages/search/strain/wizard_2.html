@@ -1,0 +1,37 @@
+<script type="x/srx-template" id="search-wizard-step2">
+    <div class="search-form-wrapper">
+        <h1>What type of effects are you looking for?</h1>
+        <h3>(Choose up to 5 effects and select the importance of each one)</h3>
+        <div class="form effects-form">
+            <div class="fields effects">
+                <% _.each(effects, function(e) { %>
+                <div class="form-field">
+                    <span class="vt-effect" id="<%= _.escape(e.data_name) %>"><%= _.escape(e.display_name) %></span>
+                    <div class="effect-config-box <%= _.escape(e.data_name) %>-config-box hidden">
+                        <div class="close-box" title="Close">x</div>
+                        <div class="slider-wrapper hidden">
+                            <span class="step-label label-1 hidden">Marginally Important</span>
+                            <span class="step-label label-2 hidden">Somewhat Important</span>
+                            <span class="step-label label-3 hidden">Important</span>
+                            <span class="step-label label-4 hidden">Very Important</span>
+                            <span class="step-label label-5 hidden">Must Have</span>
+                            <div class="arrow-down"></div>
+                            <div class="slider"></div>
+                        </div>
+                    </div>
+                    <span class="importance-value hidden">1</span>
+                    <span class="removable hidden"></span>
+                </div>
+                <% }); %>
+            </div>
+            <span class="error-message"></span>
+            <div class="form-actions">
+                <button class="btn-secondary btn-skip-2" type="submit">Skip</button>
+                <button class="btn-primary btn-step-2" type="submit" disabled="disabled">Next</button>
+                <button class="btn-primary btn-go-back" type="button">
+                    <i class="fa fa-caret-left" aria-hidden="true"></i>Back to previous step
+                </button>
+            </div>
+        </div>
+    </div>
+</script>

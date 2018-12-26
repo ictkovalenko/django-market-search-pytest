@@ -1,0 +1,39 @@
+{% extends "emails/base.html" %}
+{% load staticfiles i18n %}
+
+{% block content %}
+    <tr>
+        <td>
+            <p style="margin: 20px; text-align: left;">Hi<b> {{ user.first_name }}</b>,</p>
+            <p style="margin: 20px; text-align: left;">
+                We would like to inform you that <a href="{{ location_url }}">{{ business_location.location_name }}</a>
+                in {{ business_location.city }} has updated their menu.
+            </p>
+            <p style="margin: 20px; text-align: left;">
+                Click <a href="{{ location_url }}">here</a> to visit them again.
+            </p>
+            <p style="margin: 20px; text-align: left;">Regards,<br>{{  }} Team</p>
+        </td>
+    </tr>
+{% endblock %}
+
+{% block footer %}
+    <tfoot>
+    <tr>
+        <td>
+            <hr/>
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 10px">
+            This email was sent to you because you are a registered user of {{  }} and
+            have requested to be notified with a menu update to this business is made.
+        </td>
+    </tr>
+    <tr>
+        <td style="padding: 10px">
+            Copyright &copy; {% now "Y" %} VtTech Inc. All rights reserved. We value you <a href="{% url 'privacy' %}">privacy</a>.
+        </td>
+    </tr>
+    </tfoot>
+{% endblock %}

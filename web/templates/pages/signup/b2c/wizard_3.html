@@ -1,0 +1,20 @@
+<script type="x/srx-template" id="b2c-wizard-3">
+    <div class="sign-up-form-wrapper b2c-step-3">
+        <h1>Tells us your email</h1>
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <input type="email" name="email" placeholder="Enter valid email address" value="${email}"
+                               maxlength="254"/>
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2c-step-3" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</script>

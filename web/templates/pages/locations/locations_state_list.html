@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}
+    Marijuana {{ location_type_plural|capfirst }} in
+    {% if active_state.full_name %}
+        {{ active_state.full_name }}
+    {% else %}
+        {{ active_state.abbreviation }}
+    {% endif %} - Find Closest & Best Rated
+{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content="Discover marijuana {{ location_type_plural }} in
+
+                  {% if active_state.full_name %}{{ active_state.full_name }}{% else %}{{ active_state.abbreviation }}{% endif %} - find the nearest, highest rated and recommended locations.">
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/locations/locations.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="locations-list-container container">
+        <div class="header-row">
+            <h1>
+                {% if active_state.full_name %}
+                    {{ active_state.full_name }}
+                {% else %}
+                    {{ active_state.abbreviation }}
+                {% endif %} {{ location_type_plural|capfirst }}
+            </h1>
+            <div class="social-icons">
+                <span class="social-fb">
+                    <a href="#" class="facebook-share-link" target="_blank">
+                        <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span class="social-google">
+                    <a href="#" class="google-share-link" target="_blank">
+                        <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span class="social-twitter">
+                    <a href="#" class="twitter-share-link" target="_blank">
+                        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="breadcrumbs">
+            <ol>
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                    <span class="arrow">></span>
+                </li>
+                <li>
+                    {% if location_type == 'dispensary' %}
+                        <a href="{% url 'businesses:dispensaries_list' %}">Dispensaries</a>
+                    {% elif location_type == 'grower' %}
+                        <a href="{% url 'businesses:growers_list' %}">Growers</a>
+                    {% endif %}
+                    <span class="arrow">></span>
+                </li>
+                <li class="active">{{ active_state.abbreviation|upper }}</li>
+            </ol>
+        </div>
+        <div class="text">
+            {% if active_state.description2 %}
+                {{ active_state.description2|safe }}
+            {% else %}
+                No data for this state
+            {% endif %}
+        </div>
+        <h2>Looking for Cannabis in
+            {% if active_state.full_name %}
+                {{ active_state.full_name }}
+            {% else %}
+                {{ active_state.abbreviation }}
+            {% endif %}?</h2>
+        <p>Here is a list of all the cities in
+            {% if active_state.full_name %}
+                {{ active_state.full_name }}
+            {% else %}
+                {{ active_state.abbreviation }}
+            {% endif %} where users can find a marijuana {{ location_type }}.</p>
+        <div class="pager">
+            <span class="page-letter active">A</span>
+            <span class="page-letter">B</span>
+            <span class="page-letter">C</span>
+            <span class="page-letter">D</span>
+            <span class="page-letter">E</span>
+            <span class="page-letter">F</span>
+            <span class="page-letter">G</span>
+            <span class="page-letter">H</span>
+            <span class="page-letter">I</span>
+            <span class="page-letter">J</span>
+            <span class="page-letter">K</span>
+            <span class="page-letter">L</span>
+            <span class="page-letter">M</span>
+            <span class="page-letter">N</span>
+            <span class="page-letter">O</span>
+            <span class="page-letter">P</span>
+            <span class="page-letter">Q</span>
+            <span class="page-letter">R</span>
+            <span class="page-letter">S</span>
+            <span class="page-letter">T</span>
+            <span class="page-letter">U</span>
+            <span class="page-letter">V</span>
+            <span class="page-letter">W</span>
+            <span class="page-letter">X</span>
+            <span class="page-letter">Y</span>
+            <span class="page-letter">Z</span>
+        </div>
+        <div class="cities-wrapper">
+            {% for page in cities_paged.pages %}
+                {% if page.object_list|length > 0 %}
+                    <div class="page" id="letter-{{ page.start_letter|lower }}">
+                        {% for c in page.object_list %}
+                            <div class="city">
+                                <img src="{% static 'images/dispensary-icon.png' %}"/>
+                                {% if location_type == 'dispensary' %}
+                                    <a href="{% url 'businesses:dispensaries_city_list' active_state.abbreviation|lower c.full_name_slug %}">
+                                {% elif location_type == 'grower' %}
+                                    <a href="{% url 'businesses:growers_city_list' active_state.abbreviation|lower c.full_name_slug %}">
+                                {% endif %}
+                                    {{ c.full_name }}
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <hr/>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/locations/locations_list.js' %}"></script>
+    <script src="{% static 'js/pages/locations/locations_list_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.locations.LocationsListView.init({
+            location_type: '{{ location_type }}',
+            view: 'state',
+            active_state: '{{ active_state.abbreviation|lower }}'
+        });
+    </script>
+{% endblock %}

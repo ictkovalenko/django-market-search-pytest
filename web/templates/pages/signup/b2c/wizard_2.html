@@ -1,0 +1,27 @@
+<script type="x/srx-template" id="b2c-wizard-2">
+    <div class="sign-up-form-wrapper b2c-step-2">
+        <h1>Age Verification</h1>
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <label>
+                            <% if (is_age_verified) { %>
+                            <input id="age" type="checkbox" name="age" checked/>
+                            <% } else { %>
+                            <input id="age" type="checkbox" name="age"/>
+                            <% } %>
+                            <span class="check"></span>
+                            I verify that I am at least 21 years of age.
+                        </label>
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2c-step-2" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</script>

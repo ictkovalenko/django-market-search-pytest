@@ -1,0 +1,302 @@
+@import '../../mixins/variables';
+
+body {
+    font-family: 'gotham_bookregular', sans-serif;
+}
+
+.ready {
+    width: 870px;
+    margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+    .ready {
+        width: 720px;
+    }
+}
+
+@media (max-width: 768px) {
+    .ready {
+        width: 540px;
+    }
+}
+
+@media (max-width: 576px) {
+    .ready {
+        width: 290px;
+    }
+}
+
+.ready__caption {
+    font-weight: 400;
+    font-size: 62px;
+    color: #337343;
+    text-align: center;
+    margin: 48px 0 57px 0;
+    letter-spacing: -2px;
+}
+
+@media (max-width: 768px) {
+    .ready__caption {
+        margin: 21px 0 35px 0;
+        line-height: 73px;
+    }
+}
+
+.steps {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .steps {
+        line-height: 32px;
+    }
+}
+
+.steps__caption {
+    font-weight: 800;
+    font-size: 27px;
+    color: #6c6c6c;
+    letter-spacing: -0.7px;
+}
+
+.steps__list {
+    text-align: center;
+    list-style: none;
+}
+
+.steps__item {
+    font-weight: 400;
+    font-size: 27px;
+    color: #6c6c6c;
+    letter-spacing: -0.5px;
+    margin-bottom: 1px;
+}
+
+.form {
+    margin: 81px auto 62px;
+    width: 584px;
+}
+
+@media (max-width: 768px) {
+    .form {
+        width: 290px;
+        margin: 38px auto 20px;
+    }
+}
+
+.form__row {
+    margin-bottom: 26px;
+}
+
+
+.form__row.error .form__input {
+    border-color: $red;
+}
+
+.form__row.error p {
+    margin-top: 5px;
+    color: $red;
+}
+
+
+.form__label {
+    display: inline-block;
+    margin-right: 12px;
+    width: 92px;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .form__label {
+        width: 64px;
+    }
+}
+
+.form__label:before {
+    position: absolute;
+    content: '(';
+    font-weight: 400;
+    font-size: 30px;
+    color: #767474;
+    top: 7px;
+    left: -16px;
+}
+
+@media (max-width: 768px) {
+    .form__label:before {
+        top: 17px;
+        left: -4px;
+    }
+}
+
+.form__label:after {
+    position: absolute;
+    content: ')';
+    font-weight: 400;
+    font-size: 30px;
+    color: #767474;
+    top: 7px;
+    right: -2px;
+}
+
+@media (max-width: 768px) {
+    .form__label:after {
+        top: 17px;
+        right: -11px;
+    }
+}
+
+.form__input {
+    display: block;
+    border: 1px solid #7e7e7e;
+    font-weight: 400;
+    font-size: 23px;
+    color: #767474;
+    padding: 9px 0 7px 27px;
+    margin-bottom: 0;
+    width: 556px;
+}
+
+@media (max-width: 768px) {
+    .form__input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 28px;
+    }
+}
+
+.form__input_name {
+    display: inline-block;
+    width: 270px;
+    margin-right: 13px;
+}
+
+@media (max-width: 768px) {
+    .form__input_name {
+        width: 100%;
+    }
+}
+
+.form__input_name:first-child {
+    margin-right: 16px;
+}
+
+@media (max-width: 768px) {
+    .form__input_name:first-child {
+        margin-right: 0;
+    }
+}
+
+.form__input_bus {
+    margin-bottom: 37px;
+}
+
+@media (max-width: 768px) {
+    .form__input_bus {
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .form__input_address {
+        margin-bottom: 20px;
+    }
+}
+
+.form__phone {
+    font-weight: 400;
+    font-size: 23px;
+    color: #767474;
+    margin-left: 28px;
+    margin-right: 60px;
+}
+
+@media (max-width: 768px) {
+    .form__phone {
+        display: block;
+        margin-left: 0;
+        margin-top: -7px;
+    }
+}
+
+.form__numbers {
+    width: 64px;
+    font-weight: 400;
+    font-size: 23px;
+    color: #767474;
+    padding: 7px 20px;
+    margin: 5px 12px 43px 0;
+}
+
+@media (max-width: 768px) {
+    .form__numbers {
+        width: 92px;
+        margin-right: 3px;
+        box-sizing: border-box;
+        margin: 14px 4px 26px 0;
+    }
+}
+
+.form__numbers_large {
+    width: 91px;
+    margin-left: -3px;
+}
+
+@media (max-width: 768px) {
+    .form__numbers_large {
+        width: 92px;
+        margin-left: 0;
+    }
+}
+
+.form__numbers_phone {
+    box-sizing: border-box;
+    width: 78px;
+    padding: 7px 2px;
+}
+
+@media (max-width: 768px) {
+    .form__numbers_phone {
+        margin-left: 10px;
+        padding: 7px 2px;
+        width: 50px;
+    }
+}
+
+.form__button-cont {
+    margin-top: 48px;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .form__button-cont {
+        margin-top: 24px;
+    }
+}
+
+.form__button {
+    font-weight: 400;
+    font-size: 23px;
+    color: #fff;
+    text-align: center;
+    padding: 22px 68px;
+    background-color: #337343;
+    border: none;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .form__button {
+        padding: 20px 101px 23px;
+    }
+}

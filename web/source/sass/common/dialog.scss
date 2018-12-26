@@ -1,0 +1,261 @@
+@import '../mixins/variables';
+
+.form-dialog {
+    display: block;
+    position: relative;
+
+    form {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 90%;
+
+        .form-actions {
+            display: block;
+            position: absolute;
+            bottom: 0.5em;
+            width: 100%;
+            text-align: center;
+        }
+    }
+}
+
+.ui-dialog {
+    border-radius: 1em;
+    color: $grey-light;
+
+    .ui-dialog-titlebar {
+        padding: 1em;
+        color: $grey-light;
+    }
+
+    .ui-dialog-titlebar-close {
+        right: 1em;
+    }
+
+    .ui-dialog-title {
+        font-size: 18px;
+    }
+
+    .ui-dialog-content {
+        .dialog-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    }
+}
+
+.ui-widget-header {
+    background: none;
+    border: none;
+}
+
+.ui-widget.ui-widget-content {
+    border: 2px solid $iris-blue;
+}
+
+.ui-widget-content {
+    color: $grey-light;
+}
+
+.confirm-dialog {
+    .dialog-actions {
+        display: block;
+        position: absolute;
+        width: 100%;
+        bottom: 0.5em;
+        left: 0;
+        padding: 0 1em;
+        text-align: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        padding: 0.75em 1.5em;
+        width: 45%;
+    }
+}
+
+.srx-dialog {
+    position: relative;
+    border-radius: 0;
+    padding: 0;
+    margin: 0;
+
+    .ui-dialog-titlebar {
+        padding: 0.5em;
+    }
+
+    .ui-dialog-titlebar-close {
+        right: 0.5em;
+    }
+
+    .ui-dialog-content {
+        position: relative;
+        padding: 0 0.5em;
+        overflow: hidden;
+
+        .dialog-title {
+            display: block;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            padding-bottom: 0.5em;
+            color: $grey-dark;
+        }
+
+        .dialog-header {
+            display: block;
+            position: relative;
+            width: 100%;
+        }
+
+        .dialog-footer {
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 80px;
+            bottom: 0;
+            left: 0;
+            text-align: center;
+            padding: 1em 0;
+
+            .dialog-actions {
+                position: relative;
+            }
+        }
+
+        .footer-push {
+            display: block;
+            position: relative;
+            height: 80px;
+            bottom: -7em;
+        }
+    }
+}
+
+.srx-dialog.ui-widget-content {
+    border: none;
+}
+
+.rate-dialog {
+    form {
+        display: block;
+        position: relative;
+        width: 22em;
+        max-width: 450px;
+        height: 100%;
+        text-align: center;
+
+        .review-textarea-group {
+            margin-top: 2em;
+            text-align: left;
+
+            label {
+                display: block;
+                font-size: 1.5em;
+                color: $grey;
+                margin-bottom: 1em;
+
+                span {
+                    color: $grey-light;
+                }
+            }
+        }
+
+        .rate-stars {
+            margin: 0 auto;
+        }
+
+        .rate-review {
+            resize: none;
+            width: 100%;
+            height: 100%;
+            min-height: 6em;
+        }
+
+        .error-message {
+            text-align: left;
+        }
+    }
+}
+
+#eligible-dialog {
+    position: absolute;
+    top: calc(50vh - 18em);
+    left: calc(50vw - 18em);
+
+    max-width: 36em;
+    min-height: 21.5em;
+
+    background-color: $white;
+    border: 2px solid $grey;
+
+    padding: 2em;
+
+    text-align: center;
+    color: $grey;
+
+    z-index: $zindex-spinner;
+
+    h2 {
+        color: $green-atlantis;
+    }
+
+    input {
+        width: auto;
+        margin: 0 0.5em 0 0;
+        position: relative;
+        top: 0;
+    }
+
+    form {
+        margin: 2em 0 1em;
+    }
+
+    button {
+        width: 20em;
+        height: 4em;
+        border: 0;
+        background-color: $iris-blue;
+        color: $white;
+        font-weight: bold;
+    }
+
+    button:disabled {
+        background-color: $grey-light;
+    }
+
+    p {
+        font-size: 0.75em;
+        margin: 2.5em 0 1em;
+    }
+
+    .form-field {
+        display: flex;
+    }
+}
+
+.dialog-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: $zindex-nav;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+@media (max-width: $screen-xs-max) {
+    #eligible-dialog {
+        left: calc(50vw - 154px);
+        max-width: 300px;
+    }
+}

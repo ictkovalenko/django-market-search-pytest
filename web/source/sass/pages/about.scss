@@ -1,0 +1,89 @@
+@import '../mixins/variables';
+
+.about-wrapper {
+    color: $grey-normal;
+    margin-bottom: 5em;
+
+    .about-header {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 8em;
+
+        h1 {
+            display: inline-block;
+            position: relative;
+            width: 60%;
+            float: left;
+            vertical-align: top;
+        }
+
+        .social-icons {
+            font-size: 2em;
+            display: inline-block;
+            position: absolute;
+            width: 96px;
+            right: 0;
+            float: right;
+            margin: 0.67em auto;
+            vertical-align: top;
+            text-align: right;
+
+            a {
+                color: $grey-dark;
+            }
+
+            a:hover {
+                color: $iris-blue;
+            }
+        }
+    }
+
+    .about-section {
+        margin-bottom: 2em;
+
+        h2 {
+            margin: 0.5em auto;
+        }
+
+        p {
+            margin-bottom: 1em;
+            text-align: justify;
+            line-height: 1.5em;
+        }
+    }
+}
+
+@media (min-width: $screen-xs-min) {
+    .about-wrapper {
+        .about-header {
+            height: 5em;
+        }
+    }
+}
+
+@media (min-width: $screen-sm-min) {
+
+}
+
+@media (min-width: $screen-md-min) {
+
+}
+
+@media (min-width: $screen-lg-min) {
+
+}
+
+@media (min-width: $screen-xl-min) {
+    .about-wrapper {
+        .about-header {
+            .social-icons {
+                width: 116px;
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-xxl-min) {
+
+}

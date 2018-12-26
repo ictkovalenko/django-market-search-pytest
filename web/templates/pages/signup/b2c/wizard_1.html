@@ -1,0 +1,27 @@
+<script type="x/srx-template" id="b2c-wizard-1">
+    <div class="sign-up-form-wrapper b2c-step-1">
+        <h1>Tells us who you are</h1>
+        <form method="post">
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <input type="text" name="first_name" placeholder="First Name" value="${first_name}"/>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <input type="text" name="last_name" placeholder="Last Name" value="${last_name}"/>
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2c-step-1" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+    <div class="sign-up-b2b-wrapper">
+        <a href="{% url 'businesses:signup' %}">Sign Up For Collectives</a>
+    </div>
+</script>

@@ -1,0 +1,477 @@
+@import '../mixins/variables';
+
+.nav-region {
+    background-color: $grey-dark;
+
+    .nav-menu-btn-wrapper .nav-menu-btn a,
+    .nav-menu-btn-wrapper .nav-menu-btn {
+        color: $white;
+    }
+}
+
+.user-account-header-background {
+    display: block;
+    position: relative;
+    height: 18em;
+    width: 100%;
+    left: 0;
+    background-color: $grey-blue;
+}
+
+.user-profile {
+    display: block;
+    color: $grey-light;
+    text-align: center;
+    margin-top: -16em;
+
+    .profile-header {
+        display: block;
+        position: relative;
+        padding: 0 1em;
+        height: 16em;
+
+        .info-wrapper {
+            display: block;
+            position: relative;
+            width: 100%;
+            height: 13em;
+
+            .user-image-wrapper {
+                display: inline-block;
+                position: relative;
+                left: -10%;
+                width: 8em;
+                height: 100%;
+
+                .user-image {
+                    width: 8em;
+                    height: 8em;
+
+                    .image {
+                        width: 6em;
+                        height: 6em;
+                        margin: 1em;
+                        border: 1px solid $grey-light;
+                        border-radius: 4em;
+                        padding: 0.5em;
+                    }
+
+                    .default-image {
+                        display: block;
+                        height: 1.5em;
+                        width: 1.5em;
+                        border: 1px solid $grey;
+                        background-color: $grey;
+                        color: $grey-lighter;
+                        border-radius: 10em;
+                        margin: 0.25em;
+                        font-size: 4em;
+
+                        span {
+                            line-height: 1.5em;
+                        }
+                    }
+
+                    .uploaded-image-label {
+                        background: none !important;
+                    }
+
+                    .uploaded-image {
+                        max-width: 8em;
+                        width: auto;
+                        height: auto;
+                        margin: 0;
+                        border: none;
+                        border-radius: 0;
+                        padding: 0;
+                        position: absolute;
+                        left: 0;
+                    }
+
+                    .upload-image {
+                        width: 0.1px;
+                        height: 0.1px;
+                        opacity: 0;
+                        overflow: hidden;
+                        position: absolute;
+                        z-index: -1;
+                    }
+
+                    label {
+                        cursor: pointer;
+                    }
+
+                    .upload-image + label {
+                        display: block;
+                        position: relative;
+                        cursor: pointer;
+                        color: $grey-normal;
+                        height: 8em;
+                        width: 8em;
+                        overflow: hidden;
+                        background: $white no-repeat center center;
+                    }
+
+                    .upload-image:focus + label {
+                        outline: 1px solid $iris-blue;
+                    }
+
+                    .btn-primary {
+                        width: 100%;
+                        padding: 0.5em;
+                        cursor: pointer;
+                        margin: 0;
+                        position: relative;
+                        top: 1em;
+                        border-radius: 0.2em;
+                    }
+                }
+            }
+
+            .user-info {
+                display: inline-block;
+                position: relative;
+                left: -8%;
+                height: 100%;
+                vertical-align: top;
+                color: $white;
+                text-align: left;
+                margin-left: 2em;
+
+                .user-name {
+                    display: block;
+                    font-size: 2em;
+                }
+
+                .active-since {
+                    display: block;
+                    margin-top: 1em;
+                }
+            }
+        }
+
+        .profile-tabs {
+            display: inline-block;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            bottom: 0;
+            left: 0;
+
+            .profile-tab {
+                display: inline-block;
+                width: 12em;
+                line-height: 3em;
+                margin-right: -0.4em;
+                border: 1px solid $grey-light;
+                text-align: center;
+                background-color: $iris-blue;
+                cursor: pointer;
+
+                a {
+                    display: block;
+                    width: 100%;
+                    line-height: 3em;
+                    color: $white;
+                }
+            }
+
+            .profile-tab.active {
+                background-color: $white;
+                font-weight: bold;
+
+                a {
+                    color: $grey-dark;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .profile-content {
+        display: block;
+        width: 80%;
+        padding: 2em 1em 5em;
+        margin: 0 auto;
+
+        .sub-tabs {
+            display: block;
+            text-align: left;
+            width: 100%;
+            margin-bottom: 2em;
+            color: $grey;
+
+            .sub-tab {
+                cursor: pointer;
+            }
+
+            .sub-tab.active {
+                font-weight: bold;
+                color: $grey-dark;
+            }
+        }
+    }
+
+    .user-info {
+        display: block;
+
+        .form {
+            fieldset {
+                width: 62em;
+                margin: 0 auto;
+            }
+
+            .form-field.date-field {
+                display: inline-block;
+                float: left;
+
+                .form-group {
+                    display: inline;
+                }
+
+            }
+
+            .form-field.date-field label {
+                margin-left: 0.1em;
+            }
+
+            .form-field.date-field select {
+                display: inline-block;
+                float: left;
+                width: 10em;
+                margin-right: 1em;
+                margin-left: 0.1em;
+            }
+
+            .form-field.gender-field {
+                float: right;
+            }
+        }
+    }
+
+    .form .form-actions {
+        line-height: 3em;
+        padding: 1em;
+    }
+
+    .form .form-field-group {
+        width: 100%;
+
+        select {
+            cursor: pointer;
+        }
+
+        .address-form-field {
+            position: relative;
+            float: left;
+            width: 63.5%;
+            margin-right: 0;
+
+            input {
+                width: 100%;
+            }
+
+            .removable {
+                display: inline-block;
+                position: absolute;
+                right: 0.6em;
+                top: 2.5em;
+                cursor: pointer;
+            }
+        }
+
+        .timezone-form-field {
+            float: right;
+        }
+    }
+
+    .user-change-pwd .form .form-field {
+        margin: 0 auto 1.5em;
+        display: block;
+        width: 18em;
+    }
+
+    .user-change-pwd .form .btn-primary {
+        padding: 0.75em 2.5em;
+    }
+}
+
+@media (max-width: $screen-md-max) {
+    .user-profile .profile-header {
+        .info-wrapper {
+            top: 0;
+
+            .user-image-wrapper {
+                left: -10%;
+            }
+
+            .user-info {
+                left: -8%;
+            }
+        }
+
+        .profile-tabs .profile-tab {
+            width: 15%;
+        }
+    }
+    .user-profile .form .form-field {
+        display: inline-block;
+        margin: 0 1em;
+        width: 18em;
+    }
+
+    .user-profile .user-info .form .form-field.date-field {
+        display: inline-block;
+        width: 34.5em;
+        margin-left: 1.21em;
+    }
+
+    .user-profile .user-info .form .form-field.gender-field {
+        margin-right: 1.23em;
+    }
+}
+
+@media (max-width: $screen-sm-max) {
+    .user-account-header-background {
+        height: 19em;
+    }
+
+    .user-profile .profile-header {
+        .info-wrapper {
+            top: -3em;
+        }
+
+        .profile-tabs {
+            bottom: 3em;
+
+            .profile-tab {
+                width: 33%;
+            }
+        }
+    }
+
+    .user-profile .profile-header {
+        height: 19em;
+    }
+
+    .user-profile .user-info .form {
+        .form-field-group {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .form-field {
+            display: block;
+
+            input, select {
+                width: 100%;
+            }
+        }
+
+        fieldset {
+            width: 25em;
+        }
+
+        .form-field.date-field select {
+            display: block;
+            width: 100%;
+            margin-right: 0;
+        }
+
+        .form-field.gender-field {
+            display: block;
+            width: 22.1em;
+            margin: 0 1em;
+        }
+
+        .address-form-field {
+            float: none;
+            width: 100%;
+            margin-right: 0;
+
+            input {
+                width: 18em;
+            }
+
+            .removable {
+                right: 16.6em;
+            }
+        }
+
+        .timezone-form-field {
+            float: none;
+        }
+    }
+}
+
+@media (max-width: $screen-xs-max) {
+    .user-profile .profile-header {
+        height: 16em;
+
+        .profile-tabs {
+            bottom: 0;
+        }
+    }
+
+    .user-profile .profile-header .active-since {
+        left: 1em;
+    }
+
+    .user-profile .profile-header {
+        .info-wrapper {
+            .user-image-wrapper {
+                left: 0;
+                float: left;
+                width: 32%;
+            }
+
+            .user-info {
+                left: 0;
+                float: right;
+                width: 50%;
+            }
+        }
+    }
+
+    .user-profile .form fieldset {
+        width: 25em;
+        margin: 0 auto;
+    }
+
+    .user-profile .user-info .form {
+        .form-field.date-field {
+            display: inline-block;
+            width: 18em;
+        }
+
+        .form-field.date-field select {
+            display: inline-block;
+            width: 18em;
+            margin-right: 1em;
+        }
+
+        .form-field.gender-field {
+            width: 18em;
+            float: none;
+            margin: 0 0 0 5%;
+        }
+
+        .address-form-field {
+            float: none;
+            width: 100%;
+            margin-right: 0;
+
+            input {
+                width: 18em;
+            }
+
+            .removable {
+                right: 3.6em;
+            }
+        }
+
+        .timezone-form-field {
+            float: none;
+        }
+    }
+}

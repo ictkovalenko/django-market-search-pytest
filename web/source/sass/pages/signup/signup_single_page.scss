@@ -1,0 +1,111 @@
+@import '../../mixins/variables';
+
+
+.header, .footer {
+    text-align: center;
+    color: $grey;
+}
+
+.header h1 {
+    font-weight: 400;
+}
+
+.footer {
+    font-weight: bolder;
+    margin-bottom: 2em;
+
+    a:hover {
+        font-weight: bolder;
+    }
+}
+
+.footer-row {
+    margin-bottom: 1em;
+}
+
+.form {
+    margin: 2em;
+}
+
+.form-row {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+input {
+    width: 30em;
+    padding: 0.75em 2.5em;
+    border: 1px solid $grey-light;
+    text-align: center;
+    margin-bottom: 0.25em;
+}
+
+input[type=checkbox] {
+    width: 3em;
+}
+
+input::-webkit-input-placeholder {
+    text-align: center;
+}
+
+input::-moz-placeholder {
+    text-align: center;
+}
+
+input:-moz-placeholder {   /* Older versions of Firefox */
+    text-align: center;
+}
+
+input:-ms-input-placeholder {
+    text-align: center;
+}
+
+.checkbox-with-label {
+    display: flex;
+}
+
+label {
+    width: 29em;
+}
+
+button {
+    background-color: $iris-blue;
+    border: none;
+    border-radius: 5px;
+    padding: 0.75em 1.5em;
+    font-weight: bold;
+    color: $white;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: $grey-light;
+    cursor: auto;
+}
+
+.error {
+    min-height: 1em;
+    color: $red;
+}
+
+.error-icon {
+    color: $red;
+    position: relative;
+    left: 13.5em;
+    bottom: 2.15em;
+    display: none;
+    height: 0;
+}
+
+@media (max-width: $screen-xs-max) {
+    input {
+        width: auto;
+    }
+
+    label {
+        width: auto;
+    }
+}

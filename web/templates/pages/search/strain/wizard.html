@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Vt Search{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/search/vt/search.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="vt-search-wrapper">
+            <div class="wizard-wrapper">
+                <div class="step-wrapper">
+                    <span class="wizard-step step-1 active">1</span>
+                    <span class="title">Classification</span>
+                </div>
+                <div class="step-wrapper">
+                    <span class="wizard-step step-2 disabled">2</span>
+                    <span class="title">Effects</span>
+                </div>
+                <div class="step-wrapper">
+                    <span class="wizard-step step-3 disabled">3</span>
+                    <span class="title">Medical benefits</span>
+                </div>
+                <div class="step-wrapper">
+                    <span class="wizard-step step-4 disabled">4</span>
+                    <span class="title">Side effects</span>
+                </div>
+                <input type="hidden" class="current-user-id" value="{{ request.user.id }}">
+                <hr/>
+            </div>
+
+            <div class="wizard-content-region"></div>
+
+            {% include 'pages/search/vt/wizard_1.html' %}
+            {% include 'pages/search/vt/wizard_2.html' %}
+            {% include 'pages/search/vt/wizard_3.html' %}
+            {% include 'pages/search/vt/wizard_4.html' %}
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/common/model.js' %}"></script>
+    <script src="{% static 'js/common/wizard/wizard_step.js' %}"></script>
+    <script src="{% static 'js/common/wizard/wizard.js' %}"></script>
+    <script src="{% static 'js/pages/search/vt/search_wizard_step.js' %}"></script>
+    <script src="{% static 'js/pages/search/vt/search_wizard_step_1.js' %}"></script>
+    <script src="{% static 'js/pages/search/vt/search_wizard_step_2.js' %}"></script>
+    <script src="{% static 'js/pages/search/vt/search_wizard_step_3.js' %}"></script>
+    <script src="{% static 'js/pages/search/vt/search_wizard_step_4.js' %}"></script>
+    <script src="{% static 'js/pages/search/vt/search_wizard.js' %}"></script>
+    <script src="{% static 'js/pages/search/vt/search_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.search.vt.SearchView.init();
+    </script>
+{% endblock %}
+
+{% block modal %}
+    {{ block.super }}
+
+    <div class="dialog info-dialog sativa-dialog hidden" title="Sativa">
+        <span>
+            Consuming Sativas makes a user energized, thoughtful, focused, and uplifted, with a stimulating head high.
+            It’s great for being social or physical activities, as well as for coming up with brilliant ideas.
+        </span>
+    </div>
+    <div class="dialog info-dialog hybrid-dialog hidden" title="Hybrid">
+        <span>Hybrid vts possess the benefits and combine the effects of both sativas and indicas.</span>
+    </div>
+    <div class="dialog info-dialog indica-dialog hidden" title="Indica">
+        <span>
+            Indicas make one feel sleepy, relaxed, euphoric, and sedated, with a full-body high, not just cerebral
+            activation. They can reduce nausea, increase appetite and fight depression. Use them for relaxation,
+            watching movies, or inducing slumber.
+        </span>
+    </div>
+    <div class="dialog info-dialog just-a-second-dialog hidden" title="Just a second...">
+        <div class="dialog-text">
+            <span>
+                Are you sure you don't want to increase the potency of your selection?
+                Consider advancing the slider for a heightened experience of your own choosing.
+            </span>
+        </div>
+        <div class="dialog-actions">
+            <div class="additional-section">
+                <input type="checkbox" id="do-not-show-again">
+                <label for="do-not-show-again">Don't show this again</label>
+            </div>
+            <div class="buttons-section">
+                <button type="button" class="btn-primary dismiss-btn">Dismiss</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

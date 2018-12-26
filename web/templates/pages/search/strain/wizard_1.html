@@ -1,0 +1,57 @@
+<script type="x/srx-template" id="search-wizard-step1">
+    <div class="search-form-wrapper step1-form-wrapper">
+        <h1>What vt are you looking for?</h1>
+        <div class="form">
+            <form method="post">
+                {% csrf_token %}
+                <fieldset>
+                    <div class="form-field-group">
+                        <div class="form-field vt-check">
+                            <span class="type" id="sativa">Sativa</span>
+                            <label>
+                                <input type="checkbox" name="sativa"/>
+                                <span class="check"></span>
+                            </label>
+                            <span class="type-info">
+                            <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+                        </span>
+                        </div>
+                        <div class="form-field vt-check">
+                            <span class="type" id="hybrid">Hybrid</span>
+                            <label>
+                                <input type="checkbox" name="hybrid"/>
+                                <span class="check"></span>
+                            </label>
+                            <span class="type-info">
+                            <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+                        </span>
+                        </div>
+                        <div class="form-field vt-check">
+                            <span class="type" id="indica">Indica</span>
+                            <label>
+                                <input type="checkbox" name="indica"/>
+                                <span class="check"></span>
+                            </label>
+                            <span class="type-info">
+                            <i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+                        </span>
+                        </div>
+                    </div>
+                </fieldset>
+                <span class="error-message"></span>
+                <div class="form-actions">
+                    <button class="btn-secondary btn-skip-1" type="submit">Skip</button>
+                    <button class="btn-primary btn-step-1" type="submit" disabled="disabled">Next</button>
+                    <% if (previousSearchData) { %>
+                    <button class="btn-primary btn-reset-search" type="button">Reset Search</button>
+                    <% } else { %>
+                    <button class="btn-primary btn-reset-search" type="button" disabled>Reset Search</button>
+                    <% } %>
+                </div>
+                <div class="additional-actions-wrapper">
+                    <p>Don't know what you are looking for? Skip this step.</p>
+                </div>
+            </form>
+        </div>
+    </div>
+</script>

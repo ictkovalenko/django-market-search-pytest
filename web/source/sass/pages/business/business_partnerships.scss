@@ -1,0 +1,103 @@
+@import '../../mixins/variables';
+
+
+.business-partnerships {
+    h2 {
+        color: $grey;
+        margin: 1em 0 0 0;
+    }
+
+    .menu-form {
+        min-height: 5em;
+    }
+
+    .form .form-field input {
+        width: 100%;
+        max-width: 30em;
+    }
+
+    #add-partnership-field {
+        margin: 0;
+    }
+
+    .add-dispensary {
+        display: flex;
+
+        .form-field.dispensary-name-field {
+            flex: 1;
+        }
+    }
+
+    .payloads-region {
+        line-height: 2em;
+    }
+
+    .search-payload {
+        padding: 1em 0.5em;
+    }
+
+    .placeholder {
+        min-height: 20em;
+        text-align: center;
+        padding: 2em;
+    }
+
+    .partner {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2em;
+
+        .name-row {
+            display: flex;
+        }
+
+        .name {
+            flex: 1;
+            margin-bottom: 0.5em;
+            font-size: 1.2em;
+        }
+
+        .delete-partner {
+            color: $red;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
+        .content {
+            display: flex;
+        }
+
+        .image {
+            flex: 1;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .details {
+            display: flex;
+            flex-direction: column;
+            flex: 4;
+            margin-left: 1em;
+            color: $grey;
+
+            .icon {
+                margin-right: 1em;
+            }
+
+            .line-wrapper {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+            }
+
+            .line {
+                display: flex;
+            }
+        }
+
+    }
+}

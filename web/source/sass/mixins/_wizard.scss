@@ -1,0 +1,55 @@
+@import 'variables';
+
+.wizard-step {
+    border: 1px solid $grey-light;
+    background: $white;
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0.4em;
+    margin: 0 1.5em;
+    z-index: 2;
+}
+
+.wizard-step,
+.wizard-step a {
+    color: $grey-light;
+    cursor: pointer;
+}
+
+.wizard-step.active {
+    border: 2px solid $grey-normal;
+    padding: 0.3em;
+}
+
+.wizard-step.finished,
+.wizard-step.passed {
+    border: 2px solid $grey-normal;
+    background: $avocado-green;
+    padding: 0.3em;
+}
+
+.wizard-step.finished {
+    pointer-events: none;
+    cursor: default;
+    color: $white;
+}
+
+.wizard-step.passed,
+.wizard-step.passed a {
+    color: $white;
+    cursor: pointer;
+}
+
+.wizard-step.active,
+.wizard-step.active a {
+    color: $black;
+    cursor: default;
+}
+
+.wizard-step.disabled {
+    cursor: default;
+}

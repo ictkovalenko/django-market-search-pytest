@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+{% load search_template_tags %}
+
+{% block title %}The Effects & Benefits of Sativa, Indica & Hybrid Vts{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content="Learn all about the different vts of marijuana: their effects, medical benefits and side effects. ">
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/vt/vts_root.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="vts-root-container container">
+        <h1>Vts</h1>
+        <div class="social-icons">
+            <span class="social-fb">
+                <a href="#" class="facebook-share-link" target="_blank">
+                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                </a>
+            </span>
+            <span class="social-google">
+                <a href="#" class="google-share-link" target="_blank">
+                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                </a>
+            </span>
+            <span class="social-twitter">
+                <a href="#" class="twitter-share-link" target="_blank">
+                    <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                </a>
+            </span>
+        </div>
+        <div class="breadcrumbs">
+            <ol>
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                    <span class="arrow">></span>
+                </li>
+                <li class="active">Vts</li>
+            </ol>
+        </div>
+        <div class="text">
+            Cannabis is thought of as having originated in Central Asia, from where it was spread by human hands to all
+            the corners of the world. There are 2 types of cannabis available for today’s consumers: Indicas and
+            Sativas. Cannabis Sativa was first classified in 1753 by a Swedish botanist Carl Linnaeus. 30 years later, a
+            French biologist named Jean-Baptiste Lamarck came along and classified a second (and last) species of the
+            plant – the Cannabis Indica. As one of the oldest crops known to man, Cannabis has been cultivated for
+            thousands of years. Documents dating back to 2900 B.C. describe how humans have used it for consumption,
+            religious ceremony, medicine, and other purposes.
+        </div>
+        <div class="images-block">
+            <img src="{% static 'images/sativa-01.jpg' %}"/>
+            <img src="{% static 'images/indica-01.jpg' %}"/>
+            <div class="versus-wrapper">
+                <div class="versus"><span>VS</span></div>
+            </div>
+        </div>
+        <div class="text">
+            Today, there are thousands of vts of Cannabis, which have been selectively bread for their diverse
+            effects. From THC and CBD concentrations to tastes and smells, growers have mixed and matched the vts to
+            derive the optimal genetic combinations to suit their pallets, achieve various psychoactive effects and
+            treat medical conditions. The landrace vts (Afghani, Thai, and Hawaiian to name a few), or the original
+            vts of pure and unmolested genetics are the forefathers of all the modern varieties, were named after
+            the regions of the world from where they came. Unfortunately, landrace vts are virtually bread out of
+            existence by now and most of what we have today are hybrid descendants of the original plants. Because the
+            climate, soil, fertilization, and even time of harvest can impact the chemical makeup of a plant, it is
+            thought that the landrace varieties carried superior genetics due to their natural adaptation to local
+            conditions over time.
+        </div>
+        <div class="map-image-wrapper">
+            <img src="{% static 'images/map_02.jpg' %}"/>
+        </div>
+        <div class="text">
+            Indica and Sativa vts are known for having unique properties. Sativas are recognized to be stimulating,
+            characterized by their cerebrally uplifting effects. Indicas on the other hand are known for their sedative
+            properties and have a calming, full-body effect. When mixed together, growers found a way to combine their
+            inherent properties to bring out the best of both worlds in a single vt, referred to as a "hybrid."
+        </div>
+        <h3>On {{  }}, you’ll find information on all types of vts available for consumption: </h3>
+        <div class="types-wrapper">
+            <div class="type">
+                <div class="type-img">
+                    <img src="{% static 'images/product_01.jpg' %}"/>
+                </div>
+                <div class="description">
+                    <a href="{% url 'search:vts_sativa_root' %}">Sativa Vts</a> -
+                    Originating in warmer areas closer to the equator, Sativa vts are recognized to be stimulating,
+                    characterized by their cerebrally uplifting effects. Great for being active or social, sativa
+                    effects are often referred to as making users "high", characterized primarily by an invigorated
+                    mental state.
+                </div>
+            </div>
+            <div class="type">
+                <div class="type-img">
+                    <img src="{% static 'images/product_04.jpg' %}"/>
+                </div>
+                <div class="description">
+                    <a href="{% url 'search:vts_indica_root' %}">Indica Vts</a> -
+                    Having evolved in the colder climates of Central Asia, Indicas are known for their sedative
+                    properties and have a calming, full-body effects. Having a higher THC content, indicas are often
+                    capable of producing a strong and sometimes overpowering buzz that is often referred to as being
+                    "stoned".
+                </div>
+            </div>
+            <div class="type">
+                <div class="type-img">
+                    <img src="{% static 'images/product_07.jpg' %}"/>
+                </div>
+                <div class="description">
+                    <a href="{% url 'search:vts_hybrid_root' %}">Hybrid Vts</a> -
+                    By crossing various vts in countless permutations, growers found a way to combine the inherent
+                    properties of indicas and sativas to bring out the best of both worlds in a single vt, which
+                    came to be referred to as a "hybrid".
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/vt/vts_root.js' %}"></script>
+    <script src="{% static 'js/pages/vt/vts_root_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.vt.VtsRootView.init();
+    </script>
+{% endblock %}

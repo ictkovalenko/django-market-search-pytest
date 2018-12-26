@@ -1,0 +1,33 @@
+@import 'variables';
+
+@font-face {
+    font-family: 'gotham_boldregular';
+    src: url('#{$font-path}gotham_bold-webfont.woff2') format('woff2'),
+    url('#{$font-path}gotham_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'gotham_bookregular';
+    src: url('#{$font-path}gotham_book-webfont.woff2') format('woff2'),
+    url('#{$font-path}gotham_book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'gotham_lightregular';
+    src: url('#{$font-path}gotham_light-webfont.woff2') format('woff2'),
+    url('#{$font-path}gotham_light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'gotham_mediumregular';
+    src: url('#{$font-path}gotham_medium-webfont.woff2') format('woff2'),
+    url('#{$font-path}gotham_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

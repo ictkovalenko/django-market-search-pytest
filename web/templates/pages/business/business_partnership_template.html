@@ -1,0 +1,47 @@
+<script type="x/srx-template" id="partnership-template">
+    <% _.each(partnerships, function(p) { %>
+        <div class="partner">
+            <div class="name-row">
+                <div class="name">
+                    <a href="<%- p.dispensary.url %>"><%- p.dispensary.location_name %></a>
+                </div>
+                <div class="delete-partner" data-partnership-id="<%- p.id %>">
+                    <i class="fa fa-times" title="Revoke partnership with <%- p.dispensary.location_name %>"></i>
+                </div>
+            </div>
+            <div class="content">
+                <div class="image">
+                    <img src="<%- p.dispensary.image_url %>" />
+                </div>
+                <div class="details">
+                    <div class="line-wrapper">
+                        <div class="line">
+                            <div class="icon">
+                                <i class="fa fa-map-marker"></i>
+                            </div>
+                            <div class="text"><%- p.dispensary.formatted_address %></div>
+                        </div>
+                    </div>
+                    <div class="line-wrapper">
+                        <div class="line">
+                            <div class="icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="text"><%- p.dispensary.phone %></div>
+                        </div>
+                    </div>
+                    <div class="line-wrapper">
+                        <div class="line">
+                            <div class="icon">
+                                <i class="fa fa-envelope"></i>
+                            </div>
+                            <div class="text">
+                                <a href="mailto:<%- p.dispensary.location_email %>"><%- p.dispensary.location_email %></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</script>

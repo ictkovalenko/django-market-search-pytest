@@ -1,0 +1,34 @@
+{% load staticfiles i18n %}
+<html>
+<head>
+    <style>tfoot a:visited{ color:#5e97da !important }</style>
+</head>
+<body>
+
+    <table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+
+        <thead align="center">
+            <tr>
+                <th align="center"><img height="120" src="{{ logo_url }}"/></th>
+            </tr>
+        </thead>
+
+        {% block content %}{% endblock %}
+
+        <tfoot align="center" style="background-color: #2e3e4d; color: #5e97da; font-family: Geneva, Verdana, sans-serif;">
+            <tr height="100">
+                <td>
+                    <a href="{{ fb_url }}" target="_blank" style="font-weight: bold; padding: 13px; border: 1px solid;">
+                        <span style="display: inline-block; vertical-align: middle; margin-right: 10px;">
+                            <img src="{{ fb_logo_url }}" />
+                        </span>
+                        <span style="display: inline-block; vertical-align: middle; font-size: 13px;">CONNECT WITH US</span>
+                    </a>
+                </td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+</body>
+</html>

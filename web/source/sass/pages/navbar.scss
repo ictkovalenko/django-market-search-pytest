@@ -1,0 +1,350 @@
+@import '../mixins/variables';
+
+.nav-region {
+    display: block;
+    position: relative;
+    border-radius: 0;
+    height: 5em;
+    z-index: 1000;
+    background-color: $almost-white;
+
+    .mobile-menu {
+        display: none;
+        text-align: right;
+        vertical-align: middle;
+        float: right;
+        width: 3em;
+    }
+
+    a:hover.mobile-menu {
+        cursor: pointer;
+    }
+
+    .nav-region ul {
+        list-style: none;
+    }
+}
+
+.nav-container {
+    display: flex;
+    line-height: 5em;
+    height: 5em;
+
+    .nav-brand-wrapper {
+        display: inline-block;
+        float: left;
+        width: 16em;
+        height: 5em;
+
+        .logo {
+            display: block;
+            width: 16em;
+            height: 5em;
+
+            img {
+                width: 16em;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .nav-list-wrapper {
+        display: inline-block;
+        float: right;
+        margin-left: auto;
+        white-space: nowrap;
+        padding-left: 1em;
+    }
+
+    .nav-list-wrapper:hover {
+        .nav-list {
+            .auth-menu .nav-menu-content {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 4em;
+                width: 25em;
+            }
+        }
+    }
+}
+
+.nav-tabs-wrapper {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    line-height: 1em;
+    text-align: center;
+    margin-left: 2em;
+
+    .action {
+        display: inline-block;
+    }
+
+    .separator {
+        color: $white;
+    }
+}
+
+.nav-list {
+    list-style: none;
+
+    .nav-list-item {
+        display: inline-block;
+    }
+
+    .nav-list-item.mobile {
+        display: none;
+    }
+
+    .nav-list-item .separator:after {
+        content: "|";
+        padding: 0 0.5em 0 0.5em;
+        color: $iris-blue;
+    }
+
+    .nav-menu-btn-wrapper {
+        right: 1em;
+        white-space: nowrap;
+        display: flex;
+        float: right;
+
+        .business-image {
+            display: inline-block;
+            float: left;
+            height: 4em;
+
+            img {
+                border-style: none;
+                height: 4em;
+                padding: 0.25em;
+            }
+        }
+
+        .business-nav-menu-btn {
+            display: inline-block;
+            float: right;
+            font-size: 0.8em;
+
+            span {
+                padding: 0.3em;
+            }
+
+            .business-name {
+                display: block;
+                font-size: 1.1em;
+                line-height: 1em;
+                color: $grey-normal;
+                font-weight: bold;
+            }
+
+            .business-active-since {
+                display: block;
+                line-height: 1em;
+                color: $grey-normal;
+            }
+
+            .business-verify-location {
+                display: block;
+                line-height: 1em;
+
+                a {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .auth-menu {
+        right: 1em;
+
+        .nav-menu-content {
+            display: none;
+            background: $grey-dark;
+            color: $white;
+            width: 18em;
+            right: 1em;
+            text-align: right;
+
+            a {
+                color: $white;
+            }
+
+            .blue-link a {
+                color: $iris-blue;
+            }
+
+            .action {
+                display: block;
+                line-height: 2em;
+                padding: 0.5em 1.5em;
+            }
+
+            .location {
+                background: $black;
+
+                span {
+                    display: block;
+                }
+
+                .nav-bar-user-street, .nav-bar-user-location {
+                    white-space: normal;
+                }
+
+                .update-location-href {
+                    color: $iris-blue;
+                }
+            }
+
+        }
+    }
+
+    .nav-menu-btn-wrapper .nav-menu-btn a,
+    .nav-menu-btn-wrapper .nav-menu-btn {
+        color: $black;
+
+        i {
+            margin-right: 0.5em;
+        }
+    }
+
+    .pointer {
+        cursor: pointer;
+        color: $iris-blue;
+        margin-left: 0.3em;
+        position: relative;
+        top: -0.15em;
+    }
+}
+
+
+@media (max-width: $screen-xs-max) {
+    .nav-region {
+        background-color: $grey-dark;
+    }
+
+    .mobile-menu {
+        display: inline-block !important;
+
+        i {
+            padding-top: 0.8em;
+        }
+    }
+
+    .nav-list, .nav-list ul, nav:active ul {
+        display: none;
+        position: absolute;
+        background: $white;
+        top: 2em;
+        width: 50%;
+    }
+
+    .nav-list {
+        .nav-list-item, .nav-list-item.mobile {
+            display: block;
+        }
+    }
+
+    .nav-tabs-wrapper {
+        display: none;
+    }
+
+    .nav-container {
+        .nav-list-wrapper:hover {
+            .nav-list {
+                display: none;
+            }
+        }
+
+        .nav-list-wrapper {
+            .nav-list {
+                display: none;
+                position: absolute;
+                left: 0;
+                width: 100%;
+
+                .auth-menu .nav-menu-content {
+                    display: block;
+                    width: 100% !important;
+                    position: absolute;
+                    right: 0;
+                    top: 4em;
+                }
+
+                ul {
+                    display: block;
+                    position: absolute;
+                    width: 100%;
+                }
+            }
+
+        }
+
+        .nav-list-wrapper {
+            .nav-list {
+                .separator:after {
+                    content: '';
+                    padding: 0;
+                }
+
+                .nav-menu-btn {
+                    color: $grey-dark;
+                }
+
+                .nav-menu-btn-wrapper {
+                    padding: 0 1em;
+                }
+
+                ul {
+                    background: $grey-dark;
+
+                    li {
+                        text-align: right;
+                        width: 100%;
+                        padding: 0.5em 2em;
+                        margin: 0;
+                    }
+
+                    li a {
+                        color: $white;
+                    }
+                }
+
+                .auth-menu {
+                    display: block;
+                    position: absolute;
+                    left: 0;
+                    top: 2em;
+                    width: 100%;
+                    background: $grey-dark;
+                    text-align: right;
+
+                    a {
+                        color: $white;
+                    }
+
+                    .blue-link a {
+                        color: $iris-blue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $screen-md-max) {
+    .nav-list {
+        .nav-menu-btn-wrapper {
+            .business-nav-menu-btn{
+                display: none;
+            }
+        }
+    }
+}
+
+@media (max-width: $screen-sm-max) {
+    .nav-tabs-wrapper {
+        display: none;
+    }
+}

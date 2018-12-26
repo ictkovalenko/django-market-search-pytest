@@ -1,0 +1,240 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Marijuana {{ location_type_plural|capfirst }}, Easily Find Cannabis Near You{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/locations/locations.css' %}" rel="stylesheet">
+    <link href="{% static 'css/common/location_plus_favourites.css' %}" rel="stylesheet">
+    <link href="{% static 'css/common/location_lookup_widget.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content="Marijuana {{ location_type_plural }} near you. Find the best rated, compare prices, or find local deals.">
+{% endblock %}
+
+{% block content %}
+    <div class="location-row-01">
+        <div class="container">
+            {% include 'pages/common/location_plus_favourites.html' %}
+            <div class="location-sub-row-02">
+                <h1>{{ location_type|capfirst }} Lookup</h1>
+                <div class="subtitle-container">
+                    <hr/>
+                    <p class="subtitle">Search Local {{ location_type_plural|capfirst }} by Name</p>
+                    <hr/>
+                </div>
+                <div class="search-box">
+                    <div class="search-form">
+                        <div class="form-field location-name-field">
+                            <label for="location-lookup" class="location-lookup-label">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </label>
+                            <input id="location-lookup" class="lookup-input" type="text" placeholder="Search {{ location_type_plural|capfirst }} by Name"/>
+                            <div class="payloads-region"></div>
+                        </div>
+                        <div class="location-location-container">
+                            <label for="location-location" class="location-location-label">
+                                <i class="fa fa-dot-circle-o" aria-hidden="true"></i>
+                            </label>
+                            <input id="location-location" type="text" class="location-location-value"
+                                   placeholder="Filter by Location"/>
+                        </div>
+                    </div>
+                </div>
+                <!--<a class="find-delivery" href="#">or Find Delivery Service</a>-->
+            </div>
+        </div>
+    </div>
+    <div class="locations-list-container container">
+        <h2>Cannabis {{ location_type_plural|capfirst }}</h2>
+        <div class="social-icons">
+            <span class="social-fb">
+                <a href="#" class="facebook-share-link" target="_blank">
+                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                </a>
+            </span>
+            <span class="social-google">
+                <a href="#" class="google-share-link" target="_blank">
+                    <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                </a>
+            </span>
+            <span class="social-twitter">
+                <a href="#" class="twitter-share-link" target="_blank">
+                    <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                </a>
+            </span>
+        </div>
+        <div class="breadcrumbs">
+            <ol>
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                    <span class="arrow">></span>
+                </li>
+                <li class="active">{{ location_type_plural|capfirst }}</li>
+            </ol>
+        </div>
+        {% if featured %}
+            <div class="featured-wrapper">
+            <h3>Featured {{ location_type_plural|capfirst }} Near You</h3>
+
+            {# There's a template used in ajax update which has to be modified together with #}
+            {# the featured-list contents below #}
+            <div class="featured-list">
+            {% for f in  featured %}
+                <div class="col-3">
+                    <div class="featured-item">
+                        <h4 class="featured-header">
+                            <a href="{{ f.url }}">{{ f.location_name }}</a>
+                        </h4>
+                        <div class="featured-content">
+                            <div class="featured-image">
+                                <a href="{{ f.url }}">
+                                    <img src="{{ f.image_url }}" onerror="this.src = '{{ f.DEFAULT_IMAGE_URL }}';">
+                                </a>
+                            </div>
+                            <div class="featured-detail-list">
+                                <div class="featured-detail">
+                                    <i class="fa fa-map-marker"></i>
+                                    <div class="featured-detail-line-wrapper">
+                                        <div class="featured-detail-line">{{ f.street1 }}</div>
+                                        <div class="featured-detail-line">{{ f.city }}, {{ f.state }}, {{ f.zip_code }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="featured-detail">
+                                    <i class="fa fa-phone"></i>
+                                    <div class="featured-detail-line-wrapper">
+                                        <div class="featured-detail-line">{{ f.phone }}</div>
+                                    </div>
+                                </div>
+
+                                <div class="featured-detail">
+                                    <i class="fa fa-envelope"></i>
+                                    <div class="featured-detail-line-wrapper">
+                                        <a class="featured-detail-line" href="mailto:{{ f.location_email }}">{{ f.location_email }}</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <script type="x/srx-template" id="featured-locations-template">
+                <div class="col-3">
+                    <div class="featured-item">
+                        <h4 class="featured-header">
+                            <a href="<%= url %>"><%= location_name %></a>
+                        </h4>
+                        <div class="featured-content">
+                            <div class="featured-image">
+                                <a href="<%= url %>">
+                                    <img src="<%= image_url %>" onerror="this.src = '<%= default_image_url %>';">
+                                </a>
+                            </div>
+                            <div class="featured-detail-list">
+                                <div class="featured-detail">
+                                    <i class="fa fa-map-marker"></i>
+                                    <div class="featured-detail-line-wrapper">
+                                        <div class="featured-detail-line"><%= street1 %></div>
+                                        <div class="featured-detail-line"><%= city %>, <%= state %>, <%= zip_code %></div>
+                                    </div>
+                                </div>
+
+                                <div class="featured-detail">
+                                    <i class="fa fa-phone"></i>
+                                    <div class="featured-detail-line-wrapper">
+                                        <div class="featured-detail-line"><%= phone %></div>
+                                    </div>
+                                </div>
+
+                                <div class="featured-detail">
+                                    <i class="fa fa-envelope"></i>
+                                    <div class="featured-detail-line-wrapper">
+                                        <a class="featured-detail-line" href="mailto:<%= location_email %>"><%= location_email %></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </script>
+        </div>
+        {% endif %}
+
+        <h2>Find Marijana {{ location_type_plural|capfirst }} by State</h2>
+
+            <div class="text">
+                Please note that each state has its own restrictions on possessing marijuana lawfully and users should
+                understand and adhere to the rules and regulations that govern their respective city and state.
+            </div>
+            <div class="text">
+                Users can find information on {{ location_type_plural }} in the following states:
+            </div>
+
+        {% for s in states %}
+            <h3 class="states-wrapper">
+                {% if location_type == 'dispensary' %}
+                <a href="{% url 'businesses:dispensaries_state_list' s.abbreviation|lower %}">
+                {% elif location_type == 'grower' %}
+                <a href="{% url 'businesses:growers_state_list' s.abbreviation|lower %}">
+                {% endif %}
+                    {% if s.full_name %}{{ s.full_name }}{% else %}{{ s.abbreviation }}{% endif %}</a>
+                <div class="description">
+                    {% if s.description %}{{ s.description|safe }}{% else %}No data about this state{% endif %}
+                </div>
+            </h3>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+
+    <script src="{% static 'js/views/location_view.js' %}"></script>
+    <script src="{% static 'js/pages/location.js' %}"></script>
+    <script type="text/javascript">
+        W.Location.init({
+            location: {% if request.user.is_authenticated %}
+                {{ request.user.get_location_json | safe }} {% else %} null {% endif %},
+            authenticated: '{{ request.user.is_authenticated }}' == 'True',
+            userId: '{{ request.user.id }}'
+        });
+    </script>
+
+    <script src="{% static 'js/pages/locations/location_lookup_widget.js' %}"></script>
+    <script src="{% static 'js/pages/locations/find_location.js' %}"></script>
+    <script type="text/javascript">
+        var FindLocationPage = new W.pages.locations.FindLocation({
+            location: {% if request.user.is_authenticated %}
+                {{ request.user.get_location_json | safe }} {% else %} null {% endif %},
+            authenticated: '{{ request.user.is_authenticated }}' == 'True',
+            userId: {% if request.user.is_authenticated %} {{ request.user.id }} {% else %} null {% endif %},
+            defaultImageUrl: "{{ default_image_url }}",
+            locationType: '{{ location_type }}',
+            featured: [
+                {% for featured in featured %}
+                    { url: "{{ featured.url }}",
+                      locationName: "{{ featured.location_name }}",
+                      imageUrl: "{{ featured.imageUrl }}",
+                      street1: "{{ featured.street1 }}",
+                      city: "{{ featured.city }}",
+                      state: "{{ featured.state }}",
+                      zipCode: "{{ featured.zip_code }}",
+                      phone: "{{ featured.phone }}",
+                      locationEmail: "{{ featured.location_email }}"
+                    }{% if not forloop.last %},{% endif %}
+                {% endfor %}
+            ]
+        });
+    </script>
+
+{% endblock %}

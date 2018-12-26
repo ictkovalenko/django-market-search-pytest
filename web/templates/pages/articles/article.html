@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description" content="">
+{% endblock %}
+
+{% block meta_keywords %}{{ article.meta_keywords }}{% endblock meta_keywords %}
+
+{% block meta_social %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ article.title }}" />
+    <meta property="og:description" content="{{ article.meta_desc }}" />
+    <meta property="og:image" content="{% if article.image %}{{ article.image.url }}{% else %}{% endif %}" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="">
+    <meta name="twitter:title" content="{{ article.title }}">
+    <meta name="twitter:description" content="{{ article.meta_desc }}">
+    <meta name="twitter:image" content="{% if article.image %}{{ article.image.url }}{% else %}{% endif %}">
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/article/article.css' %}" rel="stylesheet">
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div id="content">
+        <div class="article-title">
+            {{article.title}}
+        </div>
+
+        <div class="article-content">
+            {{text|safe}}
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/home.js' %}"></script>
+    <script src="{% static 'js/pages/vt/vt_lookup.js' %}"></script>
+{% endblock %}

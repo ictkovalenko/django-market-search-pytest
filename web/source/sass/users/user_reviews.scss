@@ -1,0 +1,116 @@
+@import '../mixins/variables';
+
+.user-profile .profile-content {
+    @media (max-width: $screen-sm-max) {
+        width: 100%;
+    }
+
+    @media (max-width: $screen-xs-min) {
+        width: 95%;
+    }
+}
+
+.user-profile .profile-content .user-reviews {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    .review {
+        display: block;
+        position: relative;
+        width: 100%;
+        margin-bottom: 3em;
+
+        .vt-info-wrapper {
+            display: inline-block;
+            width: 38%;
+            text-align: left;
+            vertical-align: top;
+
+            .vt-image {
+                display: inline-block;
+                width: 29%;
+
+                img {
+                    width: 95%;
+                }
+            }
+
+            .vt-info {
+                display: inline-block;
+                width: 69%;
+                vertical-align: top;
+
+                span {
+                    display: block;
+                    font-weight: bold;
+                    margin-bottom: 0.5em;
+                }
+
+                .vt-rating {
+                    padding: 0;
+                }
+            }
+        }
+
+        .vt-review-wrapper {
+            display: inline-block;
+            position: relative;
+            width: 60%;
+            text-align: left;
+            vertical-align: top;
+
+            .your-rating {
+                display: inline-block;
+                width: 49%;
+
+                .user-rating {
+                    display: inline-block;
+                }
+            }
+
+            .created-date {
+                display: inline-block;
+                width: 49%;
+                text-align: right;
+            }
+
+            .review-text {
+                .text {
+                    display: block;
+                    line-height: 1em;
+                    height: auto;
+                    max-height: 3em;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-top: 1em;
+
+                    .expander {
+                        cursor: pointer;
+                        color: $avocado-green;
+                        text-decoration: underline;
+                    }
+                }
+
+                .full-text {
+                    display: block;
+                    line-height: 1em;
+                    text-overflow: ellipsis;
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
+
+    @media (max-width: $screen-xs-min) {
+
+    }
+
+    @media (max-width: $screen-sm-max) {
+
+    }
+
+    @media (max-width: $screen-md-max) {
+
+    }
+}

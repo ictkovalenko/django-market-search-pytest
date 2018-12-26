@@ -1,0 +1,27 @@
+{% extends "emails/base.html" %}
+{% load staticfiles i18n %}
+
+{% block content %}
+    <tr>
+        <td>
+            <h1 style="font-size: 44px; margin: 16px auto;">Please Confirm Your Email Address</h1>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <p style="font-size: 18px; margin: 20px auto;">
+                Your account has been created. To verify you email please click this <a href="{{ confirmation_url }}">link</a>.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h2 style="font-size: 28px; margin: 32px auto;">Thank you for confirming!</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="{{ leaf_image_url }}" alt="Leaf" style="height: 60px;"/>
+        </td>
+    </tr>
+{% endblock %}

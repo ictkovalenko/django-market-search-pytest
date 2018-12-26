@@ -1,0 +1,31 @@
+{% extends "users/base_profile.html" %}
+
+{% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/users/user_reviews.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block profile-tab %}
+    <div class="sub-tabs user-reviews-sub-tabs">
+        <span class="sub-tab vts-tab active">Vts</span>
+        <span class="separator"></span>
+        <span class="sub-tab dispensaries-tab">Dispensaries</span>
+        <span class="separator"></span>
+        <span class="sub-tab deliveries-tab">Delivery Services</span>
+    </div>
+    <div class="user-reviews"></div>
+
+    {% include 'users/user_vt_review_template.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/users/user_reviews.js' %}"></script>
+    <script src="{% static 'js/users/user_reviews_view.js' %}"></script>
+    <script type="text/javascript">
+        W.users.ReviewsView.init();
+    </script>
+{% endblock %}

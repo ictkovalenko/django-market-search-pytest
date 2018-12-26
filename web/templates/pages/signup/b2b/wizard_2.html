@@ -1,0 +1,20 @@
+<script type="x/srx-template" id="b2b-wizard-2">
+    <div class="b2b-sign-up-form-wrapper b2b-step-2">
+        <h1>Tell us your email</h1>
+        <form>
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <input type="text" name="user_email" value="${ user_email }"
+                               placeholder="Enter valid email address">
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2b-step-2" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</script>

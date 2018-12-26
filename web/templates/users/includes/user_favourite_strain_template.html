@@ -1,0 +1,31 @@
+{% load static %}
+
+<script type="x/srx-template" id="user_favorite_vt_template">
+    <div class="favorite">
+        <div class="vt-info-wrapper">
+            <div class="vt-image">
+                <% if (favorite.vt_image !== null) { %>
+                <img src="${ favorite.vt_image }" alt="Vt Image">
+                <% } else { %>
+                <img src="{% static 'images/weed_small.jpg' %}" alt="Vt Image"/>
+                <% } %>
+            </div>
+            <div class="vt-info">
+                <span class="vt-name">
+                    <a href="/${ favorite.vt_variety }/${ favorite.vt_slug }"><%= favorite.vt_name %></a>
+                </span>
+                <span class="vt-type">${ favorite.vt_variety }</span>
+                <span class="vt-rating overall-rating-<%= favorite.id %>">${ favorite.vt_overall_rating }</span>
+            </div>
+        </div>
+        <div class="vt-favorite-wrapper">
+            <div class="remove-icon">
+                <span class="text">Delete</span>
+                <span class="removable" id="<%= favorite.id %>" data-type="vt"></span>
+            </div>
+            <div class="created-date">
+                <span class="date">${ favorite.created_date }</span>
+            </div>
+        </div>
+    </div>
+</script>

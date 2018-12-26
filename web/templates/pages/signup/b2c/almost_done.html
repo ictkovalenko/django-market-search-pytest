@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Almost Done{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/signup/signup.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="sign-up-wrapper">
+            <div class="wizard-wrapper">
+{#                Keep this in case we want to go back to multi-step sign up wizard#}
+{#                <span class="wizard-step step-1 finished">1</span>#}
+{#                <span class="wizard-step step-2 finished">2</span>#}
+{#                <span class="wizard-step step-3 finished">3</span>#}
+{#                <span class="wizard-step step-4 finished">4</span>#}
+{#                <span class="wizard-step step-5 finished">5</span>#}
+{#                <hr/>#}
+            </div>
+            <div class="wizard-content-region">
+                <div class="sign-up-form-wrapper">
+                    <h1>Almost done!</h1>
+                    <div class="message-1">
+                        Thank you for creating your {{  }} profile.
+                        Please, complete the last step of the sign-up process by
+                        <span class="bold"> verifying your email </span>
+                        with the link we just sent you.
+                        Once you do, you'll be free to use all of our features.
+                    </div>
+                    <div class="message-2 resend">
+                        Haven't received your verification email?
+                        <a class="resend-email-link" href="#">Click here</a> to resend it.
+                    </div>
+                    <div class="message-2">
+                        Still having problems? Check that you typed your email correctly in the
+                        "My Account" section, located in the upper right corner of this page. Still
+                        having problems? Contact us at
+                        <a href="mailto:support@">support@</a>.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/signup/b2c/almost_done.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.b2c.AlmostDone.init();
+    </script>
+{% endblock %}

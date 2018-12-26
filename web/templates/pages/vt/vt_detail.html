@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+{% load search_template_tags %}
+
+{% block title %}{{ vt_name }} Cannabis Vt Information{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content="Everything you need to know about the {{ vt_name }} {{ vt_variety }} vt: medical benefits, negative & positive effects and where to get it in your area.">
+{% endblock %}
+
+{% block meta_social %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ vt_name }} {{ vt_variety }} vt" />
+    <meta property="og:description" content="{{ social_desc }}" />
+    <meta property="og:image" content="{{ social_image }}" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="http://">
+    <meta name="twitter:title" content="{{ vt_name }} {{ vt_variety }} vt">
+    <meta name="twitter:description" content="{{ social_desc }}">
+    <meta name="twitter:image" content="{{ social_image }}">
+{% endblock %}
+
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/vendor/jquery.mentionsInput.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pages/vt/vt_detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="vt-detail-wrapper">
+            <input type="hidden" class="vt-id" value="{{ vt_id }}"/>
+        </div>
+
+        {% include 'pages/vt/vt_detail_sections_template.html' %}
+        {% include 'pages/vt/vt_detail_available_location_template.html' %}
+        {% include 'pages/vt/vt_detail_available_locations_template.html' %}
+        {% include 'pages/vt/vt_effects_template.html' %}
+        {% include 'pages/vt/vt_side_effects_template.html' %}
+        {% include 'pages/vt/vt_flavors_template.html' %}
+        {% include 'pages/vt/vt_review_template.html' %}
+        {% include 'pages/vt/vt_detail_also_like_template.html' %}
+        {% include 'pages/vt/vt_review_dialog_template.html' %}
+        {% include 'pages/vt/vt_review_dialog_effect_slider_template.html' %}
+        {% include 'pages/vt/vt_review_dialog_review_effect_template.html' %}
+        {% include 'pages/vt/vt_review_dialog_effects_payload_template.html' %}
+
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/vendor/jquery.mentionsInput.js' %}" type='text/javascript'></script>
+    <script src="{% static 'js/common/model.js' %}"></script>
+    <script src="{% static 'js/pages/vt/vt_detail.js' %}"></script>
+    <script src="{% static 'js/pages/vt/vt_detail_review_dialog.js' %}"></script>
+    <script src="{% static 'js/pages/vt/vt_detail_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.vt.VtDetailView.init({authenticated: '{{ request.user.is_authenticated }}' == 'True',});
+    </script>
+{% endblock %}
+
+{% block modal %}
+    <div class="vt-review-dialog-wrapper hidden"></div>
+
+    <div class="dialog undo-vt-review-dialog hidden" title="Undo Your Changes">
+        <div class="dialog-text">
+            <span>Are you sure you want to undo your changes?</span>
+        </div>
+        <div class="dialog-actions">
+            <div class="buttons-section">
+                <button type="button" class="btn-primary btn-yes">Yes</button>
+                <button type="button" class="btn-secondary btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="dialog form-dialog upload-image-dialog hidden" title="Upload Photo">
+        <form class="image-upload-form">
+            {% csrf_token %}
+            <span class="photo-camera-wrapper">
+                <i class="fa fa-camera fa-5x" aria-hidden="true"></i>
+            </span>
+            <span class="preview-image-wrapper hidden">
+                <img alt="Preview" src="" class="preview-image"/>
+            </span>
+            <div class="form-group">
+                <div class="form-field">
+                    <input type="file" id="image-file" class="upload-image"/>
+                    <label for="image-file">Choose File</label>
+                </div>
+            </div>
+            <div class="submitted-message hidden">
+                <span class="success-message message-1">Photo Successfully Submitted</span>
+                <span class="message-2">pending administrative review</span>
+            </div>
+            <div class="form-actions">
+                <button class="btn-primary btn-upload-image-submit" type="submit" disabled="disabled">Upload</button>
+                <button class="btn-primary btn-close hidden" type="button">Close</button>
+                <div class="loader hidden">
+                    <i class="fa fa-refresh fa-3x rotating" aria-hidden="true"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="dialog form-dialog rate-dialog rate-vt-dialog hidden" title="Rate this vt">
+        <form class="rate-vt-form">
+            {% csrf_token %}
+            <div class="form-field-group">
+                <div class="form-field">
+                    <span class="rate-stars"></span>
+                </div>
+            </div>
+            <div class="form-field-group review-textarea-group">
+                <div class="form-field">
+                    <label for="review">Write a review <span>(optional)</span></label>
+                    <textarea class="rate-review mention" id="review" maxlength="400"
+                              placeholder="Type the @ symbol followed by the name of a business to include it in your review."></textarea>
+                </div>
+            </div>
+            <span class="error-message"></span>
+            <div class="form-actions">
+                <button class="btn-primary btn-review-submit" type="submit">Submit</button>
+                <div class="loader hidden">
+                    <i class="fa fa-refresh fa-3x rotating" aria-hidden="true"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

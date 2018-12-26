@@ -1,0 +1,36 @@
+{% load staticfiles i18n %}
+
+<script type="x/srx-template" id="location_template">
+    <div class="location-item">
+        <h2>
+            <a href="${ url }">
+                ${ l.location_name }
+            </a>
+        </h2>
+        <div class="image">
+            <a href="${ url }">
+                <% if (l.image) { %>
+                <img src="${ l.image }"/>
+                <% } else { %>
+                <img src="{% static 'images/dispensary-icon.png' %}"/>
+                <% } %>
+            </a>
+        </div>
+        <div class="data">
+            <div class="location">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                <span><%= formatLocation(l) %></span>
+            </div>
+            <div class="phone">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <span>${ l.phone }</span>
+            </div>
+            <div class="email">
+                <% if (l.location_email) { %>
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <a href="mailto:${ l.location_email }">${ l.location_email }</a>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</script>

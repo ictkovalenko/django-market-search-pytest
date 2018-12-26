@@ -1,0 +1,97 @@
+@import '../mixins/variables';
+
+.user-profile .profile-content .user-proximity-settings {
+    display: block;
+    position: relative;
+    width: 100%;
+    text-align: left;
+
+    h2 {
+        margin-bottom: 1em;
+    }
+
+    .question {
+        display: block;
+        margin: 1em auto 3em;
+        color: $grey-dark;
+    }
+
+    .slider-area {
+        width: 80%;
+
+        .ui-slider-handle {
+            width: 100px;
+            height: 50px;
+            top: -20px;
+            border-radius: 0;
+            background-color: $white;
+            cursor: pointer;
+            line-height: 50px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: $grey-dark;
+            outline: none;
+        }
+
+        .ui-slider-handle:before {
+            content: '<';
+            display: inline-block;
+            position: relative;
+            float: left;
+            left: 2px;
+        }
+
+        .ui-slider-handle:after {
+            content: 'MI >';
+            display: inline-block;
+            position: relative;
+            float: right;
+            right: 2px;
+        }
+
+        .ui-slider-handle.ui-state-active {
+            color: $grey-dark;
+            border: 2px solid $avocado-green;
+            width: 103px;
+        }
+
+        .ui-widget.ui-widget-content {
+            border: none;
+            background-color: $grey-light;
+            border-radius: 0;
+        }
+
+        .ui-slider-range {
+            border: none;
+            background: $avocado-green;
+            border-radius: 0;
+        }
+
+        .proximity-value {
+            padding: 0 0.2em;
+            border-radius: 0;
+            width: 2.5em;
+            border-color: $grey-lighter;
+        }
+    }
+
+    .notice {
+        display: block;
+        margin: 3em auto;
+        font-size: 80%;
+        color: $grey-dark;
+    }
+
+    @media (max-width: $screen-xs-min) {
+
+    }
+
+    @media (max-width: $screen-sm-max) {
+
+    }
+
+    @media (max-width: $screen-md-max) {
+
+    }
+}

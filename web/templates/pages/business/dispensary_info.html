@@ -1,0 +1,256 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/dispensary/info.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+        <div id="container">
+            <div class="header-container"> <!-- Contains top heading before body -->
+
+
+                <!-- Happy Leaf Collective Logo Left side of header-->
+                <div class="header-left mobile">
+                    <div id="center-me">
+                        <div id="happy-leaf-logo" class="mobile">
+                            <img src="{% static 'images/cannabis-flower.jpg' %}" alt="Image of Logo" id="logo-img">
+                        </div>
+
+                        <!-- 5 Star Rating Image located below the logo-->
+                        <div class="heading-rating mobile">
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <p id="word-rating">(4.2) | Rate</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="header-right mobile">
+                   <!--  Contains main Happy Leaf Collective Heading -->
+                    <div class="happy-leaf-main-heading mobile">
+                        <h1 id="main-heading"> {{ business.name }} </h1>
+                        <i class="fa fa-heart" aria-hidden="true" id="heart"></i>
+                    </div>
+
+                    <div class="store-info mobile">
+                        <p id="store-address"> {{ businesslocation.street1 }} {{ businesslocation.city }}
+                            {{ businesslocation.state }}, {{ businesslocation.zip_code }} </p>
+                            <div id="phone-container">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <p id="store-phone"> {{ businesslocation.phone }} </p>
+                            </div>
+                            <div id="delivery-container">
+                                <i class="fa fa-truck" aria-hidden="true"></i>
+                                <p id="store-delivery">Delivery Available</p>
+                            </div>
+                        <button type="button" id="store-button">Get Directions</button>
+                    </div>
+
+                    <div id="sched-container" class="mobile">
+                        <div id="day-container">
+                            <ul>
+                                <li id="day-fix">Hours:</li>
+                                <li class="sched-fixer">Tuesday</li>
+                                <li>Wednesday</li>
+                                <li>Thursday</li>
+                                <li>Friday</li>
+                                <li>Saturday</li>
+                                <li>Sunday</li>
+                                <li>Monday</li>
+                            </ul>
+                        </div>
+                        <div id="hours-container">
+                            <ul>
+                                <li id="hour-fix">Closed Now</li>
+                                <li class="sched-fixer"> {{ businesslocation.tue_open }} - {{ businesslocation.tue_close }}</li>
+                                <li> {{ businesslocation.wed_open }} - {{ businesslocation.wed_close }}</li>
+                                <li> {{ businesslocation.thu_open }} - {{ businesslocation.thu_close }}</li>
+                                <li> {{ businesslocation.fri_open }} - {{ businesslocation.fri_close }}</li>
+                                <li> {{ businesslocation.sat_open }} - {{ businesslocation.sat_close }}</li>
+                                <li> {{ businesslocation.sun_open }} - {{ businesslocation.sun_close }}</li>
+                                <li> {{ businesslocation.mon_open }} - {{ businesslocation.mon_close }}</li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+    <!-- Body begins here -->
+            <div id="body-container">
+                <div id="body-left">
+                    <div id="about">
+                        <h1 class="header-indent">About This Place</h1>
+                        <p id="about-para" class="header-indent">Bacon ipsum dolor amet pork flank t-bone tongue pork chop boudin cupim short loin.
+                            Jowl meatloaf ground round boudin turkey doner cupim strip steak ham hock porchetta prosciutto
+                            hamburger short ribs. Fatback tri-tip tongue, alcatra flank salami pastrami doner prosciutto.
+                            Beef cupim doner filet mignon, rump flank venison landjaeger pastrami sirloin ground round bacon.
+                            Flank ham meatball, chicken tongue sausage brisket short loin beef ribs landjaeger pork belly.</p>
+                    </div>
+                    <div id="reviews">
+                        <h1 class="header-indent">Reviews</h1>
+                        <h4 class="user-indent">kapnkhronik420
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <p class="review-date">8/22/16</p>
+                        </h4>
+
+                        <p class="para-indent">Tenderloin t-bone cupim capicola bacon shoulder.
+                            Cupim porchetta ham, swine ribeye pork drumstick
+                            corned beef meatloaf capicola pancetta burgdoggen.
+                            Brisket rump tongue shankle drumstick porchetta flank
+                            hamburger pork chop burgdoggen ham pork picanha sausage venison.
+                            Frankfurter bresaola turkey burgdoggen pork chop
+                            sirloin drumstick pork loin ham hock filet mignon.
+                            Shoulder spare ribs brisket, sirloin shank alcatra
+                            capicola strip steak hamburger boudin pork loin.
+                            Ball tip hamburger venison shank andouille.</p>
+                        <h4 class="user-indent">JJMaxwell
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                            <p class="review-date">8/16/16</p>
+                        </h4>
+                        <p class="para-indent">Swine short ribs pork, sausage burgdoggen t-bone biltong
+                            pastrami boudin venison pancetta prosciutto spare ribs fatback.
+                            Ribeye burgdoggen drumstick turkey filet mignon spare ribs,
+                            andouille brisket pork loin tri-tip swine.</p>
+                        <p id="view-reviews">View All Reviews</p>
+                    </div>
+                    <!-- Bottom of the left container -->
+                    <h1 class="header-indent">Today's Deals</h1>
+
+                    <!-- Image container -->
+
+                    <div id="img-container">
+                        <div id="image-push" class="weed-pic"></div>
+                        <div id="image-align" class="weed-pic"></div>
+                    </div>
+
+
+                </div>
+
+
+                <div id="body-right">
+                    <h1 id="body-menu">Menu</h1>
+
+                    <table id="table-descrip">
+                        <tr>
+                            <td class="indent-right">Matched Vt</td>
+                            <td class="table-indent">Gram</td>
+                            <td class="table-indent">Eighth</td>
+                            <td class="table-indent">Quarter</td>
+                            <td class="table-indent">Half</td>
+                            <td class="table-indent">Match %</td>
+                        </tr>
+                    </table>
+                    <table id="vt-cost">
+                        <tr>
+                            <td class="indent-right">Selected Vt</td>
+                            <td class="info-indent">$20</td>
+                            <td class="info-indent">$50</td>
+                            <td class="info-indent">$80</td>
+                            <td class="info-indent">$110</td>
+                            <td class="info-indent">86%</td>
+                        </tr>
+                    </table>
+
+                    <h2>Sativas</h2>
+                    <table id="sativa-descrip">
+                        <tr>
+                            <td class="indent-right">Matched Vt</td>
+                            <td class="table-indent">Gram</td>
+                            <td class="table-indent">Eighth</td>
+                            <td class="table-indent">Quarter</td>
+                            <td class="table-indent">Half</td>
+                            <td class="table-indent">Match %</td>
+                        </tr>
+                            {% for item in businesslocationmenuitem %}
+                            {% if item.vt.variety == "sativa"  %}
+                        <tr>
+                            <td class="info-indent">{{ item.vt.name }} </td>
+                            <td class="info-indent">${{ item.price_gram }}</td>
+                            <td class="info-indent">${{ item.price_eighth }}</td>
+                            <td class="info-indent">${{ item.price_quarter }}</td>
+                            <td class="info-indent">${{ item.price_half }}</td>
+                            <td class="info-indent">86%</td>
+                        </tr>
+                            {% endif %}
+                            {% endfor %}
+                    </table>
+
+                    <h2> Hybrids</h2>
+                    <table id="hybrid-descrip">
+                        <tr>
+                            <td class="indent-right">Matched Vt</td>
+                            <td class="table-indent">Gram</td>
+                            <td class="table-indent">Eighth</td>
+                            <td class="table-indent">Quarter</td>
+                            <td class="table-indent">Half</td>
+                            <td class="table-indent">Match %</td>
+                        </tr>
+                            {% for item in businesslocationmenuitem %}
+                            {% if item.vt.variety == "hybrid" %}
+                        <tr>
+                            <td class="info-indent">{{ item.vt.name }}</td>
+                            <td class="info-indent">${{ item.price_gram }}</td>
+                            <td class="info-indent">${{ item.price_eighth }}</td>
+                            <td class="info-indent">${{ item.price_quarter }}</td>
+                            <td class="info-indent">${{ item.price_half }}</td>
+                            <td class="info-indent">83%</td>
+                        </tr>
+                            {% endif %}
+                            {% endfor %}
+                    </table>
+
+                    <h2>Indicas</h2>
+                    <table id="indica-descrip">
+                        <tr>
+                            <td class="indent-right">Matched Vt</td>
+                            <td class="table-indent">Gram</td>
+                            <td class="table-indent">Eighth</td>
+                            <td class="table-indent">Quarter</td>
+                            <td class="table-indent">Half</td>
+                            <td class="table-indent">Match %</td>
+                        </tr>
+                            {% for item in businesslocationmenuitem %}
+                            {% if item.vt.variety == "indica" %}
+                        <tr>
+                            <td class="info-indent">{{ item.vt.name }}</td>
+                            <td class="info-indent">${{ item.price_gram }}</td>
+                            <td class="info-indent">${{ item.price_eighth }}</td>
+                            <td class="info-indent">${{ item.price_quarter }}</td>
+                            <td class="info-indent">${{ item.price_half }}</td>
+                            <td class="info-indent">86%</td>
+                        </tr>
+                            {% endif %}
+                            {% endfor %}
+
+                    </table>
+
+                </div>
+
+
+            </div>
+        </div>
+
+{% endblock content %}

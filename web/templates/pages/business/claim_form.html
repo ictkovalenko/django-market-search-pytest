@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}Claim your business{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/business/claim_form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="ready">
+    <h1 class="ready__caption">Ready to claim your business?</h1>
+
+    <div class="ready__steps steps">
+        <h2 class="steps__caption">Follow these 3 easy steps:</h2>
+
+        <ul class="steps__list">
+            <li class="steps__item">1. Fill out the following fields to claim your listing now.</li>
+            <li class="steps__item">2. We&rsquo;ll contact you within 24 hours to verify your identity.</li>
+            <li class="steps__item">3. Once confirmed, we&rsquo;ll turn over the listing to you.</li>
+        </ul>
+    </div>
+
+    <p>{{ form_completed }}</p>
+    <form action="{% url 'businesses:claim_form' %}" method="POST" class="ready__form form">
+        {% csrf_token %}
+        <div class="form__row">
+            {{ form.first_name }}
+            {{ form.last_name }}
+        </div>
+        <div class="form__row {% if form.email.errors %}error{% endif %}">
+            {{ form.email }}
+            {% for error in form.email.errors %}
+                <p>{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div class="form__row {% if form.phone.errors %}error{% endif %}">
+            {{ form.phone }}
+            {% for error in form.phone.errors %}
+                <p>{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div class="form__row {% if form.business_name.errors %}error{% endif %}">
+            {{ form.business_name }}
+            {% for error in form.business_name.errors %}
+                <p>{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div class="form__row {% if form.business_address.errors %}error{% endif %}">
+            {{ form.business_address }}
+            {% for error in form.business_address.errors %}
+                <p>{{ error|escape }}</p>
+            {% endfor %}
+        </div>
+        <div class="form__button-cont">
+            <button class="form__button">Submit</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

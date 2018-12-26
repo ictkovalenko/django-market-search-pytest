@@ -1,0 +1,616 @@
+@import '../../../mixins/variables';
+
+.nav-region {
+    background-color: $white-smoke;
+}
+
+.vts-wrapper {
+    background-color: $white-smoke;
+    width: 100%;
+    margin: 0 auto;
+
+    .main-region .separator {
+        width: 1px;
+        height: 5em;
+        margin: 0 0.5em;
+        border-right: 1px solid $grey-normal;
+        vertical-align: top;
+    }
+
+    .main-region .separator:after {
+        content: '';
+    }
+
+    .search-result-header-wrapper {
+        .filter-menu.expanded {
+            border: 1px solid $grey-normal;
+            background-color: $white;
+        }
+
+        .filter-menu {
+            width: 12em;
+
+            .menu-active-link {
+                cursor: pointer;
+
+                a:hover {
+                    text-decoration: underline;
+                }
+            }
+
+            .menu-expander {
+                margin-left: 0.5em;
+
+                i {
+                    color: $iris-blue;
+                    cursor: pointer;
+                }
+            }
+
+            .active-link {
+                text-align: right;
+                padding: 0.5em 1em 0.5em 1em;
+                white-space: nowrap;
+            }
+
+            .menu-link {
+                display: block;
+                line-height: 1.3em;
+                padding: 0 1em;
+                margin: 0.2em 0;
+
+                a {
+                    color: $grey-normal;
+                }
+            }
+
+            .menu-link:hover {
+                background-color: $avocado-green;
+            }
+
+            .hidden-links span:last-child {
+                padding-bottom: 0.5em;
+            }
+        }
+    }
+}
+
+.search-result-container {
+    .search-result-header-wrapper .filter-menu-wrapper {
+        display: inline-block;
+        float: right;
+        margin: 2em 1em 1em 0;
+    }
+
+    .search-result-header-wrapper {
+        color: $grey-normal;
+        display: block;
+        height: 8em;
+        margin-bottom: 3em;
+
+        h1 {
+            display: inline-block;
+            margin: 1em 0;
+            width: 19em;
+            float: left;
+        }
+    }
+
+    .search-result-body-wrapper {
+        margin: 0 auto 2em;
+        width: 100%;
+
+        div:last-child {
+            border-bottom: none;
+        }
+
+        .result-item {
+            display: block;
+            position: relative;
+            height: 7em;
+            margin: 2em auto 0;
+            width: 100%;
+            border-bottom: 1px solid $grey-normal;
+
+            .pull-right {
+                width: 50%;
+                text-align: center;
+            }
+
+            .pull-left {
+                width: 50%;
+            }
+
+            .item-info-wrapper {
+                height: 6em;
+            }
+
+            .item-info-wrapper .item-image {
+                height: 6em;
+                width: 20%;
+                margin-right: 1em;
+                vertical-align: top;
+
+                img {
+                    width: 100%;
+                    max-height: 6em;
+                }
+            }
+
+            .item-info-wrapper .item-info {
+                height: 6em;
+                width: 70%;
+                vertical-align: top;
+            }
+
+            .item-info-wrapper .item-info .vt-name {
+                display: block;
+                font-size: 1.3em;
+            }
+
+            .item-info-wrapper .item-info .vt-type {
+                display: block;
+                font-size: 0.7em;
+                margin: 0.5em 0;
+            }
+
+            .item-info-wrapper .item-info .vt-rating {
+                display: block;
+                padding: 0;
+                z-index: 1;
+            }
+
+            .item-locations,
+            .item-deliveries,
+            .item-percentage-match {
+                width: 27%;
+                height: 6em;
+                text-align: center;
+                vertical-align: top;
+                color: $grey;
+            }
+
+            .item-locations,
+            .item-deliveries {
+                position: relative;
+                cursor: pointer;
+            }
+
+            .item-locations:hover {
+                .locations-icon {
+                    color: $iris-blue;
+                }
+            }
+
+            .item-deliveries:hover {
+                .deliveries-icon {
+                    color: $iris-blue;
+                }
+            }
+
+            .locations-expanded {
+                display: block;
+                position: absolute;
+                top: -0.5em;
+                padding: 0 1em 1em;
+                width: 30em;
+                background: $white;
+                border: 1px solid $grey-normal;
+                text-align: left;
+                box-shadow: 4px 4px 8px $grey-light;
+                z-index: 10;
+
+                .locations-wrapper {
+                    position: relative;
+                    margin-top: 7em;
+                }
+
+                .price-expander {
+                    cursor: pointer;
+                }
+
+                .price-sort {
+                    cursor: pointer;
+                    color: $iris-blue;
+                }
+
+                .prices-wrapper {
+                    position: absolute;
+                    right: 0;
+                    top: 16%;
+                    background: #fff;
+                    border: 1px solid $black;
+                    padding: 10px;
+
+                    .price {
+                        display: block;
+                        cursor: pointer;
+                    }
+
+                    .price:hover {
+                        color: $iris-blue;
+                    }
+                }
+
+                .price-values {
+                    .price-value {
+                        display: none;
+                    }
+
+                    .price-value.active {
+                        display: block;
+                    }
+                }
+
+                .exp-location-header {
+                    display: block;
+                    width: 100%;
+
+                    div {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    .location-name {
+                        width: 38%;
+                    }
+
+                    .location-rating {
+                        width: 24%;
+                    }
+
+                    .location-distance {
+                        width: 18%;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+
+                    .location-price {
+                        width: 14%;
+                        text-align: center;
+                        font-weight: bold;
+                    }
+                }
+
+                .exp-location {
+                    display: block;
+                    width: 100%;
+                    margin-top: 1em;
+
+                    div {
+                        display: inline-block;
+                        vertical-align: top;
+                    }
+
+                    .location-name {
+                        width: 40%;
+
+                        .name {
+                            display: block;
+                            font-size: 1.2em;
+                        }
+
+                        .opened {
+                            display: block;
+                            font-size: 0.8em;
+                            color: $avocado-green;
+                        }
+
+                        .closed {
+                            display: block;
+                            font-size: 0.8em;
+                            color: $light-red;
+                        }
+                    }
+
+                    .location-rating {
+                        width: 25%;
+                    }
+
+                    .location-distance {
+                        width: 20%;
+                        text-align: center;
+                    }
+
+                    .location-price {
+                        width: 14%;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .item-deliveries .deliveries span,
+            .item-locations .locations span {
+                display: block;
+                font-size: 0.8em;
+                line-height: 1.5em;
+            }
+
+            .item-locations .locations-icon {
+                display: block;
+                color: $black;
+            }
+
+            .item-deliveries .deliveries-icon {
+                display: block;
+                color: $black;
+            }
+
+            .item-percentage-match {
+                a {
+                    color: $grey;
+                }
+
+                a:hover {
+                    color: $iris-blue;
+                    cursor: pointer;
+                }
+
+                .percentage {
+                    display: block;
+                    font-weight: bold;
+                    font-size: 2em;
+                }
+            }
+        }
+    }
+
+    .search-result-footer-wrapper,
+    .search-result-footer-wrapper .scroll-down-wrapper {
+        width: 100%;
+        height: 5em;
+        text-align: center;
+    }
+
+    .search-result-footer-wrapper .scroll-down-wrapper div {
+        height: 5em;
+        vertical-align: top;
+    }
+
+    .search-result-footer-wrapper .scroll-down-wrapper .scroll-icon {
+        height: 2em;
+        display: block;
+        margin: 1.5em;
+    }
+
+    .search-result-footer-wrapper .scroll-down-wrapper .scroll-text {
+        height: 2em;
+        display: block;
+        margin: 2em 0;
+    }
+}
+
+a.blurred {
+    //text-shadow: 0 0 15px #10b3dc;
+    //color: transparent;
+	//filter: DXImageTransform.Microsoft.Blur(pixelradius=2);
+	//zoom: 1;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -ms-filter: blur(5px);
+    -o-filter: blur(5px);
+    filter: blur(5px);
+}
+
+
+.results-dialog {
+    display: none;
+    position: absolute;
+    top: calc(50vh - 6em);
+    left: calc(50vw - 13em);
+
+    width: 26em;
+
+    border: 1px solid $grey;
+    background-color: $white;
+
+    text-align: center;
+
+    z-index: $zindex-nav;
+
+    h1 {
+        font-size: 1em;
+        margin: 1.5em 0;
+    }
+
+    p {
+        font-size: 0.8em;
+        margin: 0 3em 1.5em;
+    }
+}
+
+@media (max-width: $screen-sm-min) {
+    .search-result-container {
+        .vts-wrapper .separator {
+            margin: 0 0.1em;
+        }
+
+        .search-result-header-wrapper {
+            height: 6em;
+            margin-bottom: 0;
+
+            h1 {
+                font-size: 1.25em;
+                display: block;
+                width: 100%;
+                margin: 0.5em auto;
+            }
+
+            .filter-menu-wrapper {
+                display: block;
+                width: 100%;
+                margin: 0;
+
+                .filter-menu {
+                    float: right;
+                    width: auto;
+                    position: absolute;
+                    right: 2em;
+                    z-index: 100;
+                }
+            }
+        }
+
+        .search-result-body-wrapper .result-item {
+            height: 15em;
+
+            .pull-left {
+                display: block;
+                width: 100%;
+                height: 9em;
+            }
+
+            .pull-right {
+                display: block;
+                width: 100%;
+                height: 5em;
+
+                .separator:first-child {
+                    display: none;
+                }
+            }
+
+            .item-locations,
+            .item-deliveries,
+            .item-percentage-match {
+                width: 29%;
+            }
+
+            .item-info-wrapper {
+                .item-info {
+                    width: 60%;
+                }
+
+                .item-image {
+                    width: 30%;
+                }
+            }
+
+            .item-locations .locations,
+            .item-deliveries .deliveries {
+                font-size: 1em;
+            }
+
+            .item-percentage-match .percentage {
+                display: block;
+                font-size: 2em;
+                font-weight: bold;
+            }
+
+            .locations-expanded {
+                top: 7.5em;
+
+                .exp-location {
+                    .location-name {
+                        width: 36%;
+                    }
+
+                    .location-rating {
+                        width: 23%;
+                    }
+
+                    .location-distance {
+                        width: 18%;
+                        text-align: center;
+                    }
+
+                    .location-price {
+                        width: 14%;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $screen-xs-max) {
+    .vts-wrapper .separator {
+        margin: 0 0.3em;
+        height: 4em;
+    }
+
+    .search-result-container .search-result-body-wrapper .result-item:first-child {
+        margin: 0;
+    }
+
+    .search-result-container .search-result-body-wrapper .result-item {
+        height: 13em;
+
+        .fa-2x {
+            font-size: 1em;
+        }
+
+        .pull-left {
+            display: block;
+            width: 100%;
+            height: 7em;
+        }
+
+        .pull-right {
+            display: block;
+            width: 100%;
+            height: 5em;
+
+            .separator:first-child {
+                display: none;
+            }
+        }
+
+        .item-info-wrapper {
+            display: block;
+            position: relative;
+            width: 100%;
+
+            .item-info {
+                position: relative;
+                vertical-align: top;
+                margin: 0 auto;
+                top: -0.1em;
+                width: 55%;
+            }
+
+            .item-image {
+                position: relative;
+                float: left;
+                width: 25%;
+                vertical-align: top;
+            }
+        }
+
+        .item-locations,
+        .item-deliveries,
+        .item-percentage-match {
+            width: 29%;
+        }
+
+        .item-deliveries .deliveries-icon,
+        .item-locations .locations-icon {
+            font-size: 2em;
+        }
+
+        .locations-expanded {
+            top: 5.5em;
+
+            .exp-location {
+                .location-name {
+                    width: 36%;
+                }
+
+                .location-rating {
+                    width: 23%;
+                }
+
+                .location-distance {
+                    width: 18%;
+                    text-align: center;
+                }
+
+                .location-price {
+                    width: 14%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

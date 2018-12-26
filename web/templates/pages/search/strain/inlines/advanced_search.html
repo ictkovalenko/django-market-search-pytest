@@ -1,0 +1,187 @@
+{% load staticfiles i18n %}
+{% load rest_framework %}
+{% load search_template_tags %}
+
+<form class="search-form" method="get" action="{% url 'search:advanced_search_result' %}">
+  <div class="row">
+    <div class="form-field-group variety">
+      <div class="form-field">
+        <input type="checkbox" value="sativa" name="variety" id="variety"{% if 'sativa' in form.variety.value %} checked{% endif %}>
+        <span class="variety-wrapper">
+          <label for="variety"><img src="{% static 'images/search/sativa-leaf.png' %}"></label>
+          <span class="variety-title">Sativa</span>
+        </span>
+      </div>
+      <div class="form-field">
+        <input type="checkbox" value="indica" name="variety" id="indica"{% if 'indica' in form.variety.value %} checked{% endif %}>
+        <span class="variety-wrapper">
+          <label for="indica"><img src="{% static 'images/search/indica-leaf.png' %}"></label>
+          <span class="variety-title">Indica</span>
+        </span>
+      </div>
+      <div class="form-field">
+        <input type="checkbox" value="hybrid" name="variety" id="hybrid"{% if 'hybrid' in form.variety.value %} checked{% endif %}>
+        <span class="variety-wrapper">
+          <label for="hybrid"><img src="{% static 'images/search/hybrid-leaf.png' %}"></label>
+          <span class="variety-title">Hybrid</span>
+        </span>
+      </div>
+    </div>
+    <div class="form-field-group variety">
+      <div class="form-field">
+        {% render_field form.is_clean style=form.default_style %}
+        <label for="is_clean"><img class="height-70" src="{% static 'images/search/clean.png' %}"></label>
+      </div>
+      <div class="form-field">
+        {% render_field form.is_indoor style=form.default_style %}
+        <label for="is_indoor"><img class="height-70" src="{% static 'images/search/indoor.png' %}"></label>
+      </div>
+      <div class="form-field">
+        {% render_field form.cup_winner style=form.default_style %}
+        <label for="cup_winner"><img class="height-70" src="{% static 'images/search/cup.png' %}"></label>
+      </div>
+    </div>
+  </div>
+
+  <div class="cannabinoids row">
+    <span class="cannabinoids-title">{% trans 'Cannabinoids' %}</span>
+    <div class="cannabinoids-group">
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'THC' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="thc_from">{% trans 'From' %}</label>
+            {% render_field form.thc_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="thc_to">{% trans 'To' %}</label>
+            {% render_field form.thc_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'CBD' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="cbd_from">{% trans 'From' %}</label>
+            {% render_field form.cbd_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="cbd_to">{% trans 'To' %}</label>
+            {% render_field form.cbd_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'THCA' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="thca_from">{% trans 'From' %}</label>
+            {% render_field form.thca_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="thca_to">{% trans 'To' %}</label>
+            {% render_field form.thca_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'THCV' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="thcv_from">{% trans 'From' %}</label>
+            {% render_field form.thcv_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="thcv_to">{% trans 'To' %}</label>
+            {% render_field form.thcv_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'CBG' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="cbg_from">{% trans 'From' %}</label>
+            {% render_field form.cbg_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="cbg_to">{% trans 'To' %}</label>
+            {% render_field form.cbg_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'CBN' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="cbn_from">{% trans 'From' %}</label>
+            {% render_field form.cbn_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="cbn_to">{% trans 'To' %}</label>
+            {% render_field form.cbn_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'CBC' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="cbc_from">{% trans 'From' %}</label>
+            {% render_field form.cbc_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="cbc_to">{% trans 'To' %}</label>
+            {% render_field form.cbc_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+      <div class="form-field-group">
+        <span class="group-label">{% trans 'CBDA' %}</span>
+        <div class="form-field-wrapper">
+          <div class="form-field">
+            <label for="cbda_from">{% trans 'From' %}</label>
+            {% render_field form.cbda_from style=form.default_style %}&nbsp;%
+          </div>
+          <div class="form-field">
+            <label for="cbda_to">{% trans 'To' %}</label>
+            {% render_field form.cbda_to style=form.default_style %}&nbsp;%
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="terpenes row">
+    <span class="terpenes-title">{% trans 'Terpenes' %}</span>
+    <div class="terpenes-group">
+
+      {% for field in form %}
+        {% if field.name in form.TERPENES %}
+          <div class="form-field-group variety">
+            <div class="form-field">
+              <span class="variety-wrapper">
+                {% render_field field style=form.default_style %}
+                <label for="{{ field.name }}" class="circle {{ field.name }}">
+                  {{ form.TERPENES_ABBREVIATION|get_item:field.name }}
+                </label>
+              </span>
+              <b>{{ field.name|upper }}</b>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="row">
+    <button class="btn-primary" type="submit">Search</button>
+  </div>
+  <div class="row">
+    <i class="fa fa-angle-left advanced-search-link"></i><i class="fa fa-angle-left advanced-search-link"></i>
+    <a href="{% url 'search:search' %}" class="advanced-search-link">{% trans 'Use Basic Search' %} </a>
+  </div>
+
+</form>

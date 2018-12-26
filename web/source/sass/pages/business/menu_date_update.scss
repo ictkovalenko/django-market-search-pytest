@@ -1,0 +1,18 @@
+@import '../../mixins/variables';
+
+
+.vts-wrapper .main-region {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 65vh;
+
+    p {
+        color: $grey;
+        margin: -10em auto 2em auto;
+    }
+
+    a {
+        margin: 0 auto;
+    }
+}

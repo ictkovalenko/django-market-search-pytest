@@ -1,0 +1,123 @@
+{% load staticfiles i18n %}
+
+<script type="x/srx-template" id="business_location">
+    <div class="location location-<%= l.id %>">
+        <div class="business-info-group">
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="location_name__<%= l.id %>">Business Name</label>
+                    <input type="text" name="location_name__<%= l.id %>" id="location_name__<%= l.id %>"
+                           value="<%= l.location_name %>">
+                </div>
+            </div>
+            <div class="form-field-group">
+                <div class="form-field address-field">
+                    <label for="address__<%= l.id %>">Address</label>
+                    <input type="text" name="address__<%= l.id %>" id="address__<%= l.id %>"
+                           value="${ buildDisplayName(l) }">
+                    <span class="removable remove-location hidden" title="Clear value"></span>
+                </div>
+            </div>
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="location_email__<%= l.id %>">Email</label>
+                    <input type="text" name="location_email__<%= l.id %>" id="location_email__<%= l.id %>"
+                           value="${ l.location_email }">
+                </div>
+            </div>
+            <div class="form-field-group">
+                <div class="form-field">
+                    <label for="phone__<%= l.id %>">Phone Number</label>
+                    <input type="text" name="phone__<%= l.id %>" id="phone__<%= l.id %>" class="phone-number"
+                           value="${ l.phone }">
+                </div>
+            </div>
+        </div>
+        <div class="form-field-group business-type-field-group">
+            <h3>Business Type</h3>
+            <div class="form-field">
+                <% if (l.dispensary) { %>
+                <input type="checkbox" name="dispensary__<%= l.id %>" id="dispensary__<%= l.id %>" checked>
+                <% } else { %>
+                <input type="checkbox" name="dispensary__<%= l.id %>" id="dispensary__<%= l.id %>">
+                <% } %>
+                <label for="dispensary__<%= l.id %>">Dispensary</label>
+            </div>
+            <div class="form-field">
+                <% if (l.delivery) { %>
+                <input type="checkbox" name="delivery__<%= l.id %>" id="delivery__<%= l.id %>" checked>
+                <% } else { %>
+                <input type="checkbox" name="delivery__<%= l.id %>" id="delivery__<%= l.id %>">
+                <% } %>
+                <label for="delivery__<%= l.id %>">Delivery</label>
+            </div>
+            <div class="form-field">
+                <% if (l.grow_house) { %>
+                <input type="checkbox" name="grow_house__<%= l.id %>" id="grow_house__<%= l.id %>" checked>
+                <% } else { %>
+                <input type="checkbox" name="grow_house__<%= l.id %>" id="grow_house__<%= l.id %>">
+                <% } %>
+                <label for="grow_house__<%= l.id %>">Cultivator</label>
+            </div>
+        </div>
+        <div class="form-field-group trash-field-group btn-trash btn-trash-<%= l.id %>" id="<%= l.id %>">
+            <div class="form-field">
+                <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="location-image-wrapper">
+            <input type="file" id="file__<%= l.id %>" class="upload-image" location_id="<%= l.id %>"/>
+            <% if (l.image) { %>
+            <label for="file__<%= l.id %>">
+                <img class="bus-loc-logo" src="${ l.image }" id="image__<%= l.id %>">
+            </label>
+            <% } else { %>
+            <label for="file__<%= l.id %>">
+                <img class="bus-loc-logo" src="{% static 'images/default-location-image.jpeg' %}"
+                     id="image__<%= l.id %>">
+            </label>
+            <% } %>
+            <label class="btn btn-primary" for="file__<%= l.id %>">Edit Profile Image</label>
+        </div>
+
+        <div class="form-field-group grow-methods hidden">
+            <label>Growth methods</label>
+            <div class="field-row">
+                <div class="form-field">
+                    <label for="grow_methods__organic__<%= l.id %>">Organic</label>
+                    <input type="checkbox" name="grow_methods_organic__<%= l.id %>" id="grow_methods_organic__<%= l.id %>" <% if (l.grow_details.organic) { %>checked<% } %>>
+                </div>
+                <div class="form-field">
+                    <label for="grow_methods__pesticide_free__<%= l.id %>">Pesticide Free</label>
+                    <input type="checkbox" name="grow_methods_pesticide_free__<%= l.id %>" id="grow_methods_pesticide_free__<%= l.id %>" <% if (l.grow_details.pesticide_free) { %>checked<% } %>>
+                </div>
+                <div class="form-field">
+                    <label for="grow_methods__indoor__<%= l.id %>">Indoor</label>
+                    <input type="checkbox" name="grow_methods_indoor__<%= l.id %>" id="grow_methods_indoor__<%= l.id %>" <% if (l.grow_details.indoor) { %>checked<% } %>>
+                </div>
+                <div class="form-field">
+                    <label for="grow_methods__outdoor__<%= l.id %>">Outdoor</label>
+                    <input type="checkbox" name="grow_methods_outdoor__<%= l.id %>" id="grow_methods_outdoor__<%= l.id %>" <% if (l.grow_details.outdoor) { %>checked<% } %>>
+                </div>
+                <div class="form-field">
+                    <label for="grow_methods__lab_tested__<%= l.id %>">Lab Tested</label>
+                    <input type="checkbox" name="grow_methods_lab_tested__<%= l.id %>" id="grow_methods_lab_tested__<%= l.id %>" <% if (l.grow_details.lab_tested) { %>checked<% } %>>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-field-group slider-area slider-area-<%= l.id %> hidden">
+            <div class="slider-header">
+                <div class="sub-title">Delivery Radius</div>
+                <div class="slider-value"></div>
+            </div>
+            <div class="slider slider-<%= l.id %>"></div>
+            <div class="slider-footer">
+                <div class="min-mile">5 Miles</div>
+                <div class="max-mile">50 Miles</div>
+            </div>
+        </div>
+        <span class="error-message location-error error-message-<%= l.id %>"></span>
+        <hr>
+    </div>
+</script>

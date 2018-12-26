@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}{{ location.location_name }} Dispensary in {{ active_city.full_name }}, {{ location.street1 }}{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content="VT brings you the most up to date menu and the latest deals from {{ location.location_name }} in {{ active_city.full_name }}.">
+{% endblock %}
+
+{% block meta_social %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ business_name }}" />
+    <meta property="og:description" content="{{ meta_desc }}" />
+    <meta property="og:image" content="{{ social_image }}" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="http://">
+    <meta name="twitter:title" content="{{ business.name }}">
+    <meta name="twitter:description" content="{{ meta_desc }}">
+    <meta name="twitter:image" content="{{ social_image }}">
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/dispensary/dispensary_info.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <div class="business-location-header-bg"></div>
+
+    <div class="container">
+        <div class="business-location-holder">
+            <input type="hidden" id="business_id" value="{{ business_id }}">
+            <input type="hidden" id="location_id" value="{{ location_id }}">
+            <input type="hidden" id="vt_id" value="{{ vt_id }}">
+
+            <div class="header-region"></div>
+            <div class="content-region"></div>
+        </div>
+    </div>
+
+    {% include "pages/dispensary/dispensary_info_header_template.html" %}
+    {% include "pages/dispensary/dispensary_info_content_template.html" %}
+    {% include "pages/dispensary/dispensary_info_all_reviews_template.html" %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/dispensary/dispensary_info.js' %}"></script>
+    <script src="{% static 'js/pages/dispensary/dispensary_info_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.dispensary.DispensaryInfoView.init({
+            isAuthenticated: '{{ request.user.is_authenticated }}' === 'True',
+            user: {
+                firstName: '{{ request.user.first_name }}',
+                city: '{{ request.user.geo_location.city }}'
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block modal %}
+    <div class="dialog phone-dialog hidden" title="">
+        <h2>Ready to place an order?</h2>
+        <div class="dialog-phone-wrapper">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span class="dialog-phone-message"></span>
+        </div>
+        <div class="dialog-actions">
+            <button class="btn-primary btn-close-phone-dialog" type="button">Dismiss</button>
+        </div>
+    </div>
+
+    <div class="dialog avg-price-dialog hidden" title="">
+       <div class="body">
+            <div class="content-body">
+              <p><b>$</b> - Average price of an 8th is $30 or under</p>
+              <p><b>$$</b> - Average price of an 8th is $31 - $40</p>
+              <p><b>$$$</b> - Average price of an 8th is $41 - $50</p>
+              <p><b>$$$$</b> - Average price of an 8th is $51 - $65</p>
+              <p><b>$$$$$</b> - Average price of an 8th is $66+</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="dialog form-dialog rate-dialog rate-location-dialog hidden" title="Rate this location">
+        <form class="rate-location-form">
+            {% csrf_token %}
+            <div class="form-field-group">
+                <div class="form-field">
+                    <span class="rate-stars"></span>
+                </div>
+            </div>
+            <div class="form-field-group review-textarea-group">
+                <div class="form-field">
+                    <label for="review">Write a review <span>(optional)</span></label>
+                    <textarea class="rate-review" id="review" maxlength="500"></textarea>
+                </div>
+            </div>
+            <span class="error-message"></span>
+            <div class="form-actions">
+                <button class="btn-primary btn-review-submit" type="submit">Submit</button>
+                <div class="loader hidden">
+                    <i class="fa fa-refresh fa-3x rotating" aria-hidden="true"></i>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div id="menu-update-request-dialog" class="dialog hidden">
+        <div class="body">
+            <div class="content-body">
+                <textarea id="request-message" placeholder="Your message here ..." ></textarea>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="btn-wrapper">
+                <div id="btn-request-update" class="btn-request-dialog">Request an Update</div>
+            </div>
+            <div class="notify-wrapper">
+                <input type="checkbox" name="request-notify" value="request-notify" id="request-notify" checked />
+                <label class="label">Notify me when menu updates</label>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-update-request-ok-dialog" class="dialog hidden">
+        <div class="body">
+            <div class="content-body">
+                The dispensary has been notified. <br>
+                Thank you!
+            </div>
+        </div>
+        <div class="footer">
+            <div class="btn-wrapper">
+                <div id="btn-close" class="btn-request-dialog">Close</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-update-request-login-dialog" class="dialog hidden">
+        <div class="body">
+            <div class="content-body">
+                You must log in to send this request.
+            </div>
+            <div class="text-input-wrapper">
+                <input autofocus="autofocus" id="login" maxlength="254" name="email"
+                       placeholder="Enter email address" type="text">
+            </div>
+            <div class="text-input-wrapper">
+                <input id="password" name="password" placeholder="Enter password" type="password">
+            </div>
+            <span class="error-message"></span>
+        </div>
+        <div class="footer">
+            <div class="btn-wrapper">
+                <button id="btn-sign-in" class="btn-primary send-login" type="submit">Sign In</button>
+            </div>
+            <div class="link-wrapper">
+                <a href="{% url 'account_reset_password' %}">Forgot Password?</a>
+            </div>
+            <div class="link-wrapper">
+                <span>or</span>
+                <a href="{% url 'users:signup' %}"> Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="match-info-dialog" class="dialog info-dialog sativa-dialog hidden" title="Match %">
+        <p>
+            The match percentage refers to the compatibility of any given vt
+            in the menu with the attributes selected via the vt matching wizard.
+            The higher the score, the more likely for the vt to provide the desired experience.
+        </p>
+    </div>
+
+    <div id="out-of-stock-dialog" class="dialog hidden">
+        <div class="body">
+            <div class="content-body">
+                Did you mean to report this vt as
+                <p><b>"out of stock?"</b></p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="btn-wrapper">
+                <button id="btn-close" class="btn-request-dialog cancel">It was an accident, take me back</button>
+                <button id="btn-report-out-of-stock" class="btn-request-dialog">Yes, they're out or what I came for</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

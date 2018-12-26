@@ -1,0 +1,324 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}{{ grower.location_name }} Cultivator in {{ grower.city_fk.full_name }}, {{ grower.street1 }}{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content=" brings you the most up to date menu and the latest deals from {{ grower.location_name }} in {{ grower.city_fk.full_name }}."
+          xmlns="http://www.w3.org/1999/html">
+{% endblock %}
+
+{% block meta_social %}
+    <meta property="og:url" content="{{ request.build_absolute_uri }}" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{ grower.business.name }}" />
+    <meta property="og:description" content="{{ grower.meta_desc }}" />
+    {% if grower.social_image %}
+        <meta name="og:image" content="{{ grower.social_image.url }}">
+    {% else %}
+        <meta name="og:image" content="{% static 'images/logo_hr.png' %}">
+    {% endif %}
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="http://">
+    <meta name="twitter:title" content="{{ grower.business.name }}">
+    <meta name="twitter:description" content="{{ grower.meta_desc }}">
+    {% if grower.social_image %}
+        <meta name="twitter:image" content="{{ grower.social_image.url }}">
+    {% else %}
+        <meta name="twitter:image" content="{% static 'images/logo_hr.png' %}">
+    {% endif %}
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/grower/grower_info.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="container grower-detail">
+    <div class="breadcrumbs">
+        <ol>
+            <li>
+                <a href="{% url 'home' %}">Home</a>
+                <span class="arrow">></span>
+            </li>
+            <li>
+                <a href="{% url 'businesses:growers_list' %}">Growers</a>
+                <span class="arrow">></span>
+            </li>
+            <li>
+                <a href="{% url 'businesses:growers_state_list' grower.state_fk.abbreviation|lower %}">
+                    {{ grower.state_fk.abbreviation }}
+                </a>
+                <span class="arrow">></span>
+            </li>
+            <li>
+                <a href="{% url 'businesses:growers_city_list' grower.state_fk.abbreviation|lower grower.city_fk.full_name_slug %}">
+                    {{ grower.city_fk.full_name }}
+                </a>
+                <span class="arrow">></span>
+            </li>
+            <li class="active">{{ grower.location_name }}</li>
+        </ol>
+    </div>
+
+    <div class="content mobile">
+        <div class="location-image">
+            <img src="{{ grower.image_url }}"/>
+        </div>
+        <div class="location-name">
+            <h1>{{ grower.location_name }}</h1>
+            {% if grower.verified %}
+            <div class="verified">
+                <img src="{% static 'images/verified.png' %}"/>
+            </div>
+            {% endif %}
+        </div>
+        <hr class="spacer sm">
+        <div class="about">
+            {{ grower.about_or_default }}
+        </div>
+        {% if grow_details %}
+        <div class="section how-we-grow">
+            <div class="title">
+                <hr class="spacer lg">
+                <h2>HOW WE GROW</h2>
+                <hr class="spacer lg">
+            </div>
+            <div class="content">
+                {% for name, url in grow_details %}
+                <div class="method">
+                    <img src="{{ url }}" />
+                    <div class="method-name">{{ name }}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        <div class="section vts">
+            <div class="title">
+                <hr class="spacer lg">
+                <h2>OUR </h2>
+                <hr class="spacer lg">
+            </div>
+            <div class="filters">
+                <div class="filter active" data-filter="all"><u>All Vts</u></div>
+                <div class="filter" data-filter="sativa"><u>Sativa</u></div>
+                <div class="filter" data-filter="indica"><u>Indica</u></div>
+                <div class="filter" data-filter="hybrid"><u>Hybrid</u></div>
+            </div>
+            <div class="content">
+            {% for vt, image_url in menu %}
+                <div class="vt" data-variety="{{ vt.variety }}">
+                    <a class="image" href="{{ vt.url }}">
+                        <img src="{{ image_url }}" />
+                    </a>
+                    <div class="details">
+                        <div>
+                            <a href="{{ vt.url }}">
+                            {% if vt.common_name %}
+                                {{ vt.common_name }}
+                            {% else %}
+                                {{ vt.name }}
+                            {% endif %}
+                            </a>
+                            <div>{{ vt.variety }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+                <div class="vt-placeholder" style="{% if menu %}display: none;{% endif %}">
+                    None found
+                </div>
+            </div>
+        </div>
+        <div class="section contact">
+            <div class="title">
+                <hr class="spacer lg">
+                <h2>CONTACT</h2>
+                <hr class="spacer lg">
+            </div>
+            <div class="content">
+                <div class="contact-detail">
+                    <div class="icon">
+                        <i class="fa fa-phone"></i>
+                    </div>
+                    <div class="phone">
+                        {{ grower.phone }}
+                        {% if grower.ext %}
+                        ext. {{ grower.ext }}
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <div class="icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="email"><a href="mailto:{{ grower.location_email }}">{{ grower.location_email }}</a></div>
+                </div>
+                <div class="contact-detail">
+                    <div class="icon">
+                        <i class="fa fa-map-marker"></i>
+                    </div>
+                    <div class="address">
+                        <div>{{ grower.street1 }}</div>
+                        <div>{{ grower.city }}, {{ grower.state }}, {{ grower.zip_code }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section partners">
+            <div class="title">
+                <hr class="spacer lg">
+                <h2>WHERE TO BUY</h2>
+                <hr class="spacer lg">
+            </div>
+            <div class="content"></div>
+        </div>
+    </div>
+
+    <div class="content desktop">
+        <div class="header-row">
+            <div class="image">
+                <img src="{{ grower.image_url }}" />
+            </div>
+            <div class="info">
+                <div class="name-row">
+                    <div class="name">
+                        <h1>{{ grower.location_name }}</h1>
+                    </div>
+                    {% if grower.verified %}
+                    <div class="verified">
+                        <img src="{% static 'images/verified.png' %}"/>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="spacer"></div>
+                <div class="about-row">
+                    {{ grower.about_or_default }}
+                </div>
+            </div>
+        </div>
+        <div class="vts-row">
+            <div class="name-and-filters">
+                <h1>Our Vts</h1>
+                <div class="filters">
+                    <div class="filter active" data-filter="all"><u>All Vts</u></div>
+                    <div class="filter" data-filter="sativa"><u>Sativa</u></div>
+                    <div class="filter" data-filter="indica"><u>Indica</u></div>
+                    <div class="filter" data-filter="hybrid"><u>Hybrid</u></div>
+                </div>
+            </div>
+            <div class="content">
+            {% for vt, image_url in menu %}
+                <div class="vt {% if forloop.counter|divisibleby:4 %}rightmost{% endif %}" data-variety="{{ vt.variety }}">
+                    <a class="image" href="{{ vt.url }}">
+                        <img src="{{ image_url }}" class="grower-vt-image"/>
+                    </a>
+                    <div class="details">
+                        <div>
+                            <a href="{{ vt.url }}">
+                                {% if vt.common_name %}
+                                    {{ vt.common_name }}
+                                {% else %}
+                                    {{ vt.name }}
+                                {% endif %}
+                            </a>
+                            <div>{{ vt.variety }}</div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+                <div class="vt-placeholder" style="{% if menu %}display: none;{% endif %}">
+                    None found
+                </div>
+            </div>
+        </div>
+        <div class="details-row">
+            {% if grow_details %}
+            <div class="section how-we-grow">
+                <div class="title">
+                    <hr class="spacer lg">
+                    <h2>HOW WE GROW</h2>
+                    <hr class="spacer lg">
+                </div>
+                <div class="content">
+                    {% for name, url in grow_details %}
+                    <div class="method">
+                        <img src="{{ url }}" />
+                        <div class="method-name">{{ name }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <div class="section contact">
+                <div class="title">
+                    <hr class="spacer lg">
+                    <h2>CONTACT</h2>
+                    <hr class="spacer lg">
+                </div>
+                <div class="content">
+                    <div class="contact-detail">
+                        <div class="icon">
+                            <i class="fa fa-phone"></i>
+                        </div>
+                        <div class="phone">
+                            {{ grower.phone }}
+                            {% if grower.ext %}
+                            ext. {{ grower.ext }}
+                            {% endif %}
+
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="icon">
+                            <i class="fa fa-envelope"></i>
+                        </div>
+                        <div class="email"><a href="mailto:{{ grower.location_email }}">{{ grower.location_email }}</a></div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="icon">
+                            <i class="fa fa-map-marker"></i>
+                        </div>
+                        <div class="address">
+                            <div>{{ grower.street1 }}</div>
+                            <div>{{ grower.city }}, {{ grower.state }}, {{ grower.zip_code }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section partners">
+                <div class="title">
+                    <hr class="spacer lg">
+                    <h2>WHERE TO BUY</h2>
+                    <hr class="spacer lg">
+                </div>
+                <div class="content"></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% include "pages/grower/grower_partner_template.html" %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/grower/grower_info.js' %}"></script>
+    <script src="{% static 'js/pages/grower/grower_info_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.grower.GrowerInfoView.init({
+            growerId: {{ grower.id }},
+            businessId: {{ grower.business_id }}
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,46 @@
+<script type="x/srx-template" id="b2b-wizard-8">
+  <div class="b2b-sign-up-form-wrapper sign-up-form-wrapper b2b-step-8">
+
+    <form>
+      {% csrf_token %}
+      <fieldset>
+        <div class="form-field-group">
+          <h1>Certification of legal compliance</h1>
+          <div class="form-field">
+            <label>
+              <% if (certified_legal_compliance) { %>
+              <input id="cert" type="checkbox" name="cert" checked/>
+              <% } else { %>
+              <input id="cert" type="checkbox" name="cert"/>
+              <% } %>
+              <span class="check"></span>
+              <span class="text">
+                  I certify that my business is compliant with local laws and regulations and my licenses
+                  pertaining to growth or dispensation of medical marijuana are valid and legal.
+              </span>
+            </label>
+          </div>
+        </div>
+      </fieldset>
+      <fieldset>
+        <div class="form-field-group">
+          <div class="form-field">
+            <label>
+              <input id="terms" type="checkbox" name="terms"/>
+              <span class="check"></span>
+              <span class="text">
+                I agree to the
+                <a href="#" class="terms-link">terms of use</a> and
+                <a href="#" class="policy-link">privacy policy</a>
+              </span>
+            </label>
+          </div>
+        </div>
+        <span class="error-message"></span>
+      </fieldset>
+      <div class="form-actions">
+        <button class="btn-primary btn-b2b-step-8" type="submit">Next</button>
+      </div>
+    </form>
+  </div>
+</script>

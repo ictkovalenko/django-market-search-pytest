@@ -1,0 +1,656 @@
+@import '../../../mixins/variables';
+
+$font-title: 45px;
+$font-subtitle: 19px;
+$font-label: 12px;
+$font-cannabinoids-title: 16px;
+
+$circle-size: 34px;
+
+$humulene: #702988;
+$pinene: #685005;
+$linalool: #1355a7;
+$caryophyllene: #e64d10;
+$myrcene: #056568;
+$terpinolene: #a0278b;
+$ocimene: #81a406;
+$limonene: #087128;
+$camphene: #b665b9;
+$terpineol: #2a9b92;
+$phellandrene: #d1ab36;
+$carene: #393425;
+$pulegone: #ef4f4f;
+$sabinene: #130568;
+$geraniol: #95b2c3;
+$valencene: #FF7A00;
+
+.humulene {
+  background: $humulene;
+}
+
+.pinene {
+  background: $pinene;
+}
+
+.linalool {
+  background: $linalool;
+}
+
+.caryophyllene {
+  background: $caryophyllene;
+}
+
+.myrcene {
+  background: $myrcene;
+}
+
+.terpinolene {
+  background: $terpinolene;
+}
+
+.ocimene {
+  background: $ocimene;
+}
+
+.limonene {
+  background: $limonene;
+}
+
+.camphene {
+  background: $camphene;
+}
+
+.terpineol {
+  background: $terpineol;
+}
+
+.phellandrene {
+  background: $phellandrene;
+}
+
+.carene {
+  background: $carene;
+}
+
+.pulegone {
+  background: $pulegone;
+}
+
+.sabinene {
+  background: $sabinene;
+}
+
+.geraniol {
+  background: $geraniol;
+}
+
+.valencene {
+  background: $valencene;
+}
+
+a.blurred {
+  -moz-filter: blur(5px);
+  -ms-filter: blur(5px);
+  -o-filter: blur(5px);
+  filter: blur(5px);
+}
+
+body:not(.search-result-page) {
+  background: url('../../../../images/search/background.png') no-repeat top center;
+  background-size: cover;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 11em;
+  min-height: 100%;
+
+  .nav-region {
+    background-color: $grey-dark;
+  }
+
+  .footer-region {
+    background-color: $grey-dark;
+
+    a,
+    .separator:after,
+    .copyright-wrapper,
+    .links-wrapper .links {
+      color: $white;
+    }
+  }
+
+  footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 11em;
+    background-color: $grey-lighter;
+    text-align: center;
+  }
+}
+
+.results-dialog {
+  display: none;
+  position: absolute;
+  top: calc(50vh - 10em);
+  left: calc(50vw - 20em);
+
+  width: 26em;
+
+  border: 1px solid $grey;
+  background-color: $white;
+
+  text-align: center;
+
+  z-index: $zindex-nav;
+
+  h1 {
+    font-size: 1em;
+    margin: 1.5em 0;
+  }
+
+  p {
+    font-size: 0.8em;
+    margin: 0 3em 1.5em;
+  }
+}
+
+.vt-search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em 0;
+
+  input[type="checkbox"] {
+    width: 1em;
+    height: 1em;
+    margin-bottom: 0;
+    font-size: 16px;
+  }
+
+  .cannabinoids-group {
+    input[type="text"] {
+      padding: 8px 10px;
+      width: 48px;
+      margin: 0;
+    }
+
+    .form-field-group {
+      label.error {
+        color: $light-red
+      }
+    }
+  }
+
+  .title {
+    color: $green-apple;
+    font-size: $font-title;
+    font-weight: normal;
+    padding: 0.2em 0.2em 0.5em;
+    text-align: center;
+  }
+
+  .breadcrumbs {
+    margin-top: 4em;
+  }
+
+  .circle {
+    width: $circle-size;
+    height: $circle-size;
+    border-radius: 50%;
+    font-size: $font-cannabinoids-title;
+    font-weight: bold;
+    color: #fff;
+    line-height: $circle-size - 5px;
+    text-align: center;
+    margin: 0.2em 0.5em;
+  }
+
+  .search-result-subtitle {
+    color: $grey-blue;
+    font-size: $font-subtitle + 5;
+    line-height: $font-subtitle + 5;
+    font-weight: normal;
+    margin: 0.5em 0 2em;
+    align-self: flex-start;
+  }
+
+  .subtitle-container {
+
+    line-height: 0.5;
+    text-align: center;
+
+    .subtitle:before,
+    .subtitle:after {
+      content: "";
+      position: absolute;
+      height: 9px;
+      border-bottom: 2px solid $grey-blue;
+      top: 0;
+      width: 150px;
+    }
+    .subtitle:before {
+      right: 100%;
+      margin-right: 15px;
+    }
+    .subtitle:after {
+      left: 100%;
+      margin-left: 15px;
+    }
+
+    .subtitle {
+      color: $grey-blue;
+      font-size: $font-subtitle;
+      line-height: $font-subtitle;
+      font-weight: normal;
+      text-align: center;
+      display: inline-block;
+      position: relative;
+    }
+
+  }
+
+  .search-form {
+    display: block;
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+
+    img {
+      margin: 0 0.5em 0 0.5em;
+      height: 50px;
+      width: 50px;
+    }
+
+    label {
+      padding: 0.2em;
+    }
+
+    .row {
+      margin: 2em 0;
+    }
+
+    .form-field-group {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      .form-field {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .variety-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+
+      }
+
+      .variety-title {
+        color: #608061;
+        font-weight: bold;
+        font-size: 14px;
+        text-align: center;
+      }
+    }
+
+    .form-field-group.variety {
+      margin: 0;
+
+      .form-field {
+        margin: 0.5em 1em;
+      }
+    }
+
+    .terpenes-group {
+
+      .form-field-group {
+
+        width: 100px;
+
+        .form-field {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          flex-wrap: nowrap;
+
+          .variety-wrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+          }
+
+        }
+      }
+    }
+
+    .cannabinoids, .terpenes {
+      font-size: $font-label;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      text-align: left;
+
+      .cannabinoids-title, .terpenes-title {
+        font-weight: bold;
+        font-size: $font-cannabinoids-title;
+        padding-top: 2em;
+      }
+
+      .cannabinoids-group, .terpenes-group {
+        margin-left: 2em;
+      }
+
+      .form-field-group {
+        display: inline-flex;
+        justify-content: center;
+        flex-direction: column;
+
+        .form-field-wrapper {
+          display: inline-flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: row;
+        }
+
+        .form-field {
+          margin-right: 1em;
+
+          label {
+            padding: 0.2em;
+          }
+        }
+
+        .group-label {
+          font-weight: bold;
+          font-size: 14px;
+          padding: 0.3em 0;
+        }
+
+      }
+    }
+
+    /* Search page */
+    .search-btn {
+      margin-bottom: 1em;
+      padding: 1.1em 1em;
+    }
+
+    .or-btn {
+      padding: 10px 8px;
+      background: $green-apple;
+    }
+
+    .search-input {
+      width: 32em;
+      background: transparent;
+    }
+
+    .advanced-search-link {
+      font-size: $font-subtitle + 2;
+      color: $grey-blue;
+    }
+    /* Search page end */
+
+  }
+
+}
+
+.search-result-container {
+  width: 100%;
+
+  .search-result.basic-search {
+    //border-bottom: 2px solid $grey-blue;
+    padding-bottom: 2em;
+  }
+
+  .search-result, .similar-result {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+
+    .result-item {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: row;
+      flex-grow: 0;
+      flex-basis: 350px;
+      margin: 1.5em;
+      color: $grey-blue;
+      position: relative;
+
+      .item-image {
+        margin-right: 2em;
+        width: 9em;
+        position: relative;
+
+        .vt-logo{
+          width: 9em;
+          height: auto;
+          max-height: 9em;
+        }
+
+        .clean-logo {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          width: 3em;
+        }
+
+      }
+
+      .item-location {
+        position: absolute;
+        bottom: -1.5em;
+        left: 0;
+      }
+
+      .item-info, .item-location {
+        color: inherit;
+        font-size: 13px;
+        line-height: 21px;
+
+        .vt-name {
+          margin-right: 30px;
+        }
+
+        a {
+          color: inherit;
+        }
+
+        .cup-logo{
+          width: 2.5em;
+          padding-top: 0.5em;
+        }
+
+        .vt-terpenes {
+            .terpene {
+              padding: 0.3em;
+              margin: 1px;
+              display: inline-block;
+            }
+        }
+
+      }
+
+      .item-variety-logo {
+        margin-left: 1em;
+
+        img {
+          margin-top: -0.7em;
+          position: absolute;
+          right: 0;
+        }
+      }
+
+      .cannabinoid-item {
+        white-space: nowrap;
+      }
+
+    }
+  }
+
+  .filter-menu-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    margin-bottom: 2em;
+
+    .form-field-group {
+      margin: 0 auto;
+      font-size: 20px;
+      color: $grey-blue;
+
+      .filter-title {
+        padding-right: 1em;
+      }
+
+      .form-field{
+        padding-right: 2em;
+
+        .checked {
+          display: none;
+        }
+        .blank {
+          display: inline;
+        }
+      }
+
+      .form-field.active {
+        font-weight: bold;
+
+        .checked {
+          display: inline;
+        }
+        .blank {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .search-result-footer-wrapper {
+    text-align: center;
+  }
+}
+
+@media (max-width: $screen-md-max) {
+  .results-dialog {
+    display: none;
+    position: absolute;
+    top: calc(50vh - 10em);
+    left: calc(50vw - 13em);
+  }
+
+  .search-result-container .search-result .result-item .item-location,
+  .search-result-container .similar-result .result-item .item-location {
+    font-size: 12px;
+    line-height: 11px;
+    bottom: -1.9em;
+  }
+}
+
+@media (max-width: $screen-sm-max) {
+  .vt-search-wrapper {
+    .subtitle-container {
+      .subtitle:before,
+      .subtitle:after {
+        width: 50px;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  body {
+    .footer-region {
+        height: 16em;
+    }
+  }
+
+  .vt-search-wrapper {
+    .subtitle-container {
+      .subtitle:before,
+      .subtitle:after {
+        width: 0;
+      }
+    }
+    .search-form {
+
+      .cannabinoids,
+      .terpenes {
+        flex-direction: column;
+        text-align: left;
+
+        .cannabinoids-group, .terpenes-group {
+          text-align: center;
+        }
+
+        .cannabinoids-title,
+        .terpenes-title {
+          padding-bottom: 0.5em;
+          padding-top: 0.5em;
+        }
+      }
+      .advanced-search-link-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .or-btn {
+        padding: 4px 4px;
+      }
+      .search-input {
+        width: auto;
+      }
+    }
+  }
+
+}
+
+@media (min-width: $screen-sm-min) {
+  .vt-search-wrapper {
+    .search-form {
+      img.height-70 {
+        height: 70px;
+        width: 70px;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-md-max) {
+  .vt-search-wrapper {
+    .search-form {
+      width: 100%;
+
+    }
+  }
+
+  .search-result-container {
+    .search-result, .similar-result {
+      .result-item {
+        flex-basis: 290px;
+      }
+    }
+  }
+
+}

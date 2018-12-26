@@ -1,0 +1,7 @@
+<script type="x/srx-template" id="operational-hours-field">
+    <div class="form-field">
+        <% $.each(days, function(index, day) { %>
+        <%= renderHours({day_name: day.name, day_value: day.value}) %>
+        <% }) %>
+    </div>
+</script>

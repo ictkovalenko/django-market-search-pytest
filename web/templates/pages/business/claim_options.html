@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}Claim your business{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/business/claim_options.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+    <main class="claim">
+        <div class="claim__container">
+            <h1 class="claim__caption">Claim Your Business</h1>
+
+            <p class="claim__descript">.</p>
+
+            <ul class="claim__prices prices">
+                <li class="prices__item">
+                    <div class="prices__caption">
+                        <h2 class="prices__price prices__price_free">Free</h2>
+                    </div>
+                    <span class="prices__par">-Control your listing</span>
+                    <span class="prices__par">-Update your menu</span>
+                    <span class="prices__par">-Update business details</span>
+                    <span class="prices__par">-Verified badge</span>
+                    <a class="prices__link" href="{% url 'businesses:claim_form' %}">Claim Now</a>
+                </li>
+                <li class="prices__item">
+                    <div class="prices__caption">
+                        <h2 class="prices__price">$79</h2>
+                        <span class="prices__month">per month</span>
+                    </div>
+                    <span class="prices__par">-Control your listing</span>
+                    <span class="prices__par">-Update your menu</span>
+                    <span class="prices__par">-Update business details</span>
+                    <span class="prices__par">-Verified badge</span>
+                    <span class="prices__par">-Laboratory testing discounts</span>
+                    <span class="prices__par">-Month-to-month billing</span>
+                    <a class="prices__link" href="{% url 'businesses:claim_form' %}">
+                        Claim Now
+                    </a>
+                </li>
+                <li class="prices__item">
+                    <div class="prices__caption">
+                        <h2 class="prices__price">$150</h2>
+                        <span class="prices__month">per month</span>
+                    </div>
+                    <span class="prices__par">-Control your listing</span>
+                    <span class="prices__par">-Update your menu</span>
+                    <span class="prices__par">-Update business details</span>
+                    <span class="prices__par">-Verified badge</span>
+                    <span class="prices__par">-Laboratory testing discounts</span>
+                    <span class="prices__par">-market functionality</span>
+                    <span class="prices__par">-Prioritized search results</span>
+                    <span class="prices__par">-Featured Listing inclusion</span>
+                    <span class="prices__par">-Page analytics</span>
+                    <span class="prices__par">-Dedicated support</span>
+                    <a class="prices__link" href="{% url 'businesses:claim_form' %}">
+                        Claim Now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+{% endblock %}

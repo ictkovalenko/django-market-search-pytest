@@ -1,0 +1,204 @@
+{% load staticfiles i18n %}
+{% load auth_template_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}Vts Web{% endblock title %} - </title>
+
+    {% block meta %}
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="author" content=".co">
+        <link rel="canonical" href="{% canonical_url request %}">
+    {% endblock %}
+
+    <meta name="keywords" content="{% block meta_keywords %}{% endblock meta_keywords %}">
+
+
+    {% block meta_social %}
+        <meta property="og:url" content="https://.co" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="" />
+        <meta property="og:description" content="" />
+        <meta property="fb:app_id" content="" />
+
+        <meta property="og:image" content="https://s3.amazonaws.com/" />
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@">
+        <meta name="twitter:title" content="">
+        <meta name="twitter:description" content="">
+        <meta name="twitter:image" content="https://s3.amazonaws.com/">
+    {% endblock %}
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" type="image/png">
+    <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script>
+        var STATIC_URL = '{% static '' %}',
+            HTTP_USERNAME = '{% http_username %}',
+            HTTP_PASSWORD = '{% http_password %}',
+            GOOGLE_API_KEY = '{% google_maps_api_key %}',
+            AUTHENTICATED = '{{ request.user.is_authenticated }}' === 'True',
+            EMAIL_VERIFIED = '{{ request.user.is_email_verified }}' === 'True',
+            PROFILE = '{% get_profile %}';
+    </script>
+
+    {% block css %}
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
+              integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1"
+              crossorigin="anonymous">
+        <link href="{% static 'css/vendor/jquery-ui.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/vendor/jquery.rateyo.min.css' %}" rel="stylesheet">
+        <link href="{% static 'css/pages/base.css' %}" rel="stylesheet">
+        <link href="{% static 'css/common/dialog.css' %}" rel="stylesheet">
+        <!--[if IE]>
+        <style type="text/css">
+            .pointer {
+                 display: none !important;
+            }
+        </style>
+        <![endif]-->
+        <style type="text/css">
+        @-moz-document url-prefix() {
+            .pointer {
+                 display: none !important;
+            }
+        }
+        </style>
+    {% endblock %}
+
+    <script type="text/javascript">
+        if (PROFILE && PROFILE === 'stage') {
+            (function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);mixpanel.init("c2bac8ebea45e26c34c39c5b6d7e616b");
+        }
+
+        if (PROFILE && PROFILE === 'prod') {
+            (function(e,a){if(!a.__SV){var b=window;try{var c,l,i,j=b.location,g=j.hash;c=function(a,b){return(l=a.match(RegExp(b+"=([^&]*)")))?l[1]:null};g&&c(g,"state")&&(i=JSON.parse(decodeURIComponent(c(g,"state"))),"mpeditor"===i.action&&(b.sessionStorage.setItem("_mpcehash",g),history.replaceState(i.desiredHash||"",e.title,j.pathname+j.search)))}catch(m){}var k,h;window.mixpanel=a;a._i=[];a.init=function(b,c,f){function e(b,a){var c=a.split(".");2==c.length&&(b=b[c[0]],a=c[1]);b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}}var d=a;"undefined"!==typeof f?d=a[f]=[]:f="mixpanel";d.people=d.people||[];d.toString=function(b){var a="mixpanel";"mixpanel"!==f&&(a+="."+f);b||(a+=" (stub)");return a};d.people.toString=function(){return d.toString(1)+".people (stub)"};k="disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");for(h=0;h<k.length;h++)e(d,k[h]);a._i.push([b,c,f])};a.__SV=1.2;b=e.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===e.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";c=e.getElementsByTagName("script")[0];c.parentNode.insertBefore(b,c)}})(document,window.mixpanel||[]);mixpanel.init("f3d1041b1219b27a3fbd3ea378115e1c");
+        }
+    </script>
+</head>
+
+<body{% block body_class %}{% endblock body_class %}>
+<div class="vts-wrapper">
+    <header>
+        {% include 'navbar.html' %}
+    </header>
+    <main class="main-region">
+        {% block content %}
+            <p>Use this document as a way to quick start any new project.</p>
+        {% endblock content %}
+    </main>
+</div>
+
+{% include 'footer.html' %}
+
+<div id="loading-spinner">
+    <i class="fa fa-spinner fa-pulse"></i>
+</div>
+
+{% block javascript %}
+    <script src="{% static 'url-polyfill/url-polyfill.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.ui.touch-punch.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'js/vendor/lodash.min.js' %}"></script>
+    <script src="{% static 'js/vendor/class.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.rateyo.min.js' %}"></script>
+    <script src="{% static 'js/vendor/js.cookie.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery.ba-hashchange.min.js' %}"></script>
+    <script src="{% static 'js/pages/common.js' %}"></script>
+    <script src="{% static 'js/views/base_view.js' %}"></script>
+    <script src="{% static 'js/pages/base.js' %}"></script>
+    <script src="{% static 'js/common/constants.js' %}"></script>
+    <script src="{% static 'js/common/dialog.js' %}"></script>
+    <script src="{% static 'js/common/google_locations.js' %}"></script>
+    <script src="{% static 'js/common/format.js' %}"></script>
+    <script src="{% static 'js/common/rating.js' %}"></script>
+    <script src="{% static 'js/common/sharer.js' %}"></script>
+    <script src="{% static 'js/common/action_recorder.js' %}"></script>
+    <script src="{% static 'js/users/user_settings.js' %}"></script>
+    <script src="{% static 'js/navbar.js' %}"></script>
+
+    <script src="{% google_maps_api_url %}"></script>
+
+    <script type="text/javascript">
+        W.Base.init();
+        W.Navbar.init({
+            location: {% if request.user.is_authenticated and request.user.get_location_json %}
+                {{ request.user.get_location_json | safe }} {% else %} null {% endif %},
+            authenticated: '{{ request.user.is_authenticated }}' == 'True',
+            userId: '{{ request.user.id }}',
+            locationUpdate: '{{ location_update }}' == 'True',
+        });
+    </script>
+
+{% endblock javascript %}
+
+{% block modal %}
+    {% if not request.user.is_email_verified %}
+        <div class="dialog verify-email-dialog hidden" title="Verify Your Email">
+            <div class="dialog-text">
+                <span class="message-1">You must verify your email to use this feature.</span>
+                <span class="message-2">
+                    Click <a href="#" class="dialog-verify-email-link">here</a> to resend verification email.
+                </span>
+            </div>
+            <div class="dialog-actions">
+                <div class="buttons-section">
+                    <button type="button" class="btn-primary btn-yes">Ok</button>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+<div id="eligible-dialog" style="display: none;">
+    <h2>Are You Eligible to Visit ?</h2>
+    <form>
+        <fieldset>
+            <div class="form-field-group">
+                <div class="form-field">
+                    <div>
+                        <input type="checkbox" name="eligible" id="eligible"/>
+                    </div>
+                    <div class="dialog-text">
+                        I am at least 21 years old or a valid medical cannabis patient and agree to the
+                        Terms of Use
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+    <button disabled>Proceed</button>
+    <p>
+         operates in compliance with state laws regarding access to cannabis
+        and the information on this website has not been evaluated by the Food & Drug Administration.
+        Information is shared for educational purposes only.
+    </p>
+</div>
+<div class="dialog-backdrop" style="display: none;"></div>
+
+<script>
+  if (PROFILE && PROFILE === 'prod') {
+
+  }
+
+  if (typeof W !== 'undefined') {
+    W.common.EligibleDialog({
+        userId: {% if request.user.is_authenticated %}{{ request.user.id }}{% else %}null{% endif %}
+    });
+  }
+
+</script>
+</body>
+
+</html>

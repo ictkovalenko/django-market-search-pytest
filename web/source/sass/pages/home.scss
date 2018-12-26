@@ -1,0 +1,259 @@
+@import '../mixins/variables';
+
+.vts-wrapper {
+    height: 60em;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: normal;
+    line-height: 1em;
+}
+
+.home-row-01 {
+    background: $grey-light url(../../images/weed_dark.jpg) no-repeat top center;
+    -webkit-background-size: cover;
+    background-size: cover;
+    text-align: center;
+    height: 30em;
+    display: block;
+    z-index: 1;
+
+    h1 {
+        margin: 1.5em 0.5em 0.5em;
+    }
+
+    p {
+        font-size: 1em;
+        width: 100%;
+        margin: 0 auto 2em auto;
+    }
+
+    .home-sub-row-02 {
+        display: block;
+        width: 100%;
+        color: $white;
+        line-height: 2.5em;
+
+        .btn-lets-go {
+            width: 20.5em;
+            height: 4em;
+        }
+    }
+}
+
+.home-row-02 {
+    position: absolute;
+    top: 34em;
+    height: 26em;
+    width: 100%;
+    background: $paradiso;
+
+    .search-box {
+        display: block;
+        width: 100%;
+        height: 20em;
+        color: $white;
+        margin: 0 auto;
+        text-align: center;
+
+        i {
+            padding: 0.75em 0;
+        }
+
+        p {
+            margin: 1.5em 0;
+        }
+
+        .search-form {
+            display: block;
+            position: relative;
+            width: 20em;
+            margin: 0 auto;
+            height: 12em;
+
+            .lookup-submit {
+                width: 14em;
+                margin-top: 2em;
+                border: 1px $white solid;
+                background-color: $paradiso;
+                font-size: 1em;
+                font-weight: 500;
+            }
+
+            input[type="text"] {
+                display: block;
+                width: 100%;
+                height: 3em;
+                padding: 1em;
+                font-size: 0.7em;
+                border: none;
+                border-radius: 0.5em;
+                margin: 1.5em auto 0;
+                color: $grey-normal;
+                line-height: 1.2em;
+            }
+
+            button:focus,
+            input:focus {
+                outline: none;
+            }
+
+            .payloads-region {
+                display: none;
+                position: absolute;
+                top: 2.5em;
+                width: 100%;
+                font-size: 0.7em;
+                color: $grey-normal;
+                background-color: $white;
+                border-bottom-left-radius: 0.5em;
+                border-bottom-right-radius: 0.5em;
+
+                .search-payload {
+                    display: block;
+                    padding: 1em;
+                    text-align: left;
+                    cursor: pointer;
+                }
+
+                .search-payload.active,
+                .search-payload:hover {
+                    background-color: $aero-blue;
+                    color: $grey-dark;
+                    border-radius: 0.5em;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+.verify-email-dialog {
+    .message-1 {
+        display: block;
+    }
+
+    .message-2 {
+        display: block;
+        margin-top: 20px;
+
+        a {
+            color: $iris-blue;
+        }
+    }
+}
+
+@media (max-width: $screen-xs-max) {
+    .home-row-02 {
+        .search-box {
+            i {
+                padding: 0.75em 0 0 0;
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-xs-min) {
+
+}
+
+@media (min-width: $screen-sm-min) {
+    .vts-wrapper {
+        height: 64em;
+    }
+
+    h1 {
+        font-size: 3.5em;
+    }
+
+    .home-row-01 {
+        height: 34em;
+
+        h1 {
+            margin-top: 1em;
+        }
+
+        p {
+            font-size: 1.3em;
+            width: 80%;
+        }
+    }
+
+    .home-row-02 {
+        top: 38em;
+
+        h1 {
+            margin: 0;
+        }
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    .vts-wrapper {
+        height: 62em;
+    }
+
+    .home-row-01 {
+        height: 32em;
+    }
+
+    .home-row-02 {
+        top: 36em;
+    }
+
+    .footer-region {
+        padding: 2em 4em;
+        line-height: 2em;
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+    .vts-wrapper {
+        height: 64em;
+    }
+
+    .home-row-01 {
+        height: 34em;
+    }
+
+    .home-row-02 {
+        top: 38em;
+    }
+}
+
+@media (min-width: $screen-xl-min) {
+    .vts-wrapper {
+        height: 68em;
+    }
+
+    .home-row-01 {
+        height: 38em;
+
+        h1 {
+            font-size: 5em;
+        }
+
+        p {
+            width: 70%;
+            font-size: 1.7em;
+        }
+    }
+
+    .home-row-02 {
+        top: 42em;
+    }
+}
+
+@media (min-width: $screen-xxl-min) {
+    .home-row-01 {
+        h1 {
+            font-size: 5.6em;
+        }
+
+        p {
+            width: 70%;
+            font-size: 1.7em;
+        }
+    }
+}

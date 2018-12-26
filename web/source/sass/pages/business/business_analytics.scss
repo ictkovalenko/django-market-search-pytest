@@ -1,0 +1,225 @@
+@import '../../mixins/variables';
+
+select {
+    padding: 0 !important;
+}
+
+
+#analytics {
+    margin-top: 1em;
+
+    .header-label {
+        font-size: 1em;
+        margin-bottom: 1em;
+        color: gray;
+    }
+
+
+    #date-section {
+        width: 30em;
+        position: absolute;
+        right: 0;
+        padding: .25em;
+
+        #from, #to {
+            width: 8em;
+            height: 3.5em;
+            font-size: .7em;
+            padding: 1em;
+            color: black;
+        }
+
+        button {
+            height: 2em;
+            text-transform: uppercase;
+            padding: .5em;
+            font-size: .75em;
+        }
+
+  }
+
+    #overall-section {
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table, td, th {
+            border: 1px solid #dddcdd;
+        }
+
+        td, th {
+            padding: 1em;
+        }
+    }
+
+    #featured-section, #biz-lookup-section {
+        display: flex;
+        flex-flow: row wrap;
+        text-align: left;
+
+        .header-label {
+            flex: 1 100%;
+            line-height: 2em;
+        }
+        #impression-chart, #view-chart,
+        #biz-lookup-chart, #biz-lookup-action-chart{
+            width: 50%;
+        }
+    }
+}
+
+#reportrange {
+    background: #fff;
+    cursor: pointer;
+    padding: 7px 15px;
+    border-bottom: 1px solid #ccc;
+    margin-top: -1em;
+}
+
+.daterangepicker.dropdown-menu {
+    display: none;
+    float: left;
+    min-width: 160px;
+    margin: 2px 0 0;
+    font-size: 14px;
+    list-style: none;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+
+    .btn {
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 1.5;
+        border-radius: 3px;
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        touch-action: manipulation;
+        cursor: pointer;
+        user-select: none;
+        border: 1px solid transparent;
+    }
+
+    .btn-success {
+        color: $white;
+        background-color: $iris-blue;
+        border-color: $iris-blue;
+    }
+
+    .btn-success.active, .btn-success.focus, .btn-success:active,
+    .btn-success:focus, .btn-success:hover, .open>.dropdown-toggle.btn-success {
+        color: $white;
+        background-color: $iris-blue;
+        border-color: $iris-blue;
+    }
+
+    .btn-default.active, .btn-default.focus, .btn-default:active,
+    .btn-default:focus, .btn-default:hover, .open>.dropdown-toggle.btn-default {
+        color: #333;
+        background-color: #e6e6e6;
+        border-color: #adadad;
+    }
+
+    .btn-default {
+        background-color: $white;
+    }
+
+    .table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th,
+    .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th,
+    .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
+        padding: 5px;
+    }
+
+    .ranges li {
+        padding: 6px 12px;
+    }
+}
+
+@media (max-width: $screen-sm-min) {
+    #analytics {
+        #date-section {
+            position: relative;
+            text-align: center;
+
+            #to, #from {
+                width: 12em;
+                height: 3em;
+                font-size: 1em;
+                padding: 1em;
+            }
+
+            button {
+                width: 100%;
+                height: 4em;
+                margin-bottom: 1em;
+            }
+
+        }
+
+        #featured-section, #biz-lookup-section {
+            #impression-chart, #view-chart,
+            #biz-lookup-chart, #biz-lookup-action-chart{
+                width: 100%;
+            }
+        }
+
+      #overall-section table {
+        border: none;
+
+        thead {
+          border: none;
+          clip: rect(0 0 0 0);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          padding: 0;
+          position: absolute;
+          width: 1px;
+        }
+
+        tr {
+          display: block;
+        }
+
+        td {
+          border-right: none;
+          border-left: none;
+          border-top: none;
+
+          display: block;
+          font-size: .8em;
+          text-align: right;
+        }
+
+        td::before {
+          content: attr(data-label);
+          float: left;
+          font-weight: bold;
+        }
+
+        td:last-child {
+          border-bottom: 0;
+        }
+
+        td:first-child b {
+          visibility: hidden;
+        }
+      }
+    }
+}
+
+@media (max-width: $screen-md-min) {
+    #overall-section {
+        table {
+            width: 100%;
+        }
+        .header-label {
+            margin-bottom: 30px;
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<script type="x/srx-template" id="expanded-location-template">
+    <div class="exp-location">
+        <div class="location-name">
+            <span class="name">
+                {% if request.user.is_authenticated %}
+                    <a href="/dsp/${l.state.toLowerCase()}/${l.city_slug}/${l.slug_name}/?search=true&vt_id=${vt_id}">${ l.location_name }</a>
+                {% else %}
+                    <a>${ l.location_name }</a>
+                {% endif %}
+            </span>
+            <% if (l.open) { %>
+            <span class="opened">Open</span>
+            <% } else { %>
+            <span class="closed">Closed</span>
+            <% } %>
+        </div>
+        <div class="location-rating-exp">${ l.rating }</div>
+        <div class="location-distance">${ formatDistance(l.distance) }</div>
+        <div class="location-price price-values">
+            <span class="price-value" id="menu_items.price_gram">${ formatPrice(l.price_gram) }</span>
+            <span class="price-value active" id="menu_items.price_eighth">${ formatPrice(l.price_eighth) }</span>
+            <span class="price-value" id="menu_items.price_quarter">${ formatPrice(l.price_quarter) }</span>
+            <span class="price-value" id="menu_items.price_half">${ formatPrice(l.price_half) }</span>
+        </div>
+    </div>
+</script>

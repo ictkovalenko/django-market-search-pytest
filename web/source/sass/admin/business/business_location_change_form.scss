@@ -1,0 +1,12 @@
+@import '../../mixins/variables';
+
+.disabled {
+    position: relative;
+    background-color: $grey-lighter;
+    pointer-events: none;
+    cursor: default;
+}
+
+#id_location_field {
+    width: 30em;
+}

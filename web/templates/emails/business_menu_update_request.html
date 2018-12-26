@@ -1,0 +1,44 @@
+{% extends "emails/base.html" %}
+{% load staticfiles i18n %}
+
+{% block css %}
+    {{ block.super }}
+    <style>
+        p {
+            margin: 20px;
+            text-align: left;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <tr>
+        <td>
+            <p>Hi <b>{{ business_location.location_name }},</b></p>
+            <p>
+                {{  }}
+            </p>
+            {% if message %}
+                <p>
+                Message from the user:
+                </p>
+                <div style="margin: 0 20px 40px 20px;border-top: 1px solid #8e8e93; border-bottom: 1px solid #8e8e93; padding: 10px; font-style: italic;">
+                    {{ message|safe }}
+                </div>
+            {% endif %}
+            <p>
+                To make updates to your menu, <a href="{{ login_url }}">log in</a> to your account or
+                <a href="{{ claim_url }}">claim your business</a> if you haven't already.
+            </p>
+            <p>
+                If your current menu is up to date, please click
+                <a href="{{ update_date_url }}">here</a>.
+            </p>
+            <p>
+                Regards,<br>
+                VT Team<br>
+                <a href="mailto:support@">support@</a>
+            </p>
+        </td>
+    </tr>
+{% endblock %}

@@ -1,0 +1,74 @@
+@import '../mixins/variables';
+
+.nav-region {
+    background-color: $grey-dark;
+}
+
+.footer-region {
+    background-color: $grey-dark;
+
+    a,
+    .separator:after,
+    .copyright-wrapper,
+    .links-wrapper .links {
+        color: #fff;
+    }
+}
+
+.vt-404-container {
+    display: block;
+    position: relative;
+    background: url('../../images/404-background.jpeg') no-repeat top center;
+    background-size: cover;
+    height: 70em;
+    margin: 0;
+
+    .content {
+        display: block;
+        position: absolute;
+        top: 7em;
+        right: 0;
+        width: 25em;
+
+        color: $green;
+
+        a {
+            color: $green;
+        }
+
+        h1 {
+            font-size: 72px;
+            margin: 0 auto 40px;
+        }
+
+        span {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 1em;
+        }
+
+        ul {
+            padding-left: 18px;
+
+            li {
+                margin-bottom: 0.2em;
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    .vt-404-container {
+    }
+}
+
+@media (max-width: $screen-sm-min) {
+    .vt-404-container {
+    }
+}
+
+@media (max-width: $screen-xs-max) {
+    .vt-404-container {
+    }
+}

@@ -1,0 +1,21 @@
+<script type="x/srx-template" id="b2b-wizard-6">
+    <div class="b2b-sign-up-form-wrapper b2b-step-6">
+        <h1>Enter your hours of operation</h1>
+        <form class="form">
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <% $.each(days, function(index, day) { %>
+                        <%= renderHours({day_name: day.name, day_value: day.value}) %>
+                        <% }) %>
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2b-step-6" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</script>

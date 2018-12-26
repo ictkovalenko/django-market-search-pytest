@@ -1,0 +1,137 @@
+{% load staticfiles i18n %}
+
+<script type="x/srx-template" id="dispensary_header_template">
+    <div class="location-header">
+        <% if (from_search) { %>
+        <div class="back-to-search-wrapper">
+            <a href="{% url 'search:vt_results' %}" class="search-link">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>back to search results</a>
+        </div>
+        <% } %>
+        <div class="breadcrumbs">
+            <ol>
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                    <span class="arrow">></span>
+                </li>
+                <li>
+                    <a href="{% url 'businesses:dispensaries_list' %}">Dispensaries</a>
+                    <span class="arrow">></span>
+                </li>
+                <li>
+                    <a href="{% url 'businesses:dispensaries_state_list' active_state.abbreviation|lower %}">
+                        {{ active_state.abbreviation }}
+                    </a>
+                    <span class="arrow">></span>
+                </li>
+                <li>
+                    <a href="{% url 'businesses:dispensaries_city_list' active_state.abbreviation|lower active_city.full_name_slug %}">
+                        {{ active_city.full_name }}
+                    </a>
+                    <span class="arrow">></span>
+                </li>
+                <li class="active">${ l.location_name }</li>
+            </ol>
+        </div>
+        <div class="image-wrapper">
+            <% if (l.image) { %>
+            <img class="location-logo" src="${ l.image }">
+            <% } else { %>
+            <img class="location-logo" src="{% static 'images/default-location-image.jpeg' %}">
+            <% } %>
+        </div>
+        <div class="info-wrapper">
+            <div class="location-name-row">
+                <div class="location-name">
+                    <h1>${ l.location_name }</h1>
+                </div>
+                <% if (is_authenticated) { %>
+                <div class="favorite-wrapper">
+                    <% if (l.is_favorite) { %>
+                    <i class="location-like active fa fa-heart fa-2x" aria-hidden="true"></i>
+                    <% } else { %>
+                    <i class="location-like favorite-icon" aria-hidden="true"></i>
+                    <% } %>
+                </div>
+                <% } %>
+            </div>
+            <div class="contact-info">
+                <div class="street">${ l.street1 }</div>
+                <div class="city">${ formatAddressLine(l) }</div>
+
+                <% if (l.phone) { %>
+                <div class="phone-wrapper">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    <span class="bold">Ph:</span>
+                    <a class="phone-number" href="tel:${ l.phone }">${ l.phone }</a>
+                </div>
+                <% } %>
+
+                <div class="avg-price">
+                  <div class="avg-price-indicator">${ avg_price }</div>
+                </div>
+
+                <% if (l.dispensary && l.delivery) { %>
+                <div class="delivery-available-wrapper">
+                    <i class="fa fa-truck" aria-hidden="true"></i>
+                    <span class="bold">Delivery Available</span>
+                </div>
+                <% } %>
+
+                <% if (l.delivery) { %>
+                <button class="btn btn-secondary btn-place-order" type="button">Place Order</button>
+                <% } else if (l.dispensary) { %>
+                <button class="btn btn-secondary btn-get-directions" type="button">Get Directions</button>
+                <% } %>
+            </div>
+            <div class="hours-info">
+                <div class="hours">
+                    <span class="title">Hours:</span>
+                    <% if (l.is_open) { %>
+                    <span class="title opened">${ l.open_closed }</span>
+                    <% } else { %>
+                    <span class="title closed">${ l.open_closed }</span>
+                    <% } %>
+                </div>
+                <div class="schedule">
+                    <% $.each(getOpenDays(l), function(i, d) { %>
+                    <div class="day-wrapper">
+                        <% if (d.first) { %>
+                        <span class="day-name first">${ d.day }</span>
+                        <span class="day-value first">${ d.time }</span>
+                        <% } else { %>
+                        <span class="day-name">${ d.day }</span>
+                        <span class="day-value">${ d.time }</span>
+                        <% } %>
+                    </div>
+                    <% }) %>
+                </div>
+            </div>
+        </div>
+        <div class="rating-row">
+            <div class="rating-raw">${ l.rating }</div>
+            <div class="rating-display">(${ l.rating })</div>
+            <% if (is_authenticated && !l.is_rated) { %>
+            <span class="separator"></span>
+            <a class="rate-link" href="#">Rate</a>
+            <% } %>
+        </div>
+        <div class="socials-row">
+            <span class="social-fb">
+                <a href="${share_urls.facebook}" target="_blank">
+                    <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                </a>
+            </span>
+            <span class="social-google">
+                <a href="${share_urls.google}" target="_blank">
+                    <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+                </a>
+            </span>
+            <span class="social-twitter">
+                <a href="${share_urls.twitter}" target="_blank">
+                    <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                </a>
+            </span>
+        </div>
+    </div>
+</script>

@@ -1,0 +1,36 @@
+{% load static %}
+
+<script type="x/srx-template" id="user_review_template">
+    <div class="review">
+        <div class="vt-info-wrapper">
+            <div class="vt-image">
+                <% if (review.vt_image !== null) { %>
+                <img src="${ review.vt_image }" alt="Vt Image">
+                <% } else { %>
+                <img src="{% static 'images/weed_small.jpg' %}" alt="Vt Image"/>
+                <% } %>
+            </div>
+            <div class="vt-info">
+                    <span class="vt-name">
+                        <a href="/vts/${ review.vt_variety }/${ review.vt_slug }"><%= review.vt_name %></a>
+                    </span>
+                <span class="vt-type">${ review.vt_variety }</span>
+                <span class="vt-rating overall-rating-<%= review.id %>">
+                        ${ review.vt_overall_rating }</span>
+            </div>
+        </div>
+        <div class="vt-review-wrapper">
+            <div class="your-rating">
+                <span class="label">Your rating: </span>
+                <span class="user-rating rating-<%= review.id %>">${ review.rating }</span>
+            </div>
+            <div class="created-date">
+                <span class="date">${ review.created_date }</span>
+            </div>
+            <div class="review-text review-text-<%= review.id %>">
+                <span class="text">${ review.review }</span>
+                <span class="full-text hidden">${ review.review }</span>
+            </div>
+        </div>
+    </div>
+</script>

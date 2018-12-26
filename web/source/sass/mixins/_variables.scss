@@ -1,0 +1,64 @@
+//
+// Variables
+// --------------------------------------------------
+
+//== Paths
+$static-path: '../../';
+$font-path: $static-path + 'fonts/';
+$image-path: $static-path + 'images/';
+
+//== Nav
+$nav-height: 50px;
+
+//== Colors
+$black: #231f20;
+$grey-dark: #2f3f4c;
+$grey-blue: #4d5359;
+$grey: #71757a;
+$grey-normal: #8e8e93;
+$grey-light: #aaa8a8;
+$grey-lighter: #efefef;
+$white-smoke: #f4f4f4;
+$almost-white: #fdfdfd;
+$white: #fff;
+$red: #db3b39;
+$light-red: #ff4646;
+$orange-red: #c4592b;
+$dark-pink: #eed3d7;
+$pink: #f2dede;
+$paradiso: #508484;
+$aero-blue: #bbe6d1;
+$medium-aquamarine: #7ecca6;
+$avocado-green: #6bc331;
+$green: #008326;
+$green-dirty: #7BB344;
+$green-apple: #35B244;
+$green-atlantis: #A6CF42;
+$green-emerald: #3CCB4D;
+$mint-green: #d6e9c6;
+$iris-blue: #10b3dc;
+$cyan-blue: #92e1f4;
+$purple: #8208c3;
+
+//== Responsive Breakpoints
+$screen-xs-min: 480px;
+$screen-sm-min: 768px;
+$screen-md-min: 1024px;
+$screen-lg-min: 1200px;
+$screen-xl-min: 1500px;
+$screen-xxl-min: 1920px;
+
+//== Make sure there is a space between the `-` and the `1` with out the space SASS will produce the wrong css
+$screen-xs-max: ($screen-xs-min - 1);
+$screen-sm-max: ($screen-sm-min - 1);
+$screen-md-max: ($screen-md-min - 1);
+$screen-lg-max: ($screen-lg-min - 1);
+$screen-xl-max: ($screen-xl-min - 1);
+$screen-xxl-max: ($screen-xxl-min - 1);
+
+//== Z-Index
+$zindex-nav: 1000;
+$zindex-spinner: 1010;
+
+// padding to match outer wrapper of site
+$base-padding: 0 1.5em;

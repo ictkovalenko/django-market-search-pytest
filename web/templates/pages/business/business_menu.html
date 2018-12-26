@@ -1,0 +1,94 @@
+{% extends "pages/business/business_account_base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Business Menu{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/business/business_forms.css' %}" rel="stylesheet">
+    <link href="{% static 'css/pages/business/business_menu.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block business_account_tab_content %}
+    <div class="form menu-form">
+        <div class="form-field-group location-field-group">
+            <div class="form-field">
+                <label class="locations" for="locations">
+                    <span class="label">Location:</span>
+                    <select class="location-select" id="locations">
+                      {% if tab == 'vts' %}
+                        {% for location in grow_houses %}
+                            <option value="{{ location.id }}">{{ location.location_name }} - {{ location.street1 }},
+                                {{ location.city }}, {{ location.state }} {{ location.zip_code }}</option>
+                        {% endfor %}
+                      {% else %}
+                        {% for location in dispensaries %}
+                            <option value="{{ location.id }}">{{ location.location_name }} - {{ location.street1 }},
+                                {{ location.city }}, {{ location.state }} {{ location.zip_code }}</option>
+                        {% endfor %}
+                      {% endif %}
+                    </select>
+                    <span class="pointer"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+                </label>
+            </div>
+        </div>
+        <div class="form-field-group add-vt-field-group">
+            <div class="form-field vt-name-field"></div>
+
+            {% if tab != 'vts' %}
+              <div class="form-field price-field">
+                  <input type="number" name="price_gram" placeholder="$ / Gram">
+              </div>
+              <div class="form-field price-field">
+                  <input type="number" name="price_eighth" placeholder="$ / Eighth">
+              </div>
+              <div class="form-field price-field">
+                  <input type="number" name="price_quarter" placeholder="$ / Quarter">
+              </div>
+              <div class="form-field price-field">
+                  <input type="number" name="price_half" placeholder="$ / Half">
+              </div>
+            {% endif %}
+
+            <div class="form-field actions-field">
+                <button type="button" class="btn-primary btn-add-vt">Add</button>
+            </div>
+            <span class="error-message"></span>
+        </div>
+        <div class="menu-vts-wrapper">
+            <div class="sativa-region hidden"></div>
+            <div class="indica-region hidden"></div>
+            <div class="hybrid-region hidden"></div>
+        </div>
+    </div>
+
+    {% include 'common/vt_lookup.html' %}
+    {% include 'pages/business/menu_template.html' %}
+    {% include 'pages/business/menu_item_template.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/business/business_menu.js' %}"></script>
+    <script src="{% static 'js/pages/business/business_menu_view.js' %}"></script>
+    <script src="{% static 'js/pages/vt/vt_lookup.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.business.BusinessMenuView.init({'is_vts': '{{ tab }}' == 'vts'});
+    </script>
+{% endblock %}
+
+{% block modal %}
+    <div class="dialog confirm-dialog remove-item-dialog hidden" title="Remove Menu Item">
+        <div class="dialog-text">
+            <span>Are you sure you want to remove this menu item?</span>
+        </div>
+        <div class="dialog-actions">
+            <div class="buttons-section">
+                <button type="button" class="btn-primary btn-remove">Yes</button>
+                <button type="button" class="btn-secondary btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

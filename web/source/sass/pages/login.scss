@@ -1,0 +1,76 @@
+@import '../mixins/variables';
+
+.btn-sign-out {
+    margin-top: 3em;
+}
+
+.login-block-wrapper {
+    text-align: center;
+    color: $grey-normal;
+    padding: 4em 1em 6em;
+
+    .login {
+        fieldset {
+            border: none;
+            margin: 0;
+            padding: 2em 1em 1.5em;
+        }
+
+        .forgot-password-link {
+            display: block;
+            margin-top: 3em;
+        }
+
+        @media (max-width: $screen-xs-max) {
+            input {
+                width: auto;
+            }
+        }
+
+    }
+
+    @media (max-width: $screen-xs-max) {
+        width: 100%;
+        padding: 5em 0;
+
+        .login {
+            display: block;
+            position: relative;
+            width: 100%;
+
+            fieldset {
+                display: block;
+                position: relative;
+                padding: 2em 0;
+            }
+        }
+    }
+}
+
+.pwd-reset-block-wrapper {
+    text-align: center;
+    color: $grey-normal;
+    padding: 4em 1em 6em;
+
+    .forgot-message span {
+        display: block;
+        margin: 1em auto;
+    }
+
+    .password-reset {
+        fieldset {
+            border: none;
+            margin: 0;
+            padding: 2em 1em 1.5em;
+        }
+
+        .form-group {
+            margin: 0 auto;
+            width: 30em;
+        }
+
+        .form-field {
+            display: block;
+        }
+    }
+}

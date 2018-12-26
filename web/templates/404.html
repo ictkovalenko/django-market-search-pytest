@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+{% load search_template_tags %}
+
+{% block title %}Not Found{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/404.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container vt-404-container">
+        <div class="content">
+            <h1>Oops!</h1>
+            <span>We can't seem to find the page your are looking for.</span>
+            <span><strong>Error code: 404</strong></span>
+            <span>Here are some helpful links instead:</span>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'search:vt_wizard' %}">Find Your Perfect Vt</a></li>
+                <li><a href="{% url 'home' %}">Vt Search</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

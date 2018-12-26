@@ -1,0 +1,48 @@
+<script type="x/srx-template" id="menu-item-template">
+    <div class="menu-item-wrapper">
+      <input type="hidden" class="menu-item-<%= item.id %>" value="<%= item.id %>">
+      <div class="menu-item vts"><%= item.vt_name %></div>
+
+      <% if (!is_vts) { %>
+        <% if (item.price_gram) { %>
+        <div class="menu-item gram">$ <%= item.price_gram %></div>
+        <% } else { %>
+        <div class="menu-item gram">--</div>
+        <% } %>
+
+        <% if (item.price_eighth) { %>
+        <div class="menu-item eighth">$ <%= item.price_eighth %></div>
+        <% } else { %>
+        <div class="menu-item eighth">--</div>
+        <% } %>
+
+        <% if (item.price_quarter) { %>
+        <div class="menu-item quarter">$ <%= item.price_quarter %></div>
+        <% } else { %>
+        <div class="menu-item quarter">--</div>
+        <% } %>
+
+        <% if (item.price_half) { %>
+        <div class="menu-item half">$ <%= item.price_half %></div>
+        <% } else { %>
+        <div class="menu-item half">--</div>
+        <% } %>
+
+        <div class="menu-item in-stock" <% if (item.report_count >= 1) { %>title='This item is blocked by user "out of stock reports"'<% } %>>
+            <label>
+              <input type="checkbox" class="in-stock-value" id="<%= item.id %>"
+                     variety="<%= item.vt_variety %>"
+                     <% if (item.in_stock) { %>checked<% } %>
+                     <% if (item.report_count >= 1) { %>disabled<% } %> >
+                <span class="check"></span>
+            </label>
+        </div>
+      <% } %>
+
+      <div class="menu-item actions">
+          <div class="btn-remove-menu-item" id="<%= item.id %>" variety="<%= item.vt_variety %>">
+              <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </div>
+      </div>
+    </div>
+</script>

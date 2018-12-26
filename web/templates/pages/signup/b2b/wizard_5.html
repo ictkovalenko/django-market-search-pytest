@@ -1,0 +1,27 @@
+<script type="x/srx-template" id="b2b-wizard-5">
+    <div class="b2b-sign-up-form-wrapper b2b-step-5">
+        <h1>Enter the business address & phone number</h1>
+        <form>
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group address-field-group">
+                    <div class="form-field">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address" value="${ buildAddressDisplayName(data) }"/>
+                        <span class="removable remove-location hidden" title="Clear value"></span>
+                    </div>
+                </div>
+                <div class="form-field-group phone-field-group">
+                    <div class="form-field phone-number">
+                        <label for="phone">Phone Number</label>
+                        <input type="text" name="phone" id="phone" value="${ phone }"/>
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2b-step-5" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</script>

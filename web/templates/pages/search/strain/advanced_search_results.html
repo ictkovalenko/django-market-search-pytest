@@ -1,0 +1,210 @@
+{% extends "pages/search/vt/advanced_search.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Vt Search{% endblock %}
+
+{% block css %}
+  {{ block.super }}
+  <link href="{% static 'css/pages/base.css' %}" rel="stylesheet">
+  <link href="{% static 'css/pages/search/vt/advanced_search.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body_class %} class="search-result-page"{% endblock body_class %}
+
+{% block form_content %}
+
+  <div class="search-container"></div>
+
+  <div class="search-result-footer-wrapper hidden">
+    <div class="scroll-down-wrapper">
+      <div class="inline-block">
+        <span class="scroll-icon"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></span>
+      </div>
+      <div class="inline-block">
+        <span class="scroll-text">{% trans 'Scroll down to load more results' %}</span>
+      </div>
+    </div>
+  </div>
+  {% url 'account_login' as sign_in_url %}
+  {% include 'pages/search/vt/inlines/dialog.html' %}
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script src="{% static 'url-search-params-polyfill/index.js' %}"></script>
+  <script src="{% static 'js/pages/search/vt/advanced_search_results.js' %}"></script>
+  <script type="text/javascript">
+      new W.pages.AdvancedSearchResultsPage({
+          {% if request.user.is_authenticated %}'currentUserId': '{{ request.user.id }}',{% endif %}
+          'isEmailVerified': '{{ request.user.is_email_verified }}' === 'True',
+          'terpenesAbbreviation': '{{ terpenes_abbreviation|safe }}'
+      });
+  </script>
+
+  <script type="x/srx-template" id="vt-result-template">
+    <div class="search-result-header-wrapper">
+
+      <div class="breadcrumbs">
+        <ol>
+          <li>
+            <% if (isBasicSearch) { %>
+              <a href="{% url 'search:search' %}?${ searchParams }">{% trans 'Back to Basic Search' %}</a>
+            <% } else { %>
+              <a href="{% url 'search:advanced_search' %}?${ searchParams }">{% trans 'Back to Advanced Search' %}</a>
+            <% } %>
+            <span class="arrow">&gt;</span>
+          </li>
+          <li class="active">{% trans 'Search Results' %}</li>
+        </ol>
+      </div>
+
+      <% if (isBasicSearch) { %>
+        <% if (searchResults.length) { %>
+          <div class="search-result-subtitle">{% trans 'Search Results' %}</div>
+        <% } %>
+      <% } else { %>
+        <% if (searchResults.length) { %>
+          <div class="search-result-subtitle">
+            {% trans 'Here Are Your Top Recommendations' %}
+          </div>
+          <div class="filter-menu-wrapper">
+            <div class="form-field-group">
+              <span class="filter-title">{% trans 'Sort' %}:</span>
+              <span class="form-field" data-filter="">
+                <i class="fa fa-check-square-o checked" aria-hidden="true"></i>
+                <i class="fa fa-square-o blank" aria-hidden="true"></i>
+                <label for="sort-1">{% trans 'Best Match' %}</label>
+              </span>
+              <span class="form-field" data-filter="location">
+                <i class="fa fa-check-square-o checked" aria-hidden="true"></i>
+                <i class="fa fa-square-o blank" aria-hidden="true"></i>
+                <label for="sort-2">{% trans 'Nearest' %}</label>
+              </span>
+              <span class="form-field" data-filter="name">
+                <i class="fa fa-check-square-o checked" aria-hidden="true"></i>
+                <i class="fa fa-square-o blank" aria-hidden="true"></i>
+                <label for="sort-3">{% trans 'Name' %}</label>
+              </span>
+              <span class="form-field" data-filter="price">
+                <i class="fa fa-check-square-o checked" aria-hidden="true"></i>
+                <i class="fa fa-square-o blank" aria-hidden="true"></i>
+                <label for="sort-4">{% trans 'Price' %}</label>
+              </span>
+            </div>
+          </div>
+        <% } %>
+      <% } %>
+    </div>
+    <div class="search-result-body-wrapper">
+
+      <% if (searchResults.length) { %>
+        <div class="search-result<% if (isBasicSearch) { %> basic-search<% } %>"></div>
+      <% } else { %>
+        <% if (q && q.length) { %>
+          <div class="search-result-subtitle">
+            We could not find a match for
+            <b>"${ q }"</b>
+          </div>
+        <% } else { %>
+          <div class="search-result-subtitle">No Results Found</div>
+        <% } %>
+      <% } %>
+
+      <% if (similarResult.length) { %>
+        <div class="search-result-subtitle">{% trans 'Similar Vts:' %}</div>
+        <div class="similar-result"></div>
+      <% } %>
+    </div>
+  </script>
+
+  <script type="x/srx-template" id="vt-item-template">
+    <div class="result-item">
+      <div class="item-image">
+        <% if (vt.image_url) { %>
+          <img class="vt-logo" src="${ vt.image_url }" alt="${ vt.name } Vt Image">
+        <% } else { %>
+          <img class="vt-logo" src="{% static 'images/weed_small.jpg' %}" alt="${ vt.name } Vt Image"/>
+        <% } %>
+        <% if (vt.is_clean) { %>
+          <img class="clean-logo" src="{% static 'images/search/clean.png' %}">
+        <% } %>
+        <% if (distance) { %>
+          <span class="item-location"><i class="fa fa-map-marker"></i> ${ distance } Miles away</span>
+        <% } else { %>
+          <span class="item-location">Not available nearby</span>
+        <% } %>
+      </div>
+
+      <div class="item-info">
+        <div>
+          <div class="vt-name">
+              <% if (obfuscated) { %>
+                <a class="blurred noselect">${ vt.name }</a>
+              <% } else { %>
+                  <b><a href="/vts/${ vt.variety }/${ vt.vt_slug }/?${ searchParams }">
+                    ${ vt.name }</a></b>
+              <% } %>
+          </div>
+          <div class="vt-type">${ _.startCase(vt.variety) }</div>
+        </div>
+
+        <% if (vt.cannabinoids) { %>
+          <div class="vt-cannabinoids"><b>
+            <% _.forEach(vt.cannabinoids, function(value, key) { %>
+            <% if (value) { %>
+            <span class="cannabinoid-item"><%- value %>% <%- key.toUpperCase() %></span>
+            <% } %>
+            <% }); %>
+          </b></div>
+        <% } %>
+
+        <% if (vt.terpenes) { %>
+          <div class="vt-terpenes">
+            <% _.forEach(vt.terpenes, function(value, key) { %>
+              <% if (searchParams.indexOf(key) != -1) { %>
+              <span class="terpene circle <%- key %>"><%- terpenesAbbreviation[key] %></span>
+              <% } %>
+            <% }); %>
+          </div>
+        <% } %>
+
+        <div class="vt-price">
+          <% if ( vt.price_gram || vt.max_price_gram ) { %>
+            <% if ( vt.price_gram != vt.max_price_gram && vt.price_gram && vt.max_price_gram ) { %>
+              ${ price_format(vt.price_gram) } - ${ price_format(vt.max_price_gram) }/G
+            <% } else { %>
+              ${ price_format(vt.price_gram || vt.max_price_gram) }/G
+            <% } %>
+          <% } %>
+
+          <% if ( vt.price_eighth || vt.max_price_eighth ) { %>
+            <% if ( vt.price_eighth != vt.max_price_eighth && vt.price_eighth && vt.max_price_eighth ) { %>
+              ${ price_format(vt.price_eighth) } - ${ price_format(vt.max_price_eighth) }/8th
+            <% } else { %>
+              ${ price_format(vt.price_eighth || vt.max_price_eighth) }/8th
+            <% } %>
+          <% } %>
+
+          <% if ( vt.price_quarter || vt.max_price_quarter ) { %>
+            <% if ( vt.price_quarter != vt.max_price_quarter && vt.price_quarter && vt.max_price_quarter ) { %>
+              ${ price_format(vt.price_quarter) } - ${ price_format(vt.max_price_quarter) }/Q
+            <% } else { %>
+              ${ price_format(vt.price_quarter || vt.max_price_quarter) }/Q
+            <% } %>
+          <% } %>
+        </div>
+
+        <div>
+        <% if (vt.cup_winner) { %>
+          <img class="cup-logo" src="{% static 'images/search/cup.png' %}">
+        <% } %>
+        </div>
+      </div>
+
+      <div class="item-variety-logo">
+        <img src="{% static 'images/search/' %}${ vt.variety }-leaf.png">
+      </div>
+    </div>
+  </script>
+{% endblock %}

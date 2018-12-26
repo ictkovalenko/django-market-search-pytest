@@ -1,0 +1,18 @@
+{% load staticfiles i18n %}
+<tfoot>
+<tr>
+    <td>
+        <hr/>
+    </td>
+</tr>
+<tr>
+    <td style="padding: 10px">
+        This email was sent to you because you are a registered user of .
+    </td>
+</tr>
+<tr>
+    <td style="padding: 10px">
+        Copyright &copy; {% now "Y" %} {{  }} Inc. All rights reserved. We value you <a href="{% url 'privacy' %}">privacy</a>.
+    </td>
+</tr>
+</tfoot>

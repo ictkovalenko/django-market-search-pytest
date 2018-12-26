@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}A Tool To Find Perfect Cannabis Vts & Best Marijuana Dispensaries{% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content=" is the premiere online source for vt intelligence. We help cannabis users find the perfect vt that's ideally suited for their needs.">
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/home.css' %}" rel="stylesheet">
+    <link href="{% static 'css/common/location_plus_favourites.css' %}" rel="stylesheet">
+    <style>
+        /* Overrides related only to home page. Keep them here. */
+        html, body {
+            margin: 0;
+        }
+
+        .nav-region {
+            background-color: #2f3f4c;
+        }
+
+        .nav-list .nav-menu-btn-wrapper .nav-menu-btn {
+            color: #fff;
+        }
+
+        .nav-list .nav-menu-btn-wrapper .nav-menu-btn .user-name,
+        .nav-list .nav-menu-btn-wrapper .nav-menu-btn .resend-email-link {
+            color: #10b3dc;
+        }
+
+        .footer-region {
+            background: #231f20;
+        }
+
+        .footer-region a,
+        .footer-region .separator:after,
+        .footer-region .copyright-wrapper,
+        .footer-region .links-wrapper .links {
+            color: #fff;
+        }
+
+        @media (max-width: 479px) {
+            .footer-region {
+                padding: 0;
+                text-align: left;
+                line-height: 2em;
+                height: 15em;
+            }
+
+            .footer-region .container {
+                padding: 1.5em 3em 2em;
+            }
+
+            .footer-region .separator:after {
+                content: '';
+                padding: 0;
+            }
+
+            .footer-region .links li {
+                width: 49%;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block meta_social %}
+    <meta property="og:url" content="https://.co" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Cannabis Intelligence Platform - " />
+    <meta property="og:description" content=" is a tool to identify and locate cannabis vts with optimal effects and benefits, based on a user's personal preference and need." />
+    <meta property="og:image" content="{% static 'images/logo_hr.png' %}" />
+{% endblock %}
+
+{% block content %}
+    <div class="home-row-01">
+        <div class="container">
+            {% include 'pages/common/location_plus_favourites.html' %}
+            <div class="home-sub-row-02">
+                <h1>Find Your Perfect Vt</h1>
+                <p>Use our customized vt matching system to find the perfect vt for your needs</p>
+                <a href="{% url 'search:vt_wizard' %}">
+                    <button class="btn-primary btn-lets-go" type="button">Let's Go!</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="home-row-02 search-box-holder">
+        <div class="container">
+            <div class="search-box">
+                <i class="fa fa-search fa-3x" aria-hidden="true"></i>
+                <h1>Look Up a Vt</h1>
+                <p>Have a vt in mind? Look it up here:</p>
+
+                <div class="search-form">
+                    <div class="form-field vt-name-field"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'common/vt_lookup.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/home.js' %}"></script>
+    <script src="{% static 'js/pages/vt/vt_lookup.js' %}"></script>
+
+    <script src="{% static 'js/views/location_view.js' %}"></script>
+    <script src="{% static 'js/pages/location.js' %}"></script>
+    <script type="text/javascript">
+        W.Location.init({
+            location: {% if request.user.is_authenticated and request.user.get_location_json %}
+                {{ request.user.get_location_json | safe }} {% else %} null {% endif %},
+            authenticated: '{{ request.user.is_authenticated }}' == 'True',
+            userId: '{{ request.user.id }}'
+        });
+    </script>
+
+    <script type="text/javascript">
+        new W.pages.HomePage({
+            location: {% if request.user.is_authenticated and request.user.get_location_json %}
+                {{ request.user.get_location_json | safe }} {% else %} null {% endif %},
+            authenticated: '{{ request.user.is_authenticated }}' == 'True',
+            userId: {% if request.user.is_authenticated %} {{ request.user.id }} {% else %} null {% endif %}
+        });
+    </script>
+{% endblock %}

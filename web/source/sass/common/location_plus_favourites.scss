@@ -1,0 +1,181 @@
+@import '../mixins/variables';
+
+
+.location-plus-favourites {
+    display: flex;
+    padding: 2em 0;
+
+    .location-holder {
+        flex: 1;
+
+        form {
+            float: left;
+            white-space: nowrap;
+
+            input {
+                width: auto;
+            }
+        }
+
+        form > .fieldset {
+            display: flex;
+            position: relative;
+            border: none;
+            padding: 0.35em 0.3em;
+            margin: 0;
+            text-align: left;
+        }
+
+        .check {
+            margin-left: -30px;
+        }
+
+        .removable {
+            position: relative;
+            right: 2.4em;
+            top: 0.44em;
+            cursor: pointer;
+        }
+
+        .your-location {
+            padding: 0.695em 0.75em;
+            border-radius: 0.5em 0 0 0.5em;
+            margin-right: 0;
+            color: $white;
+            background: $grey;
+            opacity: 0.8;
+            border: 1px solid $grey-dark;
+        }
+
+        .your-location span {
+            display: none;
+            margin-left: 0.5em;
+        }
+
+        .your-location-value {
+            border: 1px solid $grey-dark;
+            border-left: none;
+            border-radius: 0 0.5em 0.5em 0;
+            padding: 0.75em;
+            opacity: 0.8;
+            color: $grey-dark;
+            margin-bottom: 0;
+        }
+    }
+
+    .favorites-holder {
+        margin-top: 1.1em;
+        opacity: 0.8;
+        white-space: nowrap;
+
+        .favorites {
+            border: 1px solid $grey;
+            padding: 0.75em 1em;
+            border-radius: 0.5em;
+            background: $grey;
+            color: $white;
+            cursor: pointer;
+
+            .fa-sort-desc {
+                position: relative;
+                top: -0.2em;
+                margin-left: 0.3em;
+            }
+        }
+    }
+}
+
+@media (max-width: $screen-sm-max) {
+    .location-plus-favourites {
+        .location-holder {
+            .your-location-value {
+                padding-right: 1.6em;
+            }
+
+            .removable {
+                display: inline-block;
+                height: 1em;
+                width: 1em;
+                background-size: 1em 1em;
+                right: 1.5em;
+                top: 0.75em;
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-xs-min) {
+    .location-plus-favourites {
+        .location-holder {
+            form  {
+                input {
+                    width: 30em;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-sm-min) {
+    .location-plus-favourites {
+        .location-holder {
+
+            form > .fieldset {
+                display: inline;
+            }
+
+            .your-location {
+                border-radius: 0.5em 0 0 0.5em;
+                padding: 0.75em 0.75em 0.75em;
+                margin-right: -5px;
+            }
+
+            .your-location span {
+                display: initial;
+            }
+
+            .your-location-value {
+                display: inline-block;
+                padding: 0.75em 2.5em 0.75em 0.75em;
+            }
+
+            .check {
+                display: inline-block;
+            }
+
+        }
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    .location-plus-favourites {
+        .location-holder {
+            .your-location {
+                display: initial;
+                padding: 0.72em 0.75em 0.8em;
+                margin-right: -6px;
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-xl-min) {
+    .location-plus-favourites {
+        .location-holder {
+            .your-location {
+                padding: 0.7em 0.75em 0.8em;
+            }
+        }
+    }
+}
+
+@media (min-width: $screen-xxl-min) {
+    .location-plus-favourites {
+        .location-holder {
+            .your-location {
+                padding: 0.73em 0.75em 0.8em;
+                margin-right: -7px;
+            }
+        }
+    }
+}

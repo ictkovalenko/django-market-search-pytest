@@ -1,0 +1,23 @@
+{% extends "admin/change_form.html" %}
+
+{% load static %}
+{% load auth_template_tags %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin/business/business_location_change_form.css" %}"/>
+{% endblock %}
+
+{% block admin_change_form_document_ready %}
+    {{ block.super }}
+
+    <script>
+        var GOOGLE_API_KEY = '{% google_maps_api_key %}';
+    </script>
+
+    <script src="{% static 'js/vendor/lodash.min.js' %}"></script>
+    <script src="{% static 'js/vendor/class.js' %}"></script>
+    <script src="{% google_maps_api_url %}"></script>
+    <script src="{% static 'js/admin/business/business_location_change_form.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "pages/business/business_account_base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Business Locations{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/business/business_locations.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block business_account_tab_content %}
+    <div class="form locations-form">
+        <div class="locations-group"></div>
+        <span class="error-message common-error-messages"></span>
+        <div class="form-actions">
+            <button type="button" class="btn-secondary btn-add-location">+ Add Location</button>
+            <button type="button" class="btn-primary btn-update-locations" disabled="disabled">Update</button>
+        </div>
+    </div>
+
+    {% include 'pages/business/business_location_template.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/common/parsers.js' %}"></script>
+    <script src="{% static 'js/pages/business/business_locations.js' %}"></script>
+    <script src="{% static 'js/pages/business/business_locations_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.business.BusinessLocationsView.init();
+    </script>
+{% endblock %}
+
+{% block modal %}
+    <div class="dialog confirm-dialog remove-location-dialog hidden" title="Remove Location">
+        <div class="dialog-text">
+            <span>Are you sure you want to remove this location?</span>
+            <span>Page will be refreshed, all unsaved data will be lost.</span>
+        </div>
+        <div class="dialog-actions">
+            <div class="buttons-section">
+                <button type="button" class="btn-primary btn-remove">Yes</button>
+                <button type="button" class="btn-secondary btn-cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

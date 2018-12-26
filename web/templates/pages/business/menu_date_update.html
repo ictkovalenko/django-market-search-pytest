@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/business/menu_date_update.css'%}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <p>Thank you, we've updated your page.</p>
+    <a href="{% url 'account_login' %}">Sign In</a>
+{% endblock %}

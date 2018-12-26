@@ -1,0 +1,116 @@
+{% extends "pages/business/business_account_base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Business Detail{% endblock %}
+
+{% block business_account_tab_content %}
+    <div class="form details-form">
+        <div class="form-field-group">
+            <div class="form-field">
+                <label class="locations" for="locations">
+                    <span class="label">Address:</span>
+                    <select class="location-select" id="locations">
+                        {% for l in locations %}
+                            <option value="{{ l.id }}">{{ l.street1 }}, {{ l.city }}, {{ l.state }} {{ l.zip_code }}</option>
+                        {% endfor %}
+                    </select>
+                    <span class="pointer"><i class="fa fa-sort-desc" aria-hidden="true"></i></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-field-group">
+            <div class="form-field">
+                <label for="location_name">Business Name:</label>
+                <input type="text" name="location_name" id="location_name" value="{{ first_location.location_name }}">
+            </div>
+        </div>
+        <div class="form-field-group">
+            <div class="form-field">
+                <label for="manager">Manager (optional):</label>
+                <input type="text" name="manager" id="manager"
+                       {% if first_location.manager_name %}value="{{ first_location.manager_name }}" {% endif %}>
+            </div>
+        </div>
+        <div class="form-field-group">
+            <div class="form-field textarea-field">
+                <label for="about">About Us (optional):</label>
+                <textarea name="about" id="about">{{ first_location.about }}</textarea>
+            </div>
+        </div>
+        <div class="form-field-group">
+            <div class="form-field">
+                <label for="location_email">Email:</label>
+                <input type="text" name="location_email" id="location_email"
+                       value="{{ first_location.location_email }}">
+            </div>
+        </div>
+        <div class="form-field-group phone-field-group">
+            <div class="form-field">
+                <label for="phone">Phone Number:</label>
+                <input type="text" name="phone" id="phone" value="{{ first_location.phone }}">
+            </div>
+            <div class="form-field">
+                <label for="ext">Ext.</label>
+                <input type="text" name="ext" id="ext" maxlength="5"
+                       value="{% if first_location.ext %}{{ first_location.ext }}{% endif %}">
+            </div>
+        </div>
+        <div class="form-field-group timezone-field-group">
+            <div class="form-field timezone-form-field">
+                <label for="timezone">Timezone</label>
+                <select id="timezone" name="timezone">
+                    <option {% if first_location.timezone == None %}selected{% endif %}>- Select One -
+                    </option>
+                    {% for tz in timezones %}
+                        <option value="{{ tz }}"
+                                {% if first_location.timezone == tz %}selected="selected"{% endif %}>{{ tz }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-field-group business-type-field-group">
+            <h3>Business Type</h3>
+            <div class="form-field">
+                <input type="checkbox" name="dispensary" id="dispensary"
+                       {% if first_location.dispensary %}checked{% endif %}>
+                <label for="dispensary">Dispensary</label>
+            </div>
+            <div class="form-field">
+                <input type="checkbox" name="delivery" id="delivery"
+                       {% if first_location.delivery %}checked{% endif %}>
+                <label for="delivery">Delivery</label>
+            </div>
+            <div class="form-field">
+                <input type="checkbox" name="grow_house" id="grow_house"
+                       {% if first_location.grow_house %}checked{% endif %}>
+                <label for="grow_house">Cultivator</label>
+            </div>
+        </div>
+
+        <div class="form-field-group hours-field-group hidden">
+            <h3>Hours of Operation</h3>
+            <div class="location-operational-hours"></div>
+        </div>
+
+        <span class="error-message"></span>
+        <div class="form-actions">
+            <button type="submit" class="btn-primary btn-update-info" disabled="disabled">Update</button>
+        </div>
+    </div>
+
+    {% include 'pages/business/business_detail_operational_hours.html' %}
+    {% include 'common/operational_hours.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/business/business_detail.js' %}"></script>
+    <script src="{% static 'js/pages/business/business_detail_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.business.BusinessDetailView.init();
+    </script>
+{% endblock %}

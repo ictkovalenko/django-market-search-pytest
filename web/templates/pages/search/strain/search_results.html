@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+{% load search_template_tags %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/search/vt/search_results.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container search-result-container">
+        {% if request.user.is_authenticated %}
+            <input type="hidden" id="currentUserId" value="{{ request.user.id }}">
+        {% endif %}
+        <div class="search-result-header-wrapper">
+            <h1>Here Are Your Top Recommendations</h1>
+            <div class="filter-menu-wrapper">
+                <div class="filter-menu">
+                    <div class="active-link">
+                        <span class="menu-active-link" filter="local"><a href="#">Available Locally</a></span>
+                        <span class="menu-expander"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                    </div>
+                    <div class="hidden-links hidden">
+                         <span class="menu-link" filter="all"><a href="#">Show All</a></span>
+                         <span class="menu-link" filter="local"><a href="#">Available Locally</a></span>
+                         <span class="menu-link" filter="delivery"><a href="#">Deliveries Only</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="search-result-body-wrapper">
+            <div class="search-result"></div>
+        </div>
+
+        <div class="search-result-footer-wrapper {% if search_results_total <= 8 %}hidden{% endif %}">
+            <div class="scroll-down-wrapper">
+                <div class="inline-block">
+                    <span class="scroll-icon"><i class="fa fa-refresh fa-2x" aria-hidden="true"></i></span>
+                </div>
+                <div class="inline-block">
+                    <span class="scroll-text">Scroll down to load more results</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% include 'pages/search/vt/inlines/dialog.html' %}
+    {% include 'pages/search/vt/inlines/search_results_expanded_locations_template.html' %}
+    {% include 'pages/search/vt/inlines/search_results_expanded_location_template.html' %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/search/vt/search_results.js' %}"></script>
+    <script type="text/javascript">
+        new W.pages.VtSearchResultsPage({
+            'isEmailVerified': '{{ request.user.is_email_verified }}' === 'True'
+        });
+    </script>
+    <script type="x/srx-template" id="vt-item-template">
+        <div class="result-item">
+            <input type="hidden" id="vt-id-<%= position %>" value="${ vt.id }">
+            <div class="pull-left">
+                <div class="item-info-wrapper inline-block">
+                    <div class="item-image inline-block">
+                        <% if (vt.image_url !== null) { %>
+                        <img src="${ vt.image_url }" alt="Vt Image">
+                        <% } else { %>
+                        <img src="{% static 'images/weed_small.jpg' %}" alt="Vt Image"/>
+                        <% } %>
+                    </div>
+                    <div class="item-info inline-block">
+                        <span class="vt-name">
+                            <% if (obfuscated) { %>
+                                <a class="blurred noselect">${ vt.name }</a>
+                            <% } else { %>
+                                <a href="/vts/${ vt.variety }/${ vt.vt_slug }/?search=true">${ vt.name }</a>
+                            <% } %>
+                        </span>
+                        <span class="vt-type">${ vt.variety }</span>
+                        <span class="vt-rating loaded-rating-<%= position %>">${ vt.rating }</span>
+                    </div>
+                </div>
+            </div>
+            <div class="pull-right">
+                <div class="separator inline-block"></div>
+                <div class="item-locations inline-block locations-<%= position %> popup-container"
+                     position="<%= position %>">
+                    <span class="locations-icon">
+                        <i class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                    </span>
+                    <span class="locations">
+                        <span><% if (vt.locations.length > 0) { %>${ vt.locations.length } Locations<% } else { %>No Locations<% } %></span>
+                        <span>${ closestDistance(vt.locations) }</span>
+                        <span>${ openClosedCount(vt.locations) }</span>
+                    </span>
+                </div>
+                <div class="locations-expanded locations-expanded-<%= position %> hidden popup-container"></div>
+                <div class="separator inline-block"></div>
+                <div class="item-deliveries inline-block deliveries-<%= position %> popup-container"
+                     position="<%= position %>">
+                    <div class="deliveries-icon">
+                        <i class="fa fa-truck fa-2x" aria-hidden="true"></i>
+                    </div>
+                    <div class="deliveries">
+                        <span><% if (vt.deliveries.length > 0) { %>${ vt.deliveries.length } Delivery Service<% } else { %>No Delivery Services<% } %></span>
+                        <span>${ closestDistance(vt.deliveries) }</span>
+                        <span>${ openClosedCount(vt.deliveries) }</span>
+                    </div>
+                </div>
+                <div class="locations-expanded deliveries-expanded-<%= position %> hidden popup-container"></div>
+                <div class="separator inline-block"></div>
+                <div class="item-percentage-match inline-block">
+                    {% if request.user.is_authenticated %}
+                        <a href="/vts/${ vt.variety }/${ vt.vt_slug }/?search=true">
+                    {% else %}
+                        <a>
+                    {% endif %}
+                            <span class="percentage">${ vt.match_percentage }%</span>
+                            <span class="match">match</span>
+                        </a>
+                </div>
+            </div>
+        </div>
+    </script>
+{% endblock %}

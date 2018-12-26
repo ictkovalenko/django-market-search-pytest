@@ -1,0 +1,484 @@
+@import 'fonts';
+@import 'variables';
+@import '../vendor/normalize';
+
+//
+// General Mixins
+// --------------------------------------------------
+@mixin clearfix {
+    &:before, &:after {
+        content: " ";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+// active or hover state of elements
+@mixin active {
+    cursor: pointer;
+    font-weight: 400;
+}
+
+//
+// Global Styles
+// --------------------------------------------------
+html {
+    height: 100%;
+}
+
+html, body {
+    background-color: $almost-white;
+    position: relative;
+    font-family: 'gotham_bookregular', sans-serif;
+    font-size: 12px;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: $iris-blue;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+        @include active;
+        text-decoration: none;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+.vts-wrapper {
+    height: 100%;
+
+    .main-region {
+        min-height: 25em
+    }
+}
+
+.container {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 1300px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1em;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.separator:after {
+    content: "|";
+    padding: 0 0.5em 0 0.5em;
+}
+
+.pull-left {
+    display: inline-block;
+    float: left;
+}
+
+.pull-right {
+    display: inline-block;
+    float: right !important;
+}
+
+.error-message {
+    display: block;
+    color: $red;
+}
+
+.success-message {
+    display: block;
+    color: $avocado-green;
+}
+
+#loading-spinner {
+    display: none;
+    color: $black;
+    position: fixed;
+    font-size: 90px;
+    top: calc(50% - #{$nav-height});
+    left: calc(50%);
+    text-align: center;
+    z-index: $zindex-spinner;
+
+    .fa {
+        position: absolute;
+        top: calc(50% - #{$nav-height});
+        left: calc(50% - #{$nav-height});
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+.bold {
+    font-weight: bold;
+    color: $grey-dark;
+}
+
+.btn-primary {
+    background-color: $iris-blue;
+    border-radius: 0.5em;
+    color: $white;
+    padding: 0.75em 3.5em;
+    border: none;
+    width: 14em;
+    margin: 0.15em;
+    font-weight: bold;
+}
+
+.btn-secondary {
+    background-color: $white;
+    border-radius: 0.5em;
+    color: $iris-blue;
+    padding: 0.75em 3.5em;
+    border: 1px solid $iris-blue;
+    width: 14em;
+    margin: 0.15em;
+    font-weight: bold;
+}
+
+.btn-primary:disabled,
+.btn-secondary:disabled {
+    opacity: 0.4;
+}
+
+input:not([type=checkbox]), select {
+    border: 1px solid $grey-normal;
+    border-radius: 0.5em;
+    padding: 1.2em 2em;
+    color: $grey-normal;
+    margin-bottom: 1em;
+    width: 30em
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+fieldset {
+    border: none
+
+}
+
+.form {
+
+}
+
+.form .form-field-group {
+    display: block;
+    margin-bottom: 1em;
+    float: left;
+}
+
+.form .form-field {
+    display: inline-block;
+    margin: 0 1em;
+}
+
+.form .form-field label {
+    display: block;
+    text-align: left;
+    margin-bottom: 0.5em;
+    color: $grey-dark;
+}
+
+.form .form-field input,
+.form .form-field select {
+    display: block;
+    width: 18em;
+    padding: 1em;
+    border-radius: 0;
+    border-color: $grey-light;
+    color: $grey-light;
+}
+
+.form .form-field select {
+    -webkit-appearance: none;
+    background-color: $white;
+}
+
+.slider {
+    height: 8px;
+}
+
+.slider span {
+    border-radius: 1em;
+    display: inline-block;
+    margin-top: -4px;
+}
+
+.removable,
+.form .removable {
+    background: url(../../images/close_icon.png) no-repeat;
+    background-size: 1.5em 1.5em;
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    content: '';
+}
+
+.favorite-icon {
+    background: url(../../images/heart.ico) no-repeat;
+    background-size: 1.7em 1.5em;
+    display: inline-block;
+    width: 1.7em;
+    height: 1.5em;
+    content: '';
+}
+
+.margin-top-40 {
+    margin-top: 40px;
+}
+.margin-bottom-40 {
+    margin-bottom: 40px;
+}
+
+.vt-lookup-field {
+    position: relative;
+
+    .payloads-region {
+        display: none;
+        position: absolute;
+        top: 2.5em;
+        width: 90%;
+        max-height: 16em;
+        overflow-y: scroll;
+        font-size: 0.7em;
+        color: $grey-normal;
+        background-color: $white;
+        border-bottom-left-radius: 0.5em;
+        border-bottom-right-radius: 0.5em;
+        z-index: 1000;
+
+        .search-payload {
+            display: block;
+            padding: 1em;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 0.5em;
+        }
+
+        .search-payload.active,
+        .search-payload:hover {
+            background-color: $aero-blue;
+            color: $grey-dark;
+            font-weight: bold;
+        }
+    }
+}
+
+// bootstrap alert CSS, translated to the django-standard levels of
+// debug, info, success, warning, error
+//
+// Django messages
+// --------------------------------------------------
+.alert-debug {
+    background-color: $white;
+    border-color: $mint-green;
+    color: $black;
+}
+
+.alert-info {
+    background-color: $white;
+    border-color: $mint-green;
+    color: $black;
+}
+
+.alert-success {
+    background-color: $mint-green;
+    border-color: $mint-green;
+    color: $black;
+}
+
+.alert-warning {
+    background-color: $white;
+    border-color: $dark-pink;
+    color: $red;
+}
+
+.alert-error {
+    background-color: $pink;
+    border-color: $dark-pink;
+    color: $red;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.breadcrumbs {
+    ol {
+        list-style: none;
+        overflow: hidden;
+
+        li {
+            float: left;
+            cursor: default;
+
+            a {
+                color: $iris-blue;
+            }
+
+            span {
+                margin: 0 0.6em 0 0.6em;
+            }
+        }
+
+        li.active {
+            color: $grey;
+        }
+    }
+}
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes rotate {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: rotate;
+    -moz-animation-duration: 2s;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    animation-name: rotate;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+/*
+*   Body font size changes below will cascade to all em units to effectively scale our pages
+*   in a nice, responsive way (everything should be ems unless it is a purposely fixed element
+*/
+@media (min-width: $screen-xs-min) {
+    html, body {
+        font-size: 12px;
+    }
+
+    .container {
+        max-width: $screen-xs-min - 10;
+    }
+}
+
+@media (min-width: $screen-sm-min) {
+    html, body {
+        font-size: 13px;
+    }
+
+    .container {
+        max-width: $screen-sm-min - 10;
+    }
+
+    input:not([type=checkbox]) {
+        padding: 1em 1.5em;
+        width: 24em
+    }
+}
+
+@media (min-width: $screen-md-min) {
+    html, body {
+        font-size: 14px;
+    }
+
+    .container {
+        max-width: $screen-md-min - 20;
+    }
+}
+
+@media (min-width: $screen-lg-min) {
+    html, body {
+        font-size: 15px;
+    }
+
+    .container {
+        max-width: $screen-lg-min - 20;
+    }
+}
+
+@media (min-width: $screen-xl-min) {
+    html, body {
+        font-size: 16px;
+    }
+
+    .container {
+        max-width: $screen-xl-min - 20;
+    }
+}
+
+@media (min-width: $screen-xxl-min) {
+    html, body {
+        font-size: 18px;
+    }
+
+    .container {
+        max-width: $screen-xxl-min - 20;
+    }
+}
+
+@media (max-width: $screen-xs-max) {
+
+    .favorite-icon {
+        background-size: 1em 0.9em;
+        width: 1em;
+        height: 0.9em;
+    }
+}

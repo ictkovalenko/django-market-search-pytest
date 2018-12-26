@@ -1,0 +1,48 @@
+{% load static %}
+
+<script type="x/srx-template" id="user_favorite_dispensary_template">
+    <div class="favorite">
+        <div class="vt-info-wrapper">
+            <div class="vt-image">
+                <% if (favorite.image !== null) { %>
+                <img src="${ favorite.image }" alt="Vt Image">
+                <% } else { %>
+                <img src="{% static 'images/default-location-image.jpeg' %}" alt="Vt Image"/>
+                <% } %>
+            </div>
+            <div class="vt-info">
+                <span class="vt-name">
+                    <a href="${ favorite.url }">${ favorite.name }</a>
+                </span>
+                <span class="dispensary-type">
+                  <i class="fa fa-map-marker"></i>
+                  ${ favorite.street1 } ${ favorite.city }<br/>
+                  ${ favorite.state }, ${ favorite.zip_code }
+
+                  <div class="dispensary-detail">
+                    <i class="fa fa-phone"></i>&nbsp;
+                    <div class="featured-detail-line-wrapper">
+                        <div class="featured-detail-line"><%= favorite.phone %></div>
+                    </div>
+                  </div>
+                </span>
+            </div>
+
+            <div class="dispensary-detail">
+                <i class="fa fa-envelope"></i>
+                <div class="featured-detail-line-wrapper">
+                    <a class="featured-detail-line" href="mailto:<%= favorite.email %>"><%= favorite.email %></a>
+                </div>
+            </div>
+        </div>
+        <div class="vt-favorite-wrapper">
+            <div class="remove-icon">
+                <span class="text">Delete</span>
+                <span class="removable" id="<%= favorite.id %>" data-type="dispensary"></span>
+            </div>
+            <div class="created-date">
+                <span class="date">${ favorite.created_date }</span>
+            </div>
+        </div>
+    </div>
+</script>

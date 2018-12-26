@@ -1,0 +1,25 @@
+<script type="x/srx-template" id="b2b-wizard-3">
+    <div class="b2b-sign-up-form-wrapper b2b-step-3">
+        <h1>Create your password</h1>
+        <span class="sub-title">(Password must be at least 6 characters. Please, use at least 1 special character)</span>
+        <form>
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <input type="password" name="pwd" placeholder="Enter password"/>
+                    </div>
+                </div>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <input type="password" name="pwd2" placeholder="Confirm password"/>
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2b-step-3" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</script>

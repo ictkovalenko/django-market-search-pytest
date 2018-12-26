@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/users/user_detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="user-account-header-background"></div>
+    <div class="container">
+        <div class="user-profile">
+            <div class="profile-header">
+                <input type="hidden" class="user-id" value="{{ request.user.id }}">
+                <div class="info-wrapper">
+                    <div class="user-image-wrapper">
+                        <div class="user-image">
+                            <input type="file" id="file" class="upload-image"/>
+                            {% if request.user.image and request.user.image.url %}
+                                <label for="file" class="uploaded-image-label">
+                                    <img src="{{ request.user.image.url }}"
+                                         class="image uploaded-image" alt="User Image"/>
+                                </label>
+                            {% else %}
+                                <label for="file" class="default-image-label">
+                                    <span class="default-image">
+                                        {% if request.user.first_name %}
+                                            <span>{{ request.user.first_name|slice:"1" }}</span>
+                                        {% else %}
+                                            <span>{{ request.user.email|slice:"1" }}</span>
+                                        {% endif %}
+                                    </span>
+                                    <img src="" class="image hidden" alt="User Image"/>
+                                </label>
+                            {% endif %}
+                            <label class="btn btn-primary" for="file">Edit Image</label>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <span class="user-name">{{ request.user.first_name }} {{ request.user.last_name }}</span>
+                        {% if request.user.date_joined %}
+                            <span class="active-since">Active since {{ request.user.date_joined|date:"F Y" }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="profile-tabs">
+                    <span class="profile-tab user-profile-tab {% if tab == 'info' %}active{% endif %}">
+                        <a href="{% url 'users:detail' request.user.id %}">User Info</a>
+                    </span>
+                    <span class="profile-tab favorites-tab {% if tab == 'favorites' %}active{% endif %}">
+                        <a href="{% url 'users:favorites' request.user.id %}">Favorites</a>
+                    </span>
+                    <span class="profile-tab my-reviews-tab {% if tab == 'reviews' %}active{% endif %}">
+                        <a href="{% url 'users:reviews' request.user.id %}">My Reviews</a>
+                    </span>
+                    <span class="profile-tab notifications-tab {% if tab == 'notifications' %}active{% endif %}">
+                        <a href="{% url 'users:notifications' request.user.id %}">Notifications</a>
+                    </span>
+                    <span class="profile-tab proximity-settings-tab {% if tab == 'proximity' %}active{% endif %}">
+                        <a href="{% url 'users:proximity' request.user.id %}">Proximity</a>
+                    </span>
+                    <span class="profile-tab change-pwd-tab {% if tab == 'pwd' %}active{% endif %}">
+                        <a href="{% url 'users:change_pwd' request.user.id %}">Password</a>
+                    </span>
+                </div>
+            </div>
+            <div class="profile-content">
+                {% block profile-tab %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/users/user_detail.js' %}"></script>
+    <script type="text/javascript">
+        new W.users.DetailPage();
+    </script>
+{% endblock %}

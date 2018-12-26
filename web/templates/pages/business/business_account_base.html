@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% load staticfiles i18n %}
+
+{% block title %}Business Detail{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/business/business_account.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="business-account-header-background"></div>
+    <div class="container business-account-container">
+        <div class="business-account-page-wrapper">
+            <input type="hidden" class="business-id" value="{{ business.id }}">
+            <div class="business-account-header">
+                <div class="business-image">
+                    <div class="image-wrapper">
+                        {% if request.session.business_image %}
+                            <img class="bus-logo" src="{{ request.session.business_image }}">
+                        {% else %}
+                            <img class="bus-logo" src="{% static 'images/default-location-image.jpeg' %}">
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="business-info">
+                    <h2>{{ first_location.location_name }}</h2>
+                    {% if first_location.dispensary and first_location.delivery %}
+                        <span class="location-type">Dispensary, Delivery</span>
+                    {% elif first_location.dispensary %}
+                        <span class="location-type">Dispensary</span>
+                    {% elif first_location.delivery %}
+                        <span class="location-type">Delivery</span>
+                    {% endif %}
+                    <div class="address">
+                        <span>{{ first_location.street1 }}</span>
+                        <span>{{ first_location.city }}, {{ first_location.state }} {{ first_location.zip_code }}</span>
+                    </div>
+                    <div class="phone">
+                        <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                        <span>Ph: {{ first_location.phone }}</span>
+                    </div>
+                    <button type="button" class="btn-secondary btn-edit-info hidden">Edit Info</button>
+                </div>
+                <div class="account-header-menu hidden">
+                    <div class="header-menu-item">
+                        <i class="fa fa-bar-chart fa-2x" aria-hidden="true"></i>
+                        <a href="#">Stats</a>
+                    </div>
+                    <div class="header-menu-item">
+                        <i class="fa fa-usd fa-2x" aria-hidden="true"></i>
+                        <a href="#">Deals</a>
+                    </div>
+                    <div class="header-menu-item">
+                        <i class="fa fa-star fa-2x" aria-hidden="true"></i>
+                        <a href="#">Reviews</a>
+                    </div>
+                </div>
+            </div>
+            <div class="account-menu">
+                <span class="account-menu-nav-link {% if tab == 'locations' %}active{% endif %}">
+                    <a href="{% url 'businesses:locations' business.id %}">Locations</a>
+                </span>
+                <span class="account-menu-nav-link {% if tab == 'info' %}active{% endif %}">
+                    <a href="{% url 'businesses:detail' business.id %}">Details</a>
+                </span>
+
+                {% if dispensaries %}
+                <span class="account-menu-nav-link {% if tab == 'menu' %}active{% endif %}">
+                    <a href="{% url 'businesses:menu' business.id 'menu' %}">Menu</a>
+                </span>
+                {% endif %}
+                {% if grow_houses %}
+                <span class="account-menu-nav-link {% if tab == 'vts' %}active{% endif %}">
+                    <a href="{% url 'businesses:menu' business.id 'vts' %}"></a>
+                </span>
+                {% endif %}
+
+                <span class="account-menu-nav-link {% if tab == 'partnerships' %}active{% endif %}">
+                    <a href="{% url 'businesses:partnerships' business.id %}">Partners</a>
+                </span>
+                <span class="account-menu-nav-link {% if tab == 'analytics' %}active{% endif %}">
+                    <a href="{% url 'businesses:analytics' business.id %}">Analytics</a>
+                </span>
+            </div>
+            <div class="business-account-tab-content">
+                {% block business_account_tab_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script src="{% static 'js/pages/business/business_account.js' %}"></script>
+    <script src="{% static 'js/pages/business/business_account_view.js' %}"></script>
+    <script type="text/javascript">
+        W.pages.business.BusinessAccountView.init();
+    </script>
+{% endblock %}

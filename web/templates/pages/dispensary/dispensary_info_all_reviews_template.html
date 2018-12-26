@@ -1,0 +1,47 @@
+{% load staticfiles i18n %}
+
+<script type="x/srx-template" id="dispensary_all_reviews_template">
+    <div class="all-reviews-wrapper">
+        <div class="back-btn-wrapper">
+            <a href="#" class="btn-back">< Back</a>
+        </div>
+        <div class="header">
+            <h2>All Reviews</h2>
+        </div>
+        <% $.each(reviews, function(i, review) { %>
+        <div class="review-wrapper">
+            <div class="user-info">
+                <div class="user-image">
+                    <% if (review.created_by_image) { %>
+                    <img src="${ review.created_by_image }" alt="User Image"/>
+                    <% } else { %>
+                    <img src="{% static 'images/default-profile-image.png' %}" alt="User Image"/>
+                    <% } %>
+                </div>
+            </div>
+            <div class="review">
+                <div class="review-header">
+                    <span class="user-name">${ review.created_by_name }</span>
+                    <span class="rating">${ review.rating }</span>
+                    <span class="created-date">${ review.created_date }</span>
+                </div>
+                <div class="review-text">
+                    <span class="display display-text">${ review.review }</span>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+        <div class="navigation-controls">
+            <% if (showPrev) { %>
+            <div class="left-side">
+                <a href="#" class="reviews-prev">< Previous</a>
+            </div>
+            <% } %>
+            <% if (showNext) { %>
+            <div class="right-side">
+                <a href="#" class="reviews-next">Next ></a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</script>

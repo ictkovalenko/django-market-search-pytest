@@ -1,0 +1,163 @@
+{% load staticfiles i18n %}
+{% load business_template_tags %}
+
+<nav class="nav-region navbar">
+    <div class="container nav-container">
+        <div class="nav-brand-wrapper">
+            <a class="navbar-brand logo" href="{% url 'home' %}">
+                <img src="{% static 'images/logo_hr.png' %}" alt="">
+            </a>
+        </div>
+
+        <div class="nav-tabs-wrapper">
+            <div class="action blue-link">
+                <a class="nav-link vt-wizard-link" href="{% url 'search:vt_wizard' %}">
+                    Vt Recommendation</a>
+            </div>
+            <span class="separator"></span>
+            <div class="action blue-link">
+                <a class="nav-link" href="{% url 'home' %}">
+                    Vt Lookup</a>
+            </div>
+            <span class="separator"></span>
+            <div class="action blue-link">
+                <a class="nav-link" href="{% url 'businesses:dispensaries_list' %}">
+                    Dispensary Lookup</a>
+            </div>
+            <span class="separator"></span>
+            <div class="action blue-link">
+                <a class="nav-link" href="/cannabis-guide/">
+                    Cannabis Guide</a>
+            </div>
+        </div>
+
+        <div class="nav-list-wrapper">
+            <a href="#" class="mobile-menu hidden">
+                <i class="fa fa-align-justify fa-2x" aria-hidden="true"></i>
+            </a>
+            <div class="nav-list">
+                {% if request.user.is_authenticated %}
+                    <div class="auth-menu">
+                        <div class="nav-menu-btn-wrapper">
+                            {% if request.user.type == 'consumer' %}
+                                <a class="nav-menu-btn">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <a href="#">
+                                        <span class="user-name">{{ request.user.first_name }}</span>
+                                    </a>
+                                    <span class="pointer">
+                                        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                    </span>
+                                    {% if not request.user.is_email_verified %}
+                                        <span class="separator verify-email-nav-link"></span>
+                                        <a href="{% url "users:signup_done" %}" class="verify-email-nav-link">
+                                            Verify Email
+                                        </a>
+                                    {% endif %}
+                                </a>
+                            {% elif request.user.type == 'business' %}
+                                <div class="business-image">
+                                    {% if request.session.business_image %}
+                                        <img src="{{ request.session.business_image }}">
+                                    {% else %}
+                                        <img src="{% static 'images/default-location-image.jpeg' %}">
+                                    {% endif %}
+                                </div>
+                                <div class="business-nav-menu-btn">
+                                    <span class="business-name">{{ request.session.business.name }}</span>
+                                    <span class="business-active-since">
+                                      {% if request.session.business.created_date %}
+                                        Active since {% to_active_since_date request.session.business.created_date %}
+                                      {% endif %}
+                                    </span>
+                                    {% if not request.user.is_email_verified %}
+                                        <span class="business-verify-location">
+                                            <a href="{% url "businesses:signup_done" %}" class="verify-email-nav-link">
+                                                Verify Email
+                                            </a>
+                                        </span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="nav-menu-content">
+                            {% if request.user.type == 'consumer' %}
+                                <div class="action blue-link">
+                                    <a class="nav-link" href="{% url 'users:detail' request.user.id %}">
+                                        My Account</a>
+                                </div>
+                                <div class="action blue-link">
+                                    <a class="nav-link vt-wizard-link" href="{% url 'search:vt_wizard' %}">
+                                        Vt Recommendation</a>
+                                </div>
+                                <div class="action blue-link">
+                                    <a class="nav-link" href="{% url 'home' %}">
+                                        Vt Lookup</a>
+                                </div>
+                                <div class="action blue-link">
+                                    <a class="nav-link" href="{% url 'businesses:dispensaries_list' %}">
+                                        Find a Dispensary</a>
+                                </div>
+                                <div class="action blue-link">
+                                    <a class="nav-link" href="/cannabis-guide/">
+                                        Cannabis Guide</a>
+                                </div>
+                                <div class="action">
+                                    <a class="nav-link" href="{% url 'account_logout' %}">Sign out</a>
+                                </div>
+                                {% if location_update %}
+                                    <div class="action location">
+                                        <span>
+                                            <i class="fa fa-dot-circle-o" aria-hidden="true"></i> CURRENT LOCATION
+                                        </span>
+                                            <span class="nav-bar-user-street">Looking up...</span>
+                                            <span class="nav-bar-user-location"></span>
+                                        <a class="update-location-href hidden" href="#">Update location</a>
+                                    </div>
+                                {% endif %}
+                            {% elif request.user.type == 'business' %}
+                                <div class="action">
+                                    {% if request.user.is_email_verified and request.session.business.id %}
+                                        <a href="{% url 'businesses:detail' request.session.business.id %}"
+                                           class="nav-link">Business Account</a>
+                                    {% else %}
+                                        <a href="{% url "businesses:signup_done" %}">Business Account</a>
+                                    {% endif %}
+                                </div>
+                                <div class="action">
+                                    <a href="{% url 'users:detail' request.user.id %}"
+                                       class="nav-link">My Account</a>
+                                </div>
+                                <div class="action">
+                                    <a class="nav-link" href="{% url 'account_logout' %}">Sign out</a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% else %}
+                    <ul class="pull-right">
+                        <li class="nav-list-item">
+                            <a class="nav-link sign-up-link" href="{% url 'users:signup' %}">Sign Up</a>
+                            <span class="separator"></span>
+                        </li>
+                        <li class="nav-list-item">
+                            <a class="nav-link log-in-link" href="{% url 'account_login' %}">Sign In</a>
+                        </li>
+                        <li class="nav-list-item mobile">
+                            <a class="nav-link log-in-link" href="{% url 'search:vt_wizard' %}">Vt Recommendation</a>
+                        </li>
+                        <li class="nav-list-item mobile">
+                            <a class="nav-link log-in-link" href="{% url 'home' %}">Vt Lookup</a>
+                        </li>
+                        <li class="nav-list-item mobile">
+                            <a class="nav-link log-in-link" href="{% url 'businesses:dispensaries_list' %}">Find a Dispensary</a>
+                        </li>
+                        <li class="nav-list-item mobile">
+                            <a class="nav-link log-in-link" href="/cannabis-guide/">Cannabis Guide</a>
+                        </li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

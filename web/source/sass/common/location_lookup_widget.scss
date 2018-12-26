@@ -1,0 +1,44 @@
+@import '../mixins/variables';
+
+
+.payloads-region {
+    display: none;
+    position: absolute;
+    top: 3.25em;
+    width: 100%;
+    max-width: 30em;
+    color: $grey-normal;
+    background-color: $white;
+    border-bottom-left-radius: 0.5em;
+    border-bottom-right-radius: 0.5em;
+    z-index: 5;
+    max-height: 12em;
+    overflow-y: scroll;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+
+    img {
+        padding-right: 0.25em;
+        top: 0.6em;
+        position: relative;
+    }
+
+    .search-payload {
+        display: block;
+        padding: 0.25em;
+        text-align: left;
+        cursor: pointer;
+        font-size: 0.8em;
+
+        .disp-name {
+            font-size: 1.2em;
+        }
+    }
+
+    .search-payload.active,
+    .search-payload:hover {
+        background-color: $aero-blue;
+        color: $grey-dark;
+        border-radius: 0.5em;
+        font-weight: bold;
+    }
+}

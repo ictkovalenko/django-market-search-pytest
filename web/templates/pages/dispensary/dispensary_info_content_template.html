@@ -1,0 +1,203 @@
+{% load staticfiles i18n %}
+
+<script type="x/srx-template" id="dispensary_content_template">
+    <div class="location-content">
+        <div class="left-column">
+            <div class="about-wrapper">
+                <h2>About This Place</h2>
+                <% if (l.about) { %>
+                <span class="about">${ l.about.replace(new RegExp('\r?\n', 'g'), '<br />')  }</span>
+                <% } else { %>
+                <span class="about">--</span>
+                <% } %>
+            </div>
+            <% if (reviews && reviews.length > 0) { %>
+            <div class="reviews-wrapper">
+                <h2>Reviews</h2>
+                <% $.each(reviews, function(i, review) { %>
+                <div class="review-wrapper">
+                    <div class="user-info">
+                        <div class="user-image">
+                            <% if (review.created_by_image) { %>
+                            <span class="image" style="background-image: url('${ review.created_by_image }');"></span>
+                            <% } else { %>
+                            <span class="default-image">
+                                <span>${ review.created_by_name.charAt(0) }</span>
+                            </span>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="review">
+                        <div class="review-header">
+                            <span class="user-name">${ review.created_by_name }</span>
+                            <span class="rating">${ review.rating }</span>
+                            <span class="created-date">${ review.created_date }</span>
+                        </div>
+                        <div class="review-text">
+                            <span class="display display-text">${ review.review }</span>
+                            <span class="full hidden">${ review.review }</span>
+                        </div>
+                    </div>
+                </div>
+                <% }); %>
+                <div class="all-reviews-link-wrapper"><a href="#">View All Reviews</a></div>
+            </div>
+            <% } %>
+            <% if (deals && deals.length > 0) { %>
+            <div class="deals-wrapper">
+                <h2>Today's Deals</h2>
+            </div>
+            <% } %>
+        </div>
+        <div class="right-column">
+            <h2>Menu</h2>
+            <div class="menu-section-wrapper">
+                <% if (selectedVtMenuItem) { %>
+                <div class="current-vt-menu-item">
+                    <div class="menu-item-header ${ selectedVtMenuItem.vt_variety }-header">
+                        <span class="name">Matched Vt</span>
+                        <span class="gram">Gram</span>
+                        <span class="eighth">1/8</span>
+                        <span class="quarter">1/4</span>
+                        <span class="half">1/2</span>
+                        <span class="match">Match %</span>
+                    </div>
+                    <div class="menu-item ${ selectedVtMenuItem.vt_variety }">
+                        <span class="name">${ selectedVtMenuItem.vt_name }</span>
+                        <span class="gram">${ formatPrice(selectedVtMenuItem.price_gram) }</span>
+                        <span class="eighth">${ formatPrice(selectedVtMenuItem.price_eighth) }</span>
+                        <span class="quarter">${ formatPrice(selectedVtMenuItem.price_quarter) }</span>
+                        <span class="half">${ formatPrice(selectedVtMenuItem.price_half) }</span>
+                        <span class="match">${ formatScore(selectedVtMenuItem.match_score) }</span>
+                    </div>
+                </div>
+                <% } %>
+
+                <% if (sativas && sativas.length > 0) { %>
+                <h3>SATIVAS</h3>
+                <span class="help-text">Click vt name to learn more</span>
+                <div class="menu-wrapper sativa">
+                    <div class="menu-item-header">
+                        <span class="name">Vt</span>
+                        <span class="gram">Gram</span>
+                        <span class="eighth">1/8</span>
+                        <span class="quarter">1/4</span>
+                        <span class="half">1/2</span>
+                        <span class="match">
+                            Match %
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        </span>
+                        <% if (is_authenticated) { %>
+                          <span class="out-of-stock"></span>
+                        <% } %>
+                    </div>
+                    <% $.each(sativas, function(i, mi) { %>
+                    <div class="menu-item">
+                        <span class="name"><a href="${ getVtUrl(mi) }">${ mi.vt_name }</a></span>
+                        <span class="gram">${ formatPrice(mi.price_gram) }</span>
+                        <span class="eighth">${ formatPrice(mi.price_eighth) }</span>
+                        <span class="quarter">${ formatPrice(mi.price_quarter) }</span>
+                        <span class="half">${ formatPrice(mi.price_half) }</span>
+                        <span class="match">${ formatScore(mi.match_score) }</span>
+                        <% if (is_authenticated) { %>
+                          <button class="out-of-stock" data-menu-id="${ mi.id }"
+                             title='Mark as "Out of Stock"'>
+                            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                          </button>
+                        <% } %>
+                    </div>
+                    <% }) %>
+                </div>
+                <% } %>
+
+                <% if (hybrids && hybrids.length > 0) { %>
+                <h3>HYBRIDS</h3>
+                <span class="help-text">Click vt name to learn more</span>
+                <div class="menu-wrapper hybrid">
+                    <div class="menu-item-header">
+                        <span class="name">Vt</span>
+                        <span class="gram">Gram</span>
+                        <span class="eighth">1/8</span>
+                        <span class="quarter">1/4</span>
+                        <span class="half">1/2</span>
+                        <span class="match">
+                            Match %
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        </span>
+                        <% if (is_authenticated) { %>
+                          <span class="out-of-stock"></span>
+                        <% } %>
+                    </div>
+                    <% $.each(hybrids, function(i, mi) { %>
+                    <div class="menu-item">
+                        <span class="name"><a href="${ getVtUrl(mi) }">${ mi.vt_name }</a></span>
+                        <span class="gram">${ formatPrice(mi.price_gram) }</span>
+                        <span class="eighth">${ formatPrice(mi.price_eighth) }</span>
+                        <span class="quarter">${ formatPrice(mi.price_quarter) }</span>
+                        <span class="half">${ formatPrice(mi.price_half) }</span>
+                        <span class="match">${ formatScore(mi.match_score) }</span>
+                        <% if (is_authenticated) { %>
+                          <button class="out-of-stock" data-menu-id="${ mi.id }"
+                             title='Mark as "Out of Stock"'>
+                            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                          </button>
+                        <% } %>
+                    </div>
+                    <% }) %>
+                </div>
+                <% } %>
+
+                <% if (indicas && indicas.length > 0) { %>
+                <h3>INDICAS</h3>
+                <span class="help-text">Click vt name to learn more</span>
+                <div class="menu-wrapper indica">
+                    <div class="menu-item-header">
+                        <span class="name">Vt</span>
+                        <span class="gram">Gram</span>
+                        <span class="eighth">1/8</span>
+                        <span class="quarter">1/4</span>
+                        <span class="half">1/2</span>
+                        <span class="match">
+                            Match %
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>
+                        </span>
+                        <% if (is_authenticated) { %>
+                          <span class="out-of-stock"></span>
+                        <% } %>
+                    </div>
+                    <% $.each(indicas, function(i, mi) { %>
+                    <div class="menu-item">
+                        <span class="name"><a href="${ getVtUrl(mi) }">${ mi.vt_name }</a></span>
+                        <span class="gram">${ formatPrice(mi.price_gram) }</span>
+                        <span class="eighth">${ formatPrice(mi.price_eighth) }</span>
+                        <span class="quarter">${ formatPrice(mi.price_quarter) }</span>
+                        <span class="half">${ formatPrice(mi.price_half) }</span>
+                        <span class="match">${ formatScore(mi.match_score) }</span>
+                        <% if (is_authenticated) { %>
+                          <button class="out-of-stock" data-menu-id="${ mi.id }"
+                             title='Mark as "Out of Stock"'>
+                            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                          </button>
+                        <% } %>
+                    </div>
+                    <% }) %>
+                </div>
+                <% } %>
+            </div>
+                <div class="menu-updated">
+                        <div class="request-update">
+                            {% if can_request_menu_update %}
+                                <button class="btn-request">Request an Update</button>
+                            {% else %}
+                                <button class="btn-request" title="{{ can_request_menu_update_reason }}" disabled>Request an Update</button>
+                            {% endif %}
+                        </div>
+                    {% if location.menu_updated_date %}
+                        <div class="update-date">
+                            Menu last updated on {{ location.menu_updated_date|date:"m/d/y" }}
+                        </div>
+                    {% endif %}
+                </div>
+        </div>
+    </div>
+</script>

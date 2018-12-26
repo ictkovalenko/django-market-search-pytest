@@ -1,0 +1,29 @@
+<script type="x/srx-template" id="b2b-wizard-4">
+    <div class="b2b-sign-up-form-wrapper b2b-step-4">
+        <h1>Select Your Business Type</h1>
+        <span class="sub-title">(Select All That Apply)</span>
+        <form>
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-field-group">
+                    <div class="form-field">
+                        <input type="checkbox" name="dispensary" id="dispensary"/>
+                        <label for="dispensary">Dispensary</label>
+                    </div>
+                    <div class="form-field">
+                        <input type="checkbox" name="delivery" id="delivery"/>
+                        <label for="delivery">Delivery</label>
+                    </div>
+                    <div class="form-field grow-house">
+                        <input type="checkbox" name="grow_house" id="grow_house"/>
+                        <label for="grow_house">Cultivator</label>
+                    </div>
+                </div>
+                <span class="error-message"></span>
+            </fieldset>
+            <div class="form-actions">
+                <button class="btn-primary btn-b2b-step-4" type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</script>

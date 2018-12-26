@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load staticfiles i18n %}
+
+{% block title %}About {% endblock %}
+
+{% block meta %}
+    {{ block.super }}
+    <meta name="Description"
+          content=" is a source of vt information for cannabis users to identify and locate the medicine is optimal for their particular needs.">
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'css/pages/about.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container about-wrapper">
+        <div class="about-header">
+            <h1>About </h1>
+            <div class="social-icons">
+                <span class="social-fb">
+                    <a href="#" class="facebook-share-link" target="_blank">
+                        <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span class="social-google">
+                    <a href="#" class="google-share-link" target="_blank">
+                        <i class="fa fa-google-plus-square" aria-hidden="true"></i>
+                    </a>
+                </span>
+                <span class="social-twitter">
+                    <a href="#" class="twitter-share-link" target="_blank">
+                        <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
+        <div class="about-section">
+          <p> is a patent-pending technology platform with the mission of providing trustworthy and educational information on cannabis. It’s meant to help medical marijuana patients unlock the plant’s therapeutic benefits as well as to enable recreational users to create experiences they desire. </p>
+          <p>We stand behind purposeful and responsible consumption of cannabis and offer a number of useful tools: the ability to identify and obtain vts ideally suited for particular needs, to compare prices, see others’ reviews on products or vendors, or just learn about the history of your favorite vts and what plant-based molecules might be helpful in treating your conditions. Our goal is to give you a way to choose products beyond looking at nearly identical jars of cannabis in a dispensary’s display case. In fact, we hope to facilitate the process so that you know what you want before ever stepping foot in a dispensary (or calling for delivery). </p>
+          <p>Our <a href="{% url 'search:vt_wizard' %}">recommendation engine</a> asks 4 questions to determine a person’s set of preferences. Based on the answers, a list of vts matching those preferences is generated. Think of this engine as a really smart bud-tender, who knows you personally and is capable of answering all of your questions.</p>
+          <p>Once our user knows what vts are optimal for their desired outcomes, it is time to go get those vts!  enables the filtering of our recommendations based on a user's location, so that they could find their favorite buds whenever and wherever they may be.</p>
+          <p> has a number of ways to document vt related attributes and background information. First and foremost, we make it a priority to interview growers, to determine from 1st party sources how each vt was created and for what purpose it was grown. We also power various cannabis competitions and synthesize vt profiles based on panels of qualified judges. To democratize the vt data further, we’ve enabled each vt to take “feedback” from users, where the vt attributes can be modify based on a person’s personal experiences. Modifying the attributes of your favorite vts will not only personalize your own results instantly, but the system will identify and incorporate significant changes automatically, ensuring that the knowledge base is always learning, improving, and reflecting patient preferences over time and on a global scale.</p>
+          <p>With , new as well as experienced patients can discover new vts or vts similar to those they love, read and write reviews, and discover new vendors. The site hosts one of the largest and most frequently updated cannabis databases on the internet and as such it is one of the best places to <a href="{% url 'home' %}">look up a vt</a>.</p>
+          <p><a href="{% url 'users:signup' %}">Create your account</a> and start using  today!</p>
+    </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ block.super }}
+    <script>
+        $(document).ready(function () {
+            var urls = W.common.Sharer.getSharerUrls(encodeURIComponent(window.location.href));
+
+            $('.facebook-share-link').attr('href', urls.facebook);
+            $('.google-share-link').attr('href', urls.google);
+            $('.twitter-share-link').attr('href', urls.twitter);
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,70 @@
+.legal-wrapper {
+    margin-bottom: 4em;
+
+    .paragraph {
+        display: block;
+        width: 100%;
+        line-height: 1.2em;
+        margin-bottom: 1em;
+        text-align: justify;
+
+        .bold {
+            display: inline-block !important;
+            font-weight: bold;
+        }
+
+        .header {
+            font-weight: bold;
+            margin-bottom: 0.4em;
+        }
+
+        .sub-paragraph {
+            margin-bottom: 0.2em;
+
+            .header {
+                font-weight: bold;
+                margin: 0.4em 0.4em 0.4em 0;
+            }
+
+            span {
+                display: block;
+            }
+
+            ol {
+                padding-left: 30px;
+                line-height: 1.5em;
+                margin: 0.5em 0;
+            }
+
+            table {
+                margin: 0.5em 0;
+
+                thead {
+                    line-height: 2em;
+
+                    tr {
+                        th {
+                            padding-bottom: 1em;
+                        }
+
+                        th:nth-child(2) {
+                            padding-left: 2em;
+                        }
+                    }
+                }
+
+                tbody {
+                    tr {
+                        td {
+                            padding-bottom: 1em;
+                        }
+
+                        td:nth-child(2) {
+                            padding-left: 2em;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

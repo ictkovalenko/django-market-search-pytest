@@ -1,0 +1,57 @@
+{% extends "users/base_profile.html" %}
+
+{% load rest_framework %}
+
+{% block profile-tab %}
+  <div class="user-info">
+    <div class="info-form-wrapper">
+      <div class="form">
+        {% csrf_token %}
+        <fieldset>
+          <div class="form-field-group">
+            <div class="form-field">
+              {% render_field form.name style=form.style %}
+            </div>
+            <div class="form-field">
+              {% render_field form.email style=form.style %}
+            </div>
+            <div class="form-field timezone-form-field">
+              {% render_field form.timezone style=form.style %}
+            </div>
+          </div>
+          <div class="form-field-group">
+            <div class="form-field">
+              {% render_field form.first_name style=form.style %}
+            </div>
+            <div class="form-field">
+              {% render_field form.last_name style=form.style %}
+            </div>
+            <div class="form-field gender-field">
+              <label for="gender">Gender (Optional)</label>
+              {% render_field form.gender style=form.style %}
+            </div>
+          </div>
+          <div class="form-field-group">
+            <div class="form-field address-form-field">
+              <label for="address">Address (Optional)</label>
+              <input id="address" type="text" name="address" value="">
+              <span class="removable remove-location hidden" title="Clear value"></span>
+            </div>
+          </div>
+          <div class="form-field-group">
+            <div class="form-field date-field">
+              <label for="month">Date of Birth (Optional)</label>
+              {% render_field form.birth_month style=form.style %}
+              {% render_field form.birth_day style=form.style %}
+              {% render_field form.birth_year style=form.style %}
+            </div>
+          </div>
+        </fieldset>
+        <span class="messages"></span>
+        <div class="form-actions">
+          <button class="btn btn-primary btn-update-user-info" type="submit">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
